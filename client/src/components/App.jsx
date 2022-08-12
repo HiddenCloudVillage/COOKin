@@ -14,7 +14,7 @@ function App() {
       <LoadPage>
         <LoadContent>
           <p>LOADING</p>
-          <Spinner id="spinner" src="dist/icons/spinner.gif" />
+          <Spinner id="spinner" src="icons/spinner.gif" />
         </LoadContent>
       </LoadPage>
     );
