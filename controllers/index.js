@@ -8,15 +8,15 @@ module.exports.getUser = (req) => (
 );
 
 module.exports.updateFavorites = (favorites, userId) => (
-  user.findOneAndUpdate({ userId }, { favorites }, { upsert: false })
+  user.findOneAndUpdate({ userId }, { favorites }, { upsert: false, new: true })
 );
 
 module.exports.updateGrocery = (groceryList, userId) => (
-  user.findOneAndUpdate({ userId }, { groceryList }, { upsert: false })
+  user.findOneAndUpdate({ userId }, { groceryList }, { upsert: false, new: true })
 );
 
 module.exports.updatePantry = (pantry, userId) => (
-  user.findOneAndUpdate({ userId }, { pantry }, { upsert: false })
+  user.findOneAndUpdate({ userId }, { pantry }, { upsert: false, new: true })
 );
 
 // RECIPE CONTROLLERS
