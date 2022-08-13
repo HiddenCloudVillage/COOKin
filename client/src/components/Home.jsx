@@ -10,6 +10,7 @@ import GroceryList from './GroceryList/GroceryList';
 function Home({ user }) {
   const [userInfo, setUserInfo] = useState({});
   const [recipes, setRecipes] = useState([]);
+  const [loadingRecipes, setLoadingRecipes] = useState(true);
   const checkInUser = (userObj) => {
     axios.post('/login', userObj)
       .then((response) => {
@@ -18,30 +19,27 @@ function Home({ user }) {
       })
       .catch((err) => console.log('err', err));
   };
-  const getRecipes = () => {
-    // some sort of request
-    // only happens once
-  };
+  const getRecipes = () => axios.get('/recipes')
+    .then((response) => {
+      setRecipes(response.data);
+    })
+    .catch((err) => console.log('err', err));
 
-  const filterRecipes = () => {
-    // happens on ingredients/userinfo
-  };
   useEffect(() => {
     checkInUser(user);
-    getRecipes();
+    getRecipes().then(() => setLoadingRecipes(false));
   }, []);
-
-  useEffect(() => {
-    filterRecipes();
-  }, [userInfo]);
 
   return (
     <div>
       <h3>{`what's cookin, ${user.displayName}?`}</h3>
       <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />
       <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />
-      <Suggestions userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />
       <Recipe userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />
+      {
+      !loadingRecipes
+      && <Suggestions userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />
+      }
     </div>
 
   );
