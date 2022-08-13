@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../lib/firebase';
@@ -7,14 +7,37 @@ import { lightTheme, darkTheme } from './Theme/Themes';
 import Login from './Login';
 import Home from './Home';
 import Header from './Header';
+import Suggestions from './Suggestions/Suggestions';
+import GroceryList from './GroceryList/GroceryList';
+import Pantry from './Pantry/Pantry';
+import Recipe from './Recipe/Recipe';
+// Import the two Recipe pages
 
 function App() {
   const [user, loading] = useAuthState(auth);
   const [theme, setTheme] = useState('light');
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
-    console.log('should toggle theme')
-  }
+    console.log('should toggle theme');
+  };
+  const [currentPage, setCurrentPage] = useState('Suggested Recipes');
+  const [userInfo, setUserInfo] = useState({});
+  const [recipes, setRecipes] = useState([]);
+
+  const pages = {
+    'Suggested Recipes': <Suggestions userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />,
+    'Favorite Recipes': 'Favorites Component Placeholder',
+    'Grocery List': <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />,
+    // Modal for Recipe Component?
+    Recipe: <Recipe userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />,
+    Pantry: <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />,
+  };
+
+  const displayPage = (pageName) => pages[pageName];
+
+  useEffect(() => {
+    displayPage(currentPage);
+  });
 
   if (loading) {
     return (
@@ -26,24 +49,26 @@ function App() {
       </LoadPage>
     );
   }
+
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <>
         <GlobalStyle />
-          <MainDiv>
-            {!user ? (
-              <Login />
-            )
-              : (
-                <HomeContainer>
-                  <Header user={user} />
-                  <Home user={user} />
-                  <button onClick={themeToggler}>switch theme</button>
-                </HomeContainer>
-              )}
-          </MainDiv>
+        <MainDiv>
+          {!user ? (
+            <Login />
+          )
+            : (
+              <HomeContainer>
+                <Header currentPage={currentPage} setCurrentPage={setCurrentPage} user={user} />
+                <Home user={user} currentPage={pages.currentPage} setUserInfo={setUserInfo} />
+                <button onClick={themeToggler}>switch theme</button>
+              </HomeContainer>
+            )}
+        </MainDiv>
       </>
     </ThemeProvider>
+
   );
 }
 

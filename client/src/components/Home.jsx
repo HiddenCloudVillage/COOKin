@@ -2,14 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { auth } from '../lib/firebase';
-import Pantry from './Pantry/Pantry';
-import Recipe from './Recipe/Recipe';
-import Suggestions from './Suggestions/Suggestions';
-import GroceryList from './GroceryList/GroceryList';
 
-function Home({ user }) {
-  const [userInfo, setUserInfo] = useState({});
-  const [recipes, setRecipes] = useState([]);
+function Home({
+  user, currentPage, userInfo, setUserInfo, recipes, setRecipes
+}) {
   const checkInUser = (userObj) => {
     axios.post('/login', userObj)
       .then((response) => {
@@ -38,10 +34,7 @@ function Home({ user }) {
   return (
     <div>
       <h3>{`what's cookin, ${user.displayName}?`}</h3>
-      <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />
-      <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />
-      <Suggestions userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />
-      <Recipe userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />
+      {currentPage}
     </div>
 
   );
