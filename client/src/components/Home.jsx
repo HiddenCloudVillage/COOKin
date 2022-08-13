@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { auth } from '../lib/firebase';
 import Pantry from './Pantry/Pantry';
+import Recipe from './Recipe/Recipe';
+import Suggestions from './suggestions/Suggestions';
+import GroceryList from './GroceryList/GroceryList';
 
 function Home({ user }) {
   const [userInfo, setUserInfo] = useState({});
@@ -35,7 +38,10 @@ function Home({ user }) {
   return (
     <div>
       <h3>{`what's cookin, ${user.displayName}?`}</h3>
-      <Pantry />
+      <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />
+      <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />
+      <Suggestions userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />
+      <Recipe userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />
     </div>
 
   );
