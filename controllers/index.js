@@ -7,28 +7,17 @@ module.exports.getUser = (req) => (
   user.findOneAndUpdate({ userId: req.body.uid }, {}, { upsert: true })
 );
 
-module.exports.addToFavorites = (req, res) => {
-  user.findOneAndUpdate({});
-};
-module.exports.removeFromFavorites = (req, res) => {
-  user.findOneAndUpdate({});
-};
-module.exports.addToGroceryList = (req, res) => {
-  user.findOneAndUpdate({});
-};
-module.exports.removeFromGroceryList = (req, res) => {
-  user.findOneAndUpdate({});
-};
+module.exports.updateFavorites = (favorites, userId) => (
+  user.findOneAndUpdate({ userId }, { favorites }, { upsert: false })
+);
 
-module.exports.removeFromPantry = (req, res) => {
-  user.findOneAndUpdate({});
-};
+module.exports.updateGrocery = (groceryList, userId) => (
+  user.findOneAndUpdate({ userId }, { groceryList }, { upsert: false })
+);
 
-module.exports.addToPantry = (req, res) => {
-  user.findOneAndUpdate({});
-};
+module.exports.updatePantry = (pantry, userId) => (
+  user.findOneAndUpdate({ userId }, { pantry }, { upsert: false })
+);
 
 // RECIPE CONTROLLERS
-module.exports.getRecipes = (req, res) => {
-  recipes.find({});
-};
+module.exports.getRecipes = () => recipes.find({});
