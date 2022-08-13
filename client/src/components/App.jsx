@@ -5,7 +5,6 @@ import { auth } from '../lib/firebase';
 import Login from './Login';
 import Home from './Home';
 import Header from './Header';
-import Header2 from './Header2';
 import Suggestions from './suggestions/Suggestions';
 import GroceryList from './GroceryList/GroceryList';
 import Pantry from './Pantry/Pantry';
@@ -15,23 +14,16 @@ import Recipe from './Recipe/Recipe';
 function App() {
   const [user, loading] = useAuthState(auth);
   const [currentPage, setCurrentPage] = useState('Suggested Recipes');
+  const [userInfo, setUserInfo] = useState({});
+  const [recipes, setRecipes] = useState([]);
 
-  // const pages = {
-  //   'Suggested Recipes': <Suggestions />,
-  //   'Favorite Recipes': <Favorites />,
-  //   'Grocery List': <GroceryList />,
-  //   Recipe: <Recipe recipeName={'tacos'} />,
-  //   Pantry: <Pantry />,
-  // };
-
-  // REPLACE the values within pages with corresponding components
   const pages = {
-    'Suggested Recipes': <Suggestions />,
+    'Suggested Recipes': <Suggestions userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />,
     'Favorite Recipes': 'Favorites Component Placeholder',
-    'Grocery List': <GroceryList />,
+    'Grocery List': <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />,
     // Modal for Recipe Component?
-    Recipe: <Recipe />,
-    Pantry: <Pantry />,
+    Recipe: <Recipe userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />,
+    Pantry: <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />,
   };
 
   const displayPage = (pageName) => pages[pageName];
@@ -58,10 +50,9 @@ function App() {
       )
         : (
           <HomeContainer>
-            {/* <Header user={user} /> */}
-            <Header2 currentPage={currentPage} setCurrentPage={setCurrentPage} user={user} />
+            <Header currentPage={currentPage} setCurrentPage={setCurrentPage} user={user} />
             <p>{displayPage(currentPage)}</p>
-            <Home user={user}>{displayPage(currentPage)}</Home>
+            <Home user={user} currentPage={pages.currentPage} />
           </HomeContainer>
         )}
     </MainDiv>
