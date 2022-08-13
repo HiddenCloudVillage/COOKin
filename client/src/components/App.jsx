@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../lib/firebase';
@@ -6,27 +6,39 @@ import Login from './Login';
 import Home from './Home';
 import Header from './Header';
 import Header2 from './Header2';
+import Suggestions from './suggestions/Suggestions';
+import GroceryList from './GroceryList/GroceryList';
+import Pantry from './Pantry/Pantry';
+import Recipe from './Recipe/Recipe';
+// Import the two Recipe pages
 
 function App() {
   const [user, loading] = useAuthState(auth);
-  const [currentPage, setCurrentPage] = useState(['suggested']);
+  const [currentPage, setCurrentPage] = useState('Suggested Recipes');
 
   // const pages = {
-  //   'Suggested Recipes': <Suggested />,
+  //   'Suggested Recipes': <Suggestions />,
   //   'Favorite Recipes': <Favorites />,
   //   'Grocery List': <GroceryList />,
   //   Recipe: <Recipe recipeName={'tacos'} />,
   //   Pantry: <Pantry />,
   // };
+
+  // REPLACE the values within pages with corresponding components
   const pages = {
-    'Suggested Recipes': 'suggested recipe page',
-    'Favorite Recipes': 'Favorites page',
-    'Grocery List': 'grocery list page',
-    Recipe: 'Recipe page',
-    Pantry: 'pantry page',
+    'Suggested Recipes': <Suggestions />,
+    'Favorite Recipes': 'Favorites Component Placeholder',
+    'Grocery List': <GroceryList />,
+    // Modal for Recipe Component?
+    Recipe: <Recipe />,
+    Pantry: <Pantry />,
   };
 
   const displayPage = (pageName) => pages[pageName];
+
+  useEffect(() => {
+    displayPage(currentPage);
+  });
 
   if (loading) {
     return (
@@ -48,6 +60,7 @@ function App() {
           <HomeContainer>
             {/* <Header user={user} /> */}
             <Header2 currentPage={currentPage} setCurrentPage={setCurrentPage} user={user} />
+            <p>{displayPage(currentPage)}</p>
             <Home user={user}>{displayPage(currentPage)}</Home>
           </HomeContainer>
         )}
