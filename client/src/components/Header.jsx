@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { auth } from '../lib/firebase';
 
-function Header({ user }) {
+const pageTitles = ['Suggested Recipes', 'Favorite Recipes', 'Grocery List', 'Pantry'];
+
+function Header({ user, setCurrentPage, currentPage}) {
   const signOut = () => {
     const result = confirm('signing out?');
     if (result) {
@@ -15,12 +17,27 @@ function Header({ user }) {
         });
     }
   };
+  const handlePageChange = (e) => {
+    setCurrentPage(e.target.id);
+  };
   return (
     <HeaderContainer>
       <Title>COOKin.</Title>
+      {/* <PageTitlesContainer> */}
+        {/* set style of currentPage to Special CSS... not code for anything just make it feel special */}
+      {pageTitles.map((title) => (
+        <PageTitle
+          key={title}
+          id={title}
+          name={title}
+          onClick={(e) => handlePageChange(e)}
+        >
+          {title}
+        </PageTitle>
+      ))}
+      {/* </PageTitlesContainer> */}
       <HeaderRight>
-        {user
-        && <Img onClick={signOut} id="header-icon" src={user?.photoURL} alt={user?.displayName} referrerPolicy="no-referrer" />}
+        {user && <Img onClick={signOut} id="Header-icon" src={user?.photoURL} alt={user?.displayName} referrerPolicy="no-referrer" />}
       </HeaderRight>
     </HeaderContainer>
   );
@@ -36,7 +53,6 @@ const Img = styled.img`
     cursor: pointer;
     opacity: 70%;
   }
-
 `;
 
 const HeaderRight = styled.div`
@@ -53,7 +69,7 @@ const HeaderContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border-bottom: .5px solid black;
+  border-bottom: .5px solid;
   cursor: default;
 `;
 
@@ -68,6 +84,24 @@ const Title = styled.div`
     opacity: 70%;
     cursor: pointer;
   }
+`;
+
+// styling for the page titles in <HeaderContainer>
+const PageTitlesContainer = styled.div`
+
+`
+
+const PageTitle = styled.div`
+font-size: 25px;
+letter-spacing: -1.5px;
+margin-left: 2%;
+margin-top:2%;
+display: flex;
+align-items: bottom;
+&: hover{
+  opacity: 70%;
+  cursor: pointer;
+}
 `;
 
 const Button = styled.button`
