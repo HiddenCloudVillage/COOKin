@@ -69,7 +69,7 @@ const HeaderContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border-bottom: .5px solid black;
+  border-bottom: .5px solid;
   cursor: default;
 `;
 
