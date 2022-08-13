@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../lib/firebase';
 import Login from './Login';
 import Home from './Home';
 import Header from './Header';
+import Header2 from './Header2';
 
 function App() {
   const [user, loading] = useAuthState(auth);
+  const [currentPage, setCurrentPage] = useState(['suggested']);
+
+  // const pages = {
+  //   'Suggested Recipes': <Suggested />,
+  //   'Favorite Recipes': <Favorites />,
+  //   'Grocery List': <GroceryList />,
+  //   Recipe: <Recipe recipeName={'tacos'} />,
+  //   Pantry: <Pantry />,
+  // };
+  const pages = {
+    'Suggested Recipes': 'suggested recipe page',
+    'Favorite Recipes': 'Favorites page',
+    'Grocery List': 'grocery list page',
+    Recipe: 'Recipe page',
+    Pantry: 'pantry page',
+  };
+
+  const displayPage = (pageName) => pages[pageName];
 
   if (loading) {
     return (
@@ -19,6 +38,7 @@ function App() {
       </LoadPage>
     );
   }
+
   return (
     <MainDiv>
       {!user ? (
@@ -26,8 +46,9 @@ function App() {
       )
         : (
           <HomeContainer>
-            <Header user={user} />
-            <Home user={user} />
+            {/* <Header user={user} /> */}
+            <Header2 currentPage={currentPage} setCurrentPage={setCurrentPage} user={user} />
+            <Home user={user}>{displayPage(currentPage)}</Home>
           </HomeContainer>
         )}
     </MainDiv>
