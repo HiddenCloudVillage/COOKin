@@ -1,13 +1,20 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../lib/firebase';
+import GlobalStyle from './Theme/GlobalStyle';
+import { lightTheme, darkTheme } from './Theme/Themes';
 import Login from './Login';
 import Home from './Home';
 import Header from './Header';
 
 function App() {
   const [user, loading] = useAuthState(auth);
+  const [theme, setTheme] = useState('light');
+  const themeToggler = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+    console.log('should toggle theme')
+  }
 
   if (loading) {
     return (
@@ -20,17 +27,23 @@ function App() {
     );
   }
   return (
-    <MainDiv>
-      {!user ? (
-        <Login />
-      )
-        : (
-          <HomeContainer>
-            <Header user={user} />
-            <Home user={user} />
-          </HomeContainer>
-        )}
-    </MainDiv>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <>
+        <GlobalStyle />
+          <MainDiv>
+            {!user ? (
+              <Login />
+            )
+              : (
+                <HomeContainer>
+                  <Header user={user} />
+                  <Home user={user} />
+                  <button onClick={themeToggler}>switch theme</button>
+                </HomeContainer>
+              )}
+          </MainDiv>
+      </>
+    </ThemeProvider>
   );
 }
 
@@ -40,7 +53,7 @@ const HomeContainer = styled.div`
   justify-content: flex-start;
   height: 100vh;
   width: 100vw;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
 `;
 
 const Spinner = styled.img`
@@ -54,7 +67,7 @@ const LoadPage = styled.div`
   height: 100vh;
   display: grid;
   place-items: center;
-  background: white;
+  /* background: white; */
   z-index: 100;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
