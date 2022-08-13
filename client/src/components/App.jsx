@@ -7,10 +7,7 @@ import { lightTheme, darkTheme } from './Theme/Themes';
 import Login from './Login';
 import Home from './Home';
 import Header from './Header';
-import Suggestions from './Suggestions/Suggestions';
-import GroceryList from './GroceryList/GroceryList';
-import Pantry from './Pantry/Pantry';
-import Recipe from './Recipe/Recipe';
+
 // Import the two Recipe pages
 
 function App() {
@@ -21,23 +18,6 @@ function App() {
     console.log('should toggle theme');
   };
   const [currentPage, setCurrentPage] = useState('Suggested Recipes');
-  const [userInfo, setUserInfo] = useState({});
-  const [recipes, setRecipes] = useState([]);
-
-  const pages = {
-    'Suggested Recipes': <Suggestions userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />,
-    'Favorite Recipes': 'Favorites Component Placeholder',
-    'Grocery List': <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />,
-    // Modal for Recipe Component?
-    Recipe: <Recipe userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />,
-    Pantry: <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />,
-  };
-
-  const displayPage = (pageName) => pages[pageName];
-
-  useEffect(() => {
-    displayPage(currentPage);
-  });
 
   if (loading) {
     return (
@@ -61,7 +41,7 @@ function App() {
             : (
               <HomeContainer>
                 <Header currentPage={currentPage} setCurrentPage={setCurrentPage} user={user} />
-                <Home user={user} currentPage={pages.currentPage} setUserInfo={setUserInfo} />
+                <Home user={user} currentPage={currentPage} />
                 <button onClick={themeToggler}>switch theme</button>
               </HomeContainer>
             )}
