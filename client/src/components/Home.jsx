@@ -4,7 +4,7 @@ import axios from 'axios';
 import { auth } from '../lib/firebase';
 import Pantry from './Pantry/Pantry';
 import Recipe from './Recipe/Recipe';
-import Suggestions from './suggestions/Suggestions';
+import Suggestions from './Suggestions/Suggestions';
 import GroceryList from './GroceryList/GroceryList';
 
 function Home({ user }) {
