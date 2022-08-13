@@ -24,7 +24,7 @@ const Recipe = mongoose.model('Recipe', RecipeSchema);
 // create user schema
 const UserSchema = new Schema({
   userId: String,
-  pantry: { type: [Object], default: [] },
+  pantry: { type: Object, default: {} },
   groceryList: { type: [Object], default: [] },
   favorites: { type: [String], default: [] },
 });
