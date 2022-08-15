@@ -43,7 +43,7 @@ function Home({
     filterRecipes();
   }, [userInfo]);
 
-  if (!userInfo.userId) {
+  if (!userInfo.userId || !recipes.length) {
     // PAGE SHOULD NOT LOAD UNTIL USERINFO RETURNED FROM DB
     return (
       <Load />
