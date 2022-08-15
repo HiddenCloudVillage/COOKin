@@ -58,7 +58,6 @@ export default function RecipeList({recipes, userInfo, setUserInfo }) {
             setPage(page < pageCount ? page + 1 : page);
           }}
         >
-          Next
 
         </button>
 
