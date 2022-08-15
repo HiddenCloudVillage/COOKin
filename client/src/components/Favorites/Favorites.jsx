@@ -8,7 +8,7 @@ export default function Favorites({ userInfo, recipes }) {
     setSort(e.target.value);
   }
   function sortAlpha(recipes, key) {
-    // eslint-disable-next-line prefer-arrow-callback
+    // eslint-disable-next-line prefer-arrow-callback, func-names
     return recipes.sort(function (a, b) {
       // eslint-disable-next-line no-var
       var x = a[key]; var y = b[key];
@@ -25,8 +25,21 @@ export default function Favorites({ userInfo, recipes }) {
         names.push(recipes[i].name);
       }
     }
+    const pantryItems = Object.keys(userInfo.pantry);
+    let ingredients = [];
+    for (let i = 0; i < faveRecipes.length; i += 1) {
+      ingredients = faveRecipes[i].ingredients.map((recipe) => recipe.ingredientName)
+        .filter((ingredient) => ingredient !== undefined);
+      console.log('faves', faveRecipes[i]);
+      console.log('ing', ingredients);
+      console.log(pantryItems);
+    }
     if (sort === 'alpha') {
       sortAlpha(faveRecipes, 'name');
+      setFave(faveRecipes);
+    }
+    if (sort === 'percent') {
+      sortAlpha(faveRecipes, 'percent');
       setFave(faveRecipes);
     }
   }
