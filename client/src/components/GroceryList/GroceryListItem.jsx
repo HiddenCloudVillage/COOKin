@@ -5,10 +5,7 @@ function GroceryListItem({ removeFromList, updateUserInfo, ingredient, pantry })
   const [tempIng, setTempIng] = useState(ingredient);
   const [flag, setFlag] = useState(true);
 
-
   const pantryArray = pantry ? Object.keys(pantry) : [];
-
-  // console.log(ingredient, pantryArray);
 
   function toggleStriked() {
     updateUserInfo(ingredient.name);

@@ -6,7 +6,6 @@ import GroceryListItem from './GroceryListItem';
 
 function GroceryList({ userInfo, setUserInfo }) {
   const [alteredGroceryList, setAlteredGroceryList] = useState([]);
-  console.log(userInfo);
 
   const groceryListSet = new Set(userInfo.groceryList);
   const groceryListArray = Array.from(groceryListSet);
