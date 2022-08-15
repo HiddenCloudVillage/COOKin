@@ -94,7 +94,7 @@ function GroceryList({ userInfo, setUserInfo }) {
     const axiosObj = { grocery: tempList, userId: userInfo.userId };
     axios
       .put('/grocery', axiosObj)
-      .then((res) => setAlteredGroceryList(res.data.groceryList))
+      .then((res) => setUserInfo(res.data))
       .catch((err) => console.log(err));
   }
 
