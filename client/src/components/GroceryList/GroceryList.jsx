@@ -6,7 +6,6 @@ import GroceryListItem from './GroceryListItem';
 
 function GroceryList({ userInfo, setUserInfo }) {
   const [alteredGroceryList, setAlteredGroceryList] = useState([]);
-  console.log(userInfo);
 
   const groceryListSet = new Set(userInfo.groceryList);
   const groceryListArray = Array.from(groceryListSet);
@@ -44,8 +43,42 @@ function GroceryList({ userInfo, setUserInfo }) {
       }
       tempList.push(tempObj);
     });
-    // setAlteredGroceryList(tempList);
-    console.log(tempList);
+
+    const axiosObj = { grocery: tempList, userId: userInfo.userId };
+    axios
+      .put('/grocery', axiosObj)
+      .then((res) => setAlteredGroceryList(res.data.groceryList))
+      .catch((err) => console.log(err));
+
+    const pantryArray = userInfo.pantry ? Object.keys(userInfo.pantry) : [];
+    if (!pantryArray.includes(name)) {
+      const additionalPantryItem = name;
+      const newPantryItem = userInfo.pantry ? { ...userInfo.pantry } : {};
+      newPantryItem[additionalPantryItem] = { q: '', c: '', e: '' };
+      axios
+        .put('/pantry', { pantry: newPantryItem, userId: userInfo.userId })
+        .then((res) => setUserInfo(res.data))
+        .catch((err) => console.log(err));
+    } else {
+      const additionalPantryItem = name;
+      const newPantryItem = { ...userInfo.pantry };
+      delete newPantryItem[additionalPantryItem];
+      axios
+        .put('/pantry', { pantry: newPantryItem, userId: userInfo.userId })
+        .then((res) => setUserInfo(res.data))
+        .catch((err) => console.log(err));
+    }
+  }
+
+  function removeFromList(name, event) {
+    event.preventDefault();
+    const tempList = [];
+
+    alteredGroceryList.forEach((item) => {
+      if (item.name !== name) {
+        tempList.push(item);
+      }
+    });
 
     const axiosObj = { grocery: tempList, userId: userInfo.userId };
     axios
@@ -54,20 +87,39 @@ function GroceryList({ userInfo, setUserInfo }) {
       .catch((err) => console.log(err));
   }
 
+  function clearFullList(event) {
+    event.preventDefault();
+    const tempList = [];
+
+    const axiosObj = { grocery: tempList, userId: userInfo.userId };
+    axios
+      .put('/grocery', axiosObj)
+      .then((res) => setUserInfo(res.data))
+      .catch((err) => console.log(err));
+  }
+
   return (
     <div>
-      this is the grocery list!
-      <GroceryForm />
       THIS IS THE GROCERY LIST BITCHES
       {userInfo.groceryList
         && alteredGroceryList.map((ingredient) => (
           <GroceryListItem
+            removeFromList={removeFromList}
             updateUserInfo={updateUserInfo}
             pantry={userInfo.pantry}
             ingredient={ingredient}
             key={ingredient.name}
           />
         ))}
+      <GroceryForm
+        setAlteredGroceryList={setAlteredGroceryList}
+        userInfo={userInfo}
+        alteredGroceryList={alteredGroceryList}
+        setUserInfo={setUserInfo}
+      />
+      <button onClick={clearFullList} type="submit">
+        Clear List
+      </button>
     </div>
   );
 }
