@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RecipeList from './RecipeList';
 import IncludeIngredient from './IncludeIngredient';
 import ExcludeIngredient from './ExcludeIngredient';
@@ -42,15 +42,17 @@ export default function Suggestions({ recipes, userInfo, setUserInfo }) {
       const percent = Math.floor((recipePercent / recipeIngredients.length) * 100);
       return { ...recipe, percent };
     }).sort((a, b) => b.percent - a.percent);
-    console.log('recipesWithPercent', recipesWithPercent);
+   // setFilteredAndSortedRecipes(recipesWithPercent);
     return recipesWithPercent;
   };
-  if (userInfo.pantry) filterRecipes();
-
+  // useEffect(() => {
+  //   filterRecipes();
+  //   console.log('filteredAndSortedRecipes', filteredAndSortedRecipes);
+  // }, [recipes]);
   return (
     <div>
       <div>
-        <RecipeList />
+        <RecipeList recipes={filterRecipes()} />
       </div>
       <IncludeIngredient inclusion={includeIngredients} setInclusion={setIncludeIngredients} />
       <ExcludeIngredient exclusion={excludeIngredients} setExclusion={setExcludeIngredients} />
