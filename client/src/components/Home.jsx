@@ -52,26 +52,15 @@ function Home({ user, currentPage }) {
   return (
     <div>
       <h3>{`what's cookin, ${user.displayName}?`}</h3>
-<<<<<<< HEAD
-      {currentPage === 'Suggested Recipes'
-        && (
-=======
+
       {currentPage === 'Suggested Recipes' && (
->>>>>>> 13bf03c164c7d2a762c01ad1ea12e5b080d88e20
         <Suggestions
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           recipes={recipes}
         />
-<<<<<<< HEAD
+
         )}
-      {currentPage === 'Grocery List'
-        && <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />}
-      {currentPage === 'Recipe'
-        && <Recipe userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />}
-      {currentPage === 'Pantry'
-        && <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />}
-=======
       )}
       {currentPage === 'Favorite Recipes' && (
         <Favorites
@@ -83,17 +72,10 @@ function Home({ user, currentPage }) {
       {currentPage === 'Grocery List' && (
         <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />
       )}
-      {currentPage === 'Recipe' && (
-        <Recipe
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
-          recipes={recipes}
-        />
       )}
       {currentPage === 'Pantry' && (
         <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />
       )}
->>>>>>> 13bf03c164c7d2a762c01ad1ea12e5b080d88e20
     </div>
   );
 }
