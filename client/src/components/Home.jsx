@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { auth } from '../lib/firebase';
 import Suggestions from './suggestions/Suggestions';
+import Favorites from './Favorites/Favorites';
 import GroceryList from './GroceryList/GroceryList';
 import Pantry from './Pantry/Pantry';
 import Recipe from './Recipe/Recipe';
@@ -23,7 +24,8 @@ function Home({ user, currentPage }) {
   const getRecipes = () => {
     // some sort of request
     // only happens once
-    axios.get('/recipes')
+    axios
+      .get('/recipes')
       .then((response) => {
         setRecipes(response.data);
       })
@@ -44,9 +46,7 @@ function Home({ user, currentPage }) {
 
   if (!userInfo.userId || !recipes.length) {
     // PAGE SHOULD NOT LOAD UNTIL USERINFO RETURNED FROM DB
-    return (
-      <Load />
-    );
+    return <Load />;
   }
 
   return (
@@ -54,6 +54,13 @@ function Home({ user, currentPage }) {
       <h3>{`what's cookin, ${user.displayName}?`}</h3>
       {currentPage === 'Suggested Recipes' && (
         <Suggestions
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          recipes={recipes}
+        />
+      )}
+      {currentPage === 'Favorite Recipes' && (
+        <Favorites
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           recipes={recipes}
