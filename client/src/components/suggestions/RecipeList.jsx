@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import RecipeTile from './RecipeTile';
 import OpenTile from './OpenTile';
 
-export default function RecipeList({ recipes, userInfo, setUserInfo }) {
+export default function RecipeList({recipes, userInfo, setUserInfo }) {
   const [page, setPage] = useState(0);
   const [pageCount, setPageCount] = useState(Math.ceil(recipes.length / 5));
   const [openTile, setOpenTile] = useState(0);

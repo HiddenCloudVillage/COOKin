@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function RecipeTile({ recipe,setOpen,i }) {
+export default function RecipeTile({ recipe, setOpen, i }) {
   return (
     <Tile onClick={() => setOpen(i)}>
-      <Name>RecipeTile</Name>
+      <Name>{recipe.name}</Name>
+      <h2>{recipe.percent}%</h2>
     </Tile>
   );
 }
@@ -13,10 +14,10 @@ const Tile = styled.div`
   min-height: 5%;
   height: 5vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-
+  padding-left: 10px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
@@ -28,6 +29,7 @@ const Tile = styled.div`
   }
 `;
 const Name = styled.h3`
+  top: -40%;
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 0;

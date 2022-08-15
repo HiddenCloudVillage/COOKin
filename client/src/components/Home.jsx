@@ -54,7 +54,13 @@ function Home({
     <div>
       <h3>{`what's cookin, ${user.displayName}?`}</h3>
       {currentPage === 'Suggested Recipes'
-        && <Suggestions userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />}
+        && (
+        <Suggestions
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          recipes={recipes}
+        />
+        )}
       {currentPage === 'Grocery List'
         && <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />}
       {currentPage === 'Recipe'

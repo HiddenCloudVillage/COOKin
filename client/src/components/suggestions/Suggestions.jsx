@@ -3,7 +3,8 @@ import RecipeList from './RecipeList';
 import IncludeIngredient from './IncludeIngredient';
 import ExcludeIngredient from './ExcludeIngredient';
 
-export default function Suggestions({ recipes, userInfo, setUserInfo }) {
+export default function Suggestions({ recipes, userInfo, setUserInfo,
+}) {
   const [includeIngredients, setIncludeIngredients] = useState([]);
   const [excludeIngredients, setExcludeIngredients] = useState([]);
 
@@ -29,7 +30,7 @@ export default function Suggestions({ recipes, userInfo, setUserInfo }) {
     console.log(recipes);
     console.log('filteredRecipes', filteredRecipes);
 
-    const pantryIngredients = Object.keys(userInfo?.pantry);
+    const pantryIngredients = userInfo.pantry ? Object.keys(userInfo?.pantry) : [];
     const recipesWithPercent = filteredRecipes.map((recipe) => {
       const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredientName);
       const recipePercent = recipeIngredients.reduce((acc, ingredient) => {
@@ -46,7 +47,11 @@ export default function Suggestions({ recipes, userInfo, setUserInfo }) {
   return (
     <div>
       <div>
-        <RecipeList userInfo={userInfo} setUserInfo={setUserInfo} recipes={filterRecipes()} />
+        <RecipeList
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          recipes={filterRecipes()}
+        />
       </div>
       <IncludeIngredient inclusion={includeIngredients} setInclusion={setIncludeIngredients} />
       <ExcludeIngredient exclusion={excludeIngredients} setExclusion={setExcludeIngredients} />
