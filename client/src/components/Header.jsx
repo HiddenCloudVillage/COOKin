@@ -4,7 +4,7 @@ import { auth } from '../lib/firebase';
 
 const pageTitles = ['Suggested Recipes', 'Favorite Recipes', 'Grocery List', 'Pantry'];
 
-function Header({ user, setCurrentPage, currentPage}) {
+function Header({ user, setCurrentPage, currentPage, themeToggler, theme }) {
   const signOut = () => {
     const result = confirm('signing out?');
     if (result) {
@@ -43,6 +43,9 @@ function Header({ user, setCurrentPage, currentPage}) {
       </Nav>
       {/* </PageTitlesContainer> */}
       <HeaderRight>
+        <DarkMode onClick={themeToggler}>
+          {theme}
+        </DarkMode>
         {user && <Img onClick={signOut} id="Header-icon" src={user?.photoURL} alt={user?.displayName} referrerPolicy="no-referrer" />}
       </HeaderRight>
     </HeaderContainer>
@@ -94,7 +97,7 @@ const HeaderLeft = styled.div`
 const Nav = styled(HeaderLeft)`
   font-size: 25px;
   width: 65%;
-`
+`;
 
 const Title = styled.p`
   margin: 0;
@@ -103,9 +106,13 @@ const Title = styled.p`
     cursor: pointer;
   }
   width: 100%;
-`
+`;
 
 const PageTitle = styled(Title)`
   margin-left: 5%;
   width: 90%;
-`
+`;
+const DarkMode = styled(Title)`
+  margin-right: 5%;
+  font-size: 20px;
+`;

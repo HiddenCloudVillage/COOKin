@@ -36,9 +36,14 @@ function App() {
           )
             : (
               <HomeContainer>
-                <Header currentPage={currentPage} setCurrentPage={setCurrentPage} user={user} />
+                <Header
+                  themeToggler={themeToggler}
+                  theme={theme}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                  user={user}
+                />
                 <Home user={user} currentPage={currentPage} />
-                <button onClick={themeToggler}>switch theme</button>
               </HomeContainer>
             )}
         </MainDiv>
