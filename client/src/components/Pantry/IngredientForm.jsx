@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Autocomplete, TextField } from '@mui/material/';
+import ingredient from '../../lib/ingredients';
 
 // some sort of modal for inserting ingredient
 
-function IngredientForm({
-  userInfo,
-  setUserInfo,
-  setShow,
-  setUpdatePantry,
-}) {
+function IngredientForm({ userInfo, setUserInfo, setShow, setUpdatePantry }) {
   const [name, setName] = useState();
   const [amount, setAmount] = useState();
   const [category, setCategory] = useState();
@@ -32,15 +29,15 @@ function IngredientForm({
         setShow(false);
       }}
     >
-      <label>
-        Name :
-        <input
-          type="text"
-          name="name"
-          required
-          onChange={(e) => setName(e.target.value)}
-        />
-      </label>
+      <Autocomplete
+        options={ingredient}
+        sx={{ width: 300 }}
+        autoHighlight
+        renderInput={(params) => <TextField {...params} label="Name" />}
+        onChange={(e, newInputValue) => {
+          setName(newInputValue);
+        }}
+      />
       <label>
         Amount :
         <input
@@ -68,7 +65,7 @@ function IngredientForm({
           onChange={(e) => setExpiration(e.target.value)}
         />
       </label>
-        <input type="submit" />
+      <input type="submit" />
     </form>
   );
 }
