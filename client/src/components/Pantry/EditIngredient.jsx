@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import EditForm from './EditForm';
 
+const axios = require('axios');
+
 function EditIngredient({
   ingredient,
   ingredientInfo,
@@ -12,8 +14,13 @@ function EditIngredient({
 
   function handleDelete() {
     delete userInfo.pantry[ingredient];
-    setUserInfo(userInfo);
-    setUpdatePantry(true);
+    axios({
+      method: 'put',
+      url: '/pantry',
+      data: userInfo,
+    })
+      .then((res) => setUserInfo(res.data))
+      .catch((err) => console.log(err));
   }
   return (
     <div>

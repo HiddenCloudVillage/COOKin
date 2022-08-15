@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import IngredientTile from './IngredientTile';
 
-function IngredientList({ pantry, userInfo, setUserInfo, setUpdatePantry }) {
+function IngredientList({ pantry, userInfo, setUserInfo }) {
   const ingredientNames = Object.keys(pantry);
   return (
     <div>
@@ -13,7 +13,6 @@ function IngredientList({ pantry, userInfo, setUserInfo, setUpdatePantry }) {
             key={ingredient}
             userInfo={userInfo}
             setUserInfo={setUserInfo}
-            setUpdatePantry={setUpdatePantry}
             ingredientInfo={pantry[ingredient]}
           />
         ))}

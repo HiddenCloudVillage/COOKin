@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { Autocomplete, TextField } from '@mui/material/';
 import ingredient from '../../lib/ingredients';
 
+const axios = require('axios');
 // some sort of modal for inserting ingredient
 
-function IngredientForm({ userInfo, setUserInfo, setShow, setUpdatePantry }) {
+function IngredientForm({ userInfo, setUserInfo, setShow }) {
   const [name, setName] = useState();
   const [amount, setAmount] = useState();
   const [category, setCategory] = useState();
@@ -18,8 +19,16 @@ function IngredientForm({ userInfo, setUserInfo, setShow, setUpdatePantry }) {
       c: category,
       e: expiration,
     };
-    setUserInfo(newUserInfo);
-    setUpdatePantry(true);
+    axios({
+      method: 'put',
+      url: '/pantry',
+      data: newUserInfo,
+    })
+      .then((res) => {
+        console.log(res.data);
+        setUserInfo(res.data);
+      })
+      .catch((err) => console.log(err));
   }
   return (
     <form
