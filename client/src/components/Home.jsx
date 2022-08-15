@@ -24,6 +24,11 @@ function Home({
   const getRecipes = () => {
     // some sort of request
     // only happens once
+    axios.get('/recipes')
+      .then((response) => {
+        setRecipes(response.data);
+      })
+      .catch((err) => console.log('err', err));
   };
 
   const filterRecipes = () => {
