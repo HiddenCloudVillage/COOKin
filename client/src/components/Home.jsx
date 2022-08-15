@@ -6,11 +6,11 @@ import Suggestions from './suggestions/Suggestions';
 import GroceryList from './GroceryList/GroceryList';
 import Pantry from './Pantry/Pantry';
 import Recipe from './Recipe/Recipe';
+import Load from './Load';
 
 function Home({ user, currentPage }) {
   const [userInfo, setUserInfo] = useState({});
   const [recipes, setRecipes] = useState([]);
-
   const checkInUser = (userObj) => {
     axios
       .post('/login', userObj)
@@ -23,6 +23,11 @@ function Home({ user, currentPage }) {
   const getRecipes = () => {
     // some sort of request
     // only happens once
+    axios.get('/recipes')
+      .then((response) => {
+        setRecipes(response.data);
+      })
+      .catch((err) => console.log('err', err));
   };
 
   const filterRecipes = () => {
@@ -36,6 +41,13 @@ function Home({ user, currentPage }) {
   useEffect(() => {
     filterRecipes();
   }, [userInfo]);
+
+  if (!userInfo.userId || !recipes.length) {
+    // PAGE SHOULD NOT LOAD UNTIL USERINFO RETURNED FROM DB
+    return (
+      <Load />
+    );
+  }
 
   return (
     <div>

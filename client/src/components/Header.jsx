@@ -4,7 +4,7 @@ import { auth } from '../lib/firebase';
 
 const pageTitles = ['Suggested Recipes', 'Favorite Recipes', 'Grocery List', 'Pantry'];
 
-function Header({ user, setCurrentPage, currentPage}) {
+function Header({ user, setCurrentPage, currentPage, themeToggler, theme }) {
   const signOut = () => {
     const result = confirm('signing out?');
     if (result) {
@@ -22,21 +22,30 @@ function Header({ user, setCurrentPage, currentPage}) {
   };
   return (
     <HeaderContainer>
-      <Title>COOKin.</Title>
+      <HeaderLeft>
+        <Title>
+          COOKin.
+        </Title>
+      </HeaderLeft>
       {/* <PageTitlesContainer> */}
         {/* set style of currentPage to Special CSS... not code for anything just make it feel special */}
-      {pageTitles.map((title) => (
-        <PageTitle
-          key={title}
-          id={title}
-          name={title}
-          onClick={(e) => handlePageChange(e)}
-        >
-          {title}
-        </PageTitle>
-      ))}
+      <Nav>
+        {pageTitles.map((title) => (
+          <PageTitle
+            key={title}
+            id={title}
+            name={title}
+            onClick={(e) => handlePageChange(e)}
+          >
+            {title}
+          </PageTitle>
+        ))}
+      </Nav>
       {/* </PageTitlesContainer> */}
       <HeaderRight>
+        <DarkMode onClick={themeToggler}>
+          {theme}
+        </DarkMode>
         {user && <Img onClick={signOut} id="Header-icon" src={user?.photoURL} alt={user?.displayName} referrerPolicy="no-referrer" />}
       </HeaderRight>
     </HeaderContainer>
@@ -57,11 +66,12 @@ const Img = styled.img`
 
 const HeaderRight = styled.div`
   display: flex;
+  height: 100%;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
   margin-right: 2%;
-  width: 30%;
+  width: 15%;
 `;
 const HeaderContainer = styled.div`
   width: 100%;
@@ -73,45 +83,36 @@ const HeaderContainer = styled.div`
   cursor: default;
 `;
 
-const Title = styled.div`
+const HeaderLeft = styled.div`
   font-size: 35px;
   letter-spacing: -1.5px;
-  margin-left: 2%;
-  margin-top:2%;
+  width: 20%;
+  height: 100%;
   display: flex;
-  align-items: bottom;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const Nav = styled(HeaderLeft)`
+  font-size: 25px;
+  width: 65%;
+`;
+
+const Title = styled.p`
+  margin: 0;
   &: hover{
     opacity: 70%;
     cursor: pointer;
   }
+  width: 100%;
 `;
 
-// styling for the page titles in <HeaderContainer>
-const PageTitlesContainer = styled.div`
-
-`
-
-const PageTitle = styled.div`
-font-size: 25px;
-letter-spacing: -1.5px;
-margin-left: 2%;
-margin-top:2%;
-display: flex;
-align-items: bottom;
-&: hover{
-  opacity: 70%;
-  cursor: pointer;
-}
+const PageTitle = styled(Title)`
+  margin-left: 5%;
+  width: 90%;
 `;
-
-const Button = styled.button`
-  height: 50px;
-  width: 100px;
-  margin-top: 3%;
-  text-align: center;
+const DarkMode = styled(Title)`
+  margin-right: 5%;
   font-size: 20px;
-  &: hover{
-    opacity: 70%;
-    cursor: pointer;
-  }
 `;
