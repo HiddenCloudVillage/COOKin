@@ -2,13 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import EditIngredient from './EditIngredient';
 
-function IngredientTile({
-  ingredient,
-  ingredientInfo,
-  userInfo,
-  setUserInfo,
-  setUpdatePantry,
-}) {
+function IngredientTile({ ingredient, ingredientInfo, userInfo, setUserInfo }) {
   return (
     <div>
       <span>{ingredient}</span>
@@ -20,7 +14,6 @@ function IngredientTile({
         ingredientInfo={ingredientInfo}
         userInfo={userInfo}
         setUserInfo={setUserInfo}
-        setUpdatePantry={setUpdatePantry}
       />
     </div>
   );

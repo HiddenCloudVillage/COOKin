@@ -24,7 +24,8 @@ function Home({ user, currentPage }) {
   const getRecipes = () => {
     // some sort of request
     // only happens once
-    axios.get('/recipes')
+    axios
+      .get('/recipes')
       .then((response) => {
         setRecipes(response.data);
       })
@@ -45,24 +46,39 @@ function Home({ user, currentPage }) {
 
   if (!userInfo.userId || !recipes.length) {
     // PAGE SHOULD NOT LOAD UNTIL USERINFO RETURNED FROM DB
-    return (
-      <Load />
-    );
+    return <Load />;
   }
 
   return (
     <div>
       <h3>{`what's cookin, ${user.displayName}?`}</h3>
-      {currentPage === 'Suggested Recipes'
-        && <Suggestions userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />}
-      {currentPage === 'Favorite Recipes'
-        && <Favorites userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />}
-      {currentPage === 'Grocery List'
-        && <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />}
-      {currentPage === 'Recipe'
-        && <Recipe userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />}
-      {currentPage === 'Pantry'
-        && <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />}
+      {currentPage === 'Suggested Recipes' && (
+        <Suggestions
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          recipes={recipes}
+        />
+      )}
+      {currentPage === 'Favorite Recipes' && (
+        <Favorites
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          recipes={recipes}
+        />
+      )}
+      {currentPage === 'Grocery List' && (
+        <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />
+      )}
+      {currentPage === 'Recipe' && (
+        <Recipe
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          recipes={recipes}
+        />
+      )}
+      {currentPage === 'Pantry' && (
+        <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />
+      )}
     </div>
   );
 }

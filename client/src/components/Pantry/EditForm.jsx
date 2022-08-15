@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const axios = require('axios');
+
 function EditForm({
   ingredient,
   ingredientInfo,
@@ -20,8 +22,13 @@ function EditForm({
       c: category,
       e: expiration,
     };
-    setUserInfo(newUserInfo);
-    setUpdatePantry(true);
+    axios({
+      method: 'put',
+      url: '/pantry',
+      data: newUserInfo,
+    })
+      .then((res) => setUserInfo(res.data))
+      .catch((err) => console.log(err));
   }
   return (
     <form
