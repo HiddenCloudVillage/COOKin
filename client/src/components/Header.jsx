@@ -68,7 +68,7 @@ const HeaderRight = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin-right: 2%;
-  width: 30%;
+  width: 15%;
 `;
 const HeaderContainer = styled.div`
   width: 100%;
@@ -93,7 +93,7 @@ const HeaderLeft = styled.div`
 
 const Nav = styled(HeaderLeft)`
   font-size: 25px;
-  width: 60%;
+  width: 65%;
 `
 
 const Title = styled.p`
@@ -107,22 +107,5 @@ const Title = styled.p`
 
 const PageTitle = styled(Title)`
   margin-left: 5%;
-  width: 100%;
+  width: 90%;
 `
-
-// styling for the page titles in <HeaderContainer>
-const PageTitlesContainer = styled.div`
-
-`
-
-const Button = styled.button`
-  height: 50px;
-  width: 100px;
-  margin-top: 3%;
-  text-align: center;
-  font-size: 20px;
-  &: hover{
-    opacity: 70%;
-    cursor: pointer;
-  }
-`;
