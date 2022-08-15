@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-function GroceryForm({ setAlteredGroceryList, alteredGroceryList, userInfo }) {
+function GroceryForm({ setUserInfo, setAlteredGroceryList, alteredGroceryList, userInfo }) {
   const [newItem, setNewItem] = useState('');
 
   function addUserInput(event) {
@@ -14,7 +14,7 @@ function GroceryForm({ setAlteredGroceryList, alteredGroceryList, userInfo }) {
 
     axios
       .put('/grocery', { grocery: newList, userId: userInfo.userId })
-      .then((res) => setAlteredGroceryList(res.data.groceryList))
+      .then((res) => setUserInfo(res.data))
       .then(() => setNewItem(''))
       .catch((err) => console.log(err));
   }

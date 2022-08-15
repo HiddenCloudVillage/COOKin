@@ -1,7 +1,13 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-function GroceryListItem({ removeFromList, updateUserInfo, ingredient, pantry }) {
+function GroceryListItem({
+  removeFromList,
+  updateUserInfo,
+  ingredient,
+  pantry,
+}) {
   const [tempIng, setTempIng] = useState(ingredient);
   const [flag, setFlag] = useState(true);
 
@@ -21,8 +27,8 @@ function GroceryListItem({ removeFromList, updateUserInfo, ingredient, pantry })
       {!tempIng.shopped ? (
         <span
           onClick={() => {
-            toggleStriked()
-            setTempIng({ ...tempIng, shopped: true })
+            toggleStriked();
+            setTempIng({ ...tempIng, shopped: true });
           }}
           onKeyPress={() => toggleStriked()}
         >
@@ -32,8 +38,8 @@ function GroceryListItem({ removeFromList, updateUserInfo, ingredient, pantry })
         <span>
           <strike
             onClick={() => {
-              setTempIng({ ...tempIng, shopped: false })
-              toggleStriked()
+              setTempIng({ ...tempIng, shopped: false });
+              toggleStriked();
             }}
             onKeyPress={() => toggleStriked()}
           >
@@ -41,7 +47,12 @@ function GroceryListItem({ removeFromList, updateUserInfo, ingredient, pantry })
           </strike>
         </span>
       )}
-      <button onClick={() => removeFromList(ingredient.name)}>X</button>
+      <button
+        onClick={(event) => removeFromList(ingredient.name, event)}
+        type="submit"
+      >
+        X
+      </button>
     </div>
   );
 }

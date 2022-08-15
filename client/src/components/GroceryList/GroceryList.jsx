@@ -70,7 +70,8 @@ function GroceryList({ userInfo, setUserInfo }) {
     }
   }
 
-  function removeFromList(name) {
+  function removeFromList(name, event) {
+    event.preventDefault();
     const tempList = [];
 
     alteredGroceryList.forEach((item) => {
@@ -114,6 +115,7 @@ function GroceryList({ userInfo, setUserInfo }) {
         setAlteredGroceryList={setAlteredGroceryList}
         userInfo={userInfo}
         alteredGroceryList={alteredGroceryList}
+        setUserInfo={setUserInfo}
       />
       <button onClick={clearFullList} type="submit">
         Clear List
