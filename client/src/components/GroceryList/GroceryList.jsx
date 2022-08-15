@@ -50,6 +50,25 @@ function GroceryList({ userInfo, setUserInfo }) {
       .put('/grocery', axiosObj)
       .then((res) => setAlteredGroceryList(res.data.groceryList))
       .catch((err) => console.log(err));
+
+    const pantryArray = userInfo.pantry ? Object.keys(userInfo.pantry) : [];
+    if (!pantryArray.includes(name)) {
+      const additionalPantryItem = name;
+      const newPantryItem = userInfo.pantry ? { ...userInfo.pantry } : {};
+      newPantryItem[additionalPantryItem] = { q: '', c: '', e: '' };
+      axios
+        .put('/pantry', { pantry: newPantryItem, userId: userInfo.userId })
+        .then((res) => setUserInfo(res.data))
+        .catch((err) => console.log(err));
+    } else {
+      const additionalPantryItem = name;
+      const newPantryItem = { ...userInfo.pantry };
+      delete newPantryItem[additionalPantryItem];
+      axios
+        .put('/pantry', { pantry: newPantryItem, userId: userInfo.userId })
+        .then((res) => setUserInfo(res.data))
+        .catch((err) => console.log(err));
+    }
   }
 
   function removeFromList(name) {
