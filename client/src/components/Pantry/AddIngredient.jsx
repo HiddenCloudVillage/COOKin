@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import IngredientForm from './IngredientForm';
 
-function GroceryList() {
+function AddIngredient({ userInfo, setUserInfo }) {
+  const [show, setShow] = useState(false);
   return (
     <div>
-      this is the grocery list!
+      {show ? (
+        <IngredientForm
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          setShow={setShow}
+        />
+      ) : (
+        <button type="button" onClick={() => setShow(true)}>
+          Add Ingredient
+        </button>
+      )}
     </div>
   );
 }
 
-export default GroceryList;
+export default AddIngredient;

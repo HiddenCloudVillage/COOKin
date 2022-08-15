@@ -3,8 +3,13 @@ import RecipeList from './RecipeList';
 import IncludeIngredient from './IncludeIngredient';
 import ExcludeIngredient from './ExcludeIngredient';
 
+<<<<<<< HEAD
 export default function Suggestions({ recipes, userInfo, setUserInfo,
 }) {
+=======
+export default function Suggestions({ recipes, userInfo, setUserInfo }) {
+  console.log('USERINFO', userInfo);
+>>>>>>> 13bf03c164c7d2a762c01ad1ea12e5b080d88e20
   const [includeIngredients, setIncludeIngredients] = useState([]);
   const [excludeIngredients, setExcludeIngredients] = useState([]);
 
