@@ -52,7 +52,6 @@ function Home({ user, currentPage }) {
   return (
     <div>
       <h3>{`what's cookin, ${user.displayName}?`}</h3>
-<<<<<<< HEAD
       {currentPage === 'Suggested Recipes' && (
         <Suggestions
           userInfo={userInfo}
@@ -80,18 +79,6 @@ function Home({ user, currentPage }) {
       {currentPage === 'Pantry' && (
         <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />
       )}
-=======
-      {currentPage === 'Suggested Recipes'
-        && <Suggestions userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />}
-      {currentPage === 'Favorite Recipes'
-        && <Favorites userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />}
-      {currentPage === 'Grocery List'
-        && <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />}
-      {currentPage === 'Recipe'
-        && <Recipe userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />}
-      {currentPage === 'Pantry'
-        && <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />}
->>>>>>> 9f364209b7b8d4a1257e35c7c4d5cbe3e9441964
     </div>
   );
 }
