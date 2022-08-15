@@ -47,7 +47,6 @@ const LoginContainer = styled.div`
   place-items: center;
   height: 100vh;
   width: 100vw;
-  background-color: #ffffff;
 `;
 
 const LoginInnerContainer = styled.div`
@@ -57,9 +56,8 @@ const LoginInnerContainer = styled.div`
   max-width: 500px;
   max-height: 500px;
   text-align: center;
-  background-color: white;
   border-radius: 10px;
-  border: .5px solid black;
+  border: .5px solid;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
