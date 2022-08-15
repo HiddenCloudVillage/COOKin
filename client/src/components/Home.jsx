@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { auth } from '../lib/firebase';
-import Suggestions from './Suggestions/Suggestions';
+import Suggestions from './suggestions/Suggestions';
 import GroceryList from './GroceryList/GroceryList';
 import Pantry from './Pantry/Pantry';
 import Recipe from './Recipe/Recipe';

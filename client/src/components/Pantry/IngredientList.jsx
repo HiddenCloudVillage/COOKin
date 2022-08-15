@@ -3,8 +3,19 @@ import styled from 'styled-components';
 import IngredientTile from './IngredientTile';
 
 function IngredientList({ pantry }) {
-  console.log(Object.values(pantry));
-  return <div>this is the ingredient list. holds ingredients</div>;
+  const ingredientNames = Object.keys(pantry);
+  return (
+    <div>
+      {pantry &&
+        ingredientNames.map((ingredient) => (
+          <IngredientTile
+            ingredient={ingredient}
+            key={ingredient}
+            ingredientInfo={pantry[ingredient]}
+          />
+        ))}
+    </div>
+  );
 }
 
 export default IngredientList;
