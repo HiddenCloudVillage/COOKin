@@ -3,14 +3,26 @@ import styled from 'styled-components';
 
 // some sort of modal for inserting ingredient
 
-function IngredientForm({ userInfo, setUserInfo, setShow }) {
+function IngredientForm({
+  userInfo,
+  setUserInfo,
+  setShow,
+  setUpdatePantry,
+}) {
   const [name, setName] = useState();
   const [amount, setAmount] = useState();
   const [category, setCategory] = useState();
   const [expiration, setExpiration] = useState();
 
   function handleSubmit() {
-    console.log('clicked', name, amount, category, expiration);
+    const newUserInfo = userInfo;
+    newUserInfo.pantry[name] = {
+      q: Number(amount),
+      c: category,
+      e: expiration,
+    };
+    setUserInfo(newUserInfo);
+    setUpdatePantry(true);
   }
   return (
     <form
@@ -32,7 +44,7 @@ function IngredientForm({ userInfo, setUserInfo, setShow }) {
       <label>
         Amount :
         <input
-          type="number"
+          type="integer"
           name="amount"
           required
           onChange={(e) => setAmount(e.target.value)}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import IngredientForm from './IngredientForm';
 
-function AddIngredient({ userInfo, setUserInfo }) {
+function AddIngredient({ userInfo, setUserInfo, setUpdatePantry }) {
   const [show, setShow] = useState(false);
   return (
     <div>
@@ -10,6 +10,7 @@ function AddIngredient({ userInfo, setUserInfo }) {
         <IngredientForm
           userInfo={userInfo}
           setUserInfo={setUserInfo}
+          setUpdatePantry={setUpdatePantry}
           setShow={setShow}
         />
       ) : (

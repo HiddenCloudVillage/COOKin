@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import EditIngredient from './EditIngredient';
 
 function IngredientTile({ ingredient, ingredientInfo }) {
   return (
@@ -8,6 +9,7 @@ function IngredientTile({ ingredient, ingredientInfo }) {
       <span>{ingredientInfo.q}</span>
       <span>{ingredientInfo.c}</span>
       <span>{ingredientInfo.e}</span>
+      <EditIngredient />
     </div>
   );
 }
