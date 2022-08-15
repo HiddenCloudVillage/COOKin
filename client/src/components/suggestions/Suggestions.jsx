@@ -52,8 +52,8 @@ export default function Suggestions({ recipes, userInfo, setUserInfo }) {
       <div>
         <RecipeList />
       </div>
-      <IncludeIngredient />
-      <ExcludeIngredient />
+      <IncludeIngredient inclusion={includeIngredients} setInclusion={setIncludeIngredients} />
+      <ExcludeIngredient exclusion={excludeIngredients} setExclusion={setExcludeIngredients} />
     </div>
   );
 }
