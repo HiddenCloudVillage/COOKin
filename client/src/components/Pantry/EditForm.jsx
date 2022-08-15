@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Autocomplete, TextField } from '@mui/material/';
-import ingredient from '../../lib/ingredients';
 
-// some sort of modal for inserting ingredient
+function EditForm({
+  ingredient,
+  ingredientInfo,
+  userInfo,
+  setUserInfo,
+  setUpdatePantry,
+  setShow,
+}) {
+  const [name, setName] = useState(ingredient);
+  const [amount, setAmount] = useState(ingredientInfo.q);
+  const [category, setCategory] = useState(ingredientInfo.c);
+  const [expiration, setExpiration] = useState(ingredientInfo.e);
 
-function IngredientForm({ userInfo, setUserInfo, setShow, setUpdatePantry }) {
-  const [name, setName] = useState();
-  const [amount, setAmount] = useState();
-  const [category, setCategory] = useState();
-  const [expiration, setExpiration] = useState();
-
-  function handleSubmit() {
+  function handleEdit() {
     const newUserInfo = userInfo;
     newUserInfo.pantry[name] = {
       q: Number(amount),
@@ -25,24 +27,26 @@ function IngredientForm({ userInfo, setUserInfo, setShow, setUpdatePantry }) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleSubmit();
+        handleEdit();
         setShow(false);
       }}
     >
-      <Autocomplete
-        options={ingredient}
-        sx={{ width: 300 }}
-        autoHighlight
-        renderInput={(params) => <TextField {...params} label="Name" />}
-        onChange={(e, newInputValue) => {
-          setName(newInputValue);
-        }}
-      />
+      <label>
+        Name :
+        <input
+          type="text"
+          name="name"
+          value={name}
+          required
+          onChange={(e) => setName(e.target.value)}
+        />
+      </label>
       <label>
         Amount :
         <input
-          type="integer"
+          type="number"
           name="amount"
+          value={amount}
           required
           onChange={(e) => setAmount(e.target.value)}
         />
@@ -52,6 +56,7 @@ function IngredientForm({ userInfo, setUserInfo, setShow, setUpdatePantry }) {
         <input
           type="text"
           name="category"
+          value={category}
           required
           onChange={(e) => setCategory(e.target.value)}
         />
@@ -61,13 +66,14 @@ function IngredientForm({ userInfo, setUserInfo, setShow, setUpdatePantry }) {
         <input
           type="text"
           name="expiration"
+          value={expiration}
           required
           onChange={(e) => setExpiration(e.target.value)}
         />
       </label>
-      <input type="submit" />
+      <input type="submit" value="update" />
     </form>
   );
 }
 
-export default IngredientForm;
+export default EditForm;
