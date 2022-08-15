@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-function GroceryListItem({ updateUserInfo, ingredient, pantry }) {
+function GroceryListItem({ removeFromList ,updateUserInfo, ingredient, pantry }) {
   const pantryArray = Object.keys(pantry);
   console.log(ingredient, pantryArray);
   const [tempIng, setTempIng] = useState(ingredient);
@@ -35,6 +35,7 @@ function GroceryListItem({ updateUserInfo, ingredient, pantry }) {
           </strike>
         </span>
       )}
+      <button onClick={() => removeFromList(ingredient.name)}>X</button>
     </div>
   );
 }

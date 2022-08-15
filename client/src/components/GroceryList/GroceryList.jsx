@@ -52,20 +52,54 @@ function GroceryList({ userInfo, setUserInfo }) {
       .catch((err) => console.log(err));
   }
 
+  function removeFromList(name) {
+    const tempList = [];
+
+    alteredGroceryList.forEach((item) => {
+      if (item.name !== name) {
+        tempList.push(item);
+      }
+    });
+
+    const axiosObj = { grocery: tempList, userId: userInfo.userId };
+    axios
+      .put('/grocery', axiosObj)
+      .then((res) => setAlteredGroceryList(res.data.groceryList))
+      .catch((err) => console.log(err));
+  }
+
+  function clearFullList(event) {
+    event.preventDefault();
+    const tempList = [];
+
+    const axiosObj = { grocery: tempList, userId: userInfo.userId };
+    axios
+      .put('/grocery', axiosObj)
+      .then((res) => setAlteredGroceryList(res.data.groceryList))
+      .catch((err) => console.log(err));
+  }
+
   return (
     <div>
-      this is the grocery list!
       THIS IS THE GROCERY LIST BITCHES
       {userInfo.groceryList
         && alteredGroceryList.map((ingredient) => (
           <GroceryListItem
+            removeFromList={removeFromList}
             updateUserInfo={updateUserInfo}
             pantry={userInfo.pantry}
             ingredient={ingredient}
             key={ingredient.name}
           />
         ))}
-      <GroceryForm />
+      <GroceryForm
+        setAlteredGroceryList={setAlteredGroceryList}
+        userInfo={userInfo}
+        alteredGroceryList={alteredGroceryList}
+      />
+      <button onClick={clearFullList} type="submit">
+        Clear List
+      </button>
     </div>
   );
 }
