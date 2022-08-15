@@ -59,6 +59,8 @@ function Home({ user, currentPage }) {
           setUserInfo={setUserInfo}
           recipes={recipes}
         />
+
+        )}
       )}
       {currentPage === 'Favorite Recipes' && (
         <Favorites
@@ -69,6 +71,7 @@ function Home({ user, currentPage }) {
       )}
       {currentPage === 'Grocery List' && (
         <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />
+      )}
       )}
       {currentPage === 'Pantry' && (
         <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />
