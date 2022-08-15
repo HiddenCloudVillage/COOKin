@@ -39,9 +39,9 @@ function Home({ user }) {
     <div>
       <h3>{`what's cookin, ${user.displayName}?`}</h3>
       <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />
-      <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />
+      {/* <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />
       <Suggestions userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />
-      <Recipe userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />
+      <Recipe userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} /> */}
     </div>
 
   );

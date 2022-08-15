@@ -2,11 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import IngredientList from './IngredientList';
 
-function Pantry() {
+function Pantry({ userInfo }) {
   return (
     <div>
       this is the pantry!
-      <IngredientList />
+      {userInfo.pantry ? (
+        <IngredientList pantry={userInfo.pantry} />
+      ) : (
+        <div>Pantry Empty please enter items</div>
+      )}
     </div>
   );
 }
