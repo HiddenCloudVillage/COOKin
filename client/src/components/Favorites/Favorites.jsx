@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 /* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 
@@ -27,12 +28,17 @@ export default function Favorites({ userInfo, recipes }) {
     }
     const pantryItems = Object.keys(userInfo.pantry);
     let ingredients = [];
+    let percent = 0;
     for (let i = 0; i < faveRecipes.length; i += 1) {
       ingredients = faveRecipes[i].ingredients.map((recipe) => recipe.ingredientName)
         .filter((ingredient) => ingredient !== undefined);
-      console.log('faves', faveRecipes[i]);
-      console.log('ing', ingredients);
-      console.log(pantryItems);
+      percent = ingredients.reduce((acc, ingredient) => {
+        if (pantryItems.includes(ingredient)) {
+          return acc + 1;
+        }
+        return acc;
+      }, 0);
+      faveRecipes[i]['percent'] = percent;
     }
     if (sort === 'alpha') {
       sortAlpha(faveRecipes, 'name');
