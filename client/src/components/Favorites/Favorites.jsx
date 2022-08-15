@@ -9,8 +9,11 @@ export default function Favorites({ userInfo, recipes }) {
   }
 
   function sortAlpha(recipes, key) {
+    // eslint-disable-next-line prefer-arrow-callback
     return recipes.sort(function (a, b) {
+      // eslint-disable-next-line no-var
       var x = a[key]; var y = b[key];
+      // eslint-disable-next-line no-nested-ternary
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
   }
