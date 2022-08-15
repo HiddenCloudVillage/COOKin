@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { auth } from '../lib/firebase';
 import Suggestions from './Suggestions/Suggestions';
+import Favorites from './Favorites/Favorites';
 import GroceryList from './GroceryList/GroceryList';
 import Pantry from './Pantry/Pantry';
 import Recipe from './Recipe/Recipe';
@@ -55,6 +56,8 @@ function Home({
       <h3>{`what's cookin, ${user.displayName}?`}</h3>
       {currentPage === 'Suggested Recipes'
         && <Suggestions userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />}
+      {currentPage === 'Favorite Recipes'
+        && <Favorites userInfo={userInfo} setUserInfo={setUserInfo} recipes={recipes} />}
       {currentPage === 'Grocery List'
         && <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />}
       {currentPage === 'Recipe'
