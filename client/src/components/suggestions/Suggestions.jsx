@@ -4,6 +4,7 @@ import IncludeIngredient from './IncludeIngredient';
 import ExcludeIngredient from './ExcludeIngredient';
 
 export default function Suggestions({ recipes, userInfo, setUserInfo }) {
+  console.log('USERINFO', userInfo);
   const [includeIngredients, setIncludeIngredients] = useState([]);
   const [excludeIngredients, setExcludeIngredients] = useState([]);
   const [filteredAndSortedRecipes, setFilteredAndSortedRecipes] = useState([]);
