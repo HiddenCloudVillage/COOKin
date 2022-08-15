@@ -11,5 +11,3 @@ export const darkTheme = {
   border: 'white',
   background: 'black',
 };
-
-// export default { lightTheme, darkTheme };

@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-multi-spaces */
 import React from 'react';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
+import { Autocomplete, TextField } from '@mui/material/';
 import ingredients from '../../lib/ingredients';
 
 export default function IncludeIngredient({ exclusion, setExclusion }) {
