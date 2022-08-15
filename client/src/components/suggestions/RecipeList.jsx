@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export default function RecipeList({ filteredAndSortedRecipes }) {
   const [page, setPage] = useState(0);
   const [pageCount, setPageCount] = useState(Math.ceil(filteredAndSortedRecipes.length / 5));
-
+  console.log(filteredAndSortedRecipes);
   return (
     <div>
       <h3>Recipes</h3>

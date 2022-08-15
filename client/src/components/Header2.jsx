@@ -4,7 +4,7 @@ import { auth } from '../lib/firebase';
 
 const pageTitles = ['Suggested Recipes', 'Favorite Recipes', 'Grocery List', 'Pantry'];
 
-function Header({ user, setCurrentPage, currentPage}) {
+function Header2({ user, setCurrentPage, currentPage}) {
   const signOut = () => {
     const result = confirm('signing out?');
     if (result) {
@@ -21,7 +21,7 @@ function Header({ user, setCurrentPage, currentPage}) {
     setCurrentPage(e.target.id);
   };
   return (
-    <HeaderContainer>
+    <Header2Container>
       <Title>COOKin.</Title>
       {/* <PageTitlesContainer> */}
         {/* set style of currentPage to Special CSS... not code for anything just make it feel special */}
@@ -36,14 +36,14 @@ function Header({ user, setCurrentPage, currentPage}) {
         </PageTitle>
       ))}
       {/* </PageTitlesContainer> */}
-      <HeaderRight>
+      <Header2Right>
         {user && <Img onClick={signOut} id="Header-icon" src={user?.photoURL} alt={user?.displayName} referrerPolicy="no-referrer" />}
-      </HeaderRight>
-    </HeaderContainer>
+      </Header2Right>
+    </Header2Container>
   );
 }
 
-export default Header;
+export default Header2;
 
 const Img = styled.img`
   width: 40px;
@@ -55,7 +55,7 @@ const Img = styled.img`
   }
 `;
 
-const HeaderRight = styled.div`
+const Header2Right = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -63,7 +63,7 @@ const HeaderRight = styled.div`
   margin-right: 2%;
   width: 30%;
 `;
-const HeaderContainer = styled.div`
+const Header2Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -86,7 +86,7 @@ const Title = styled.div`
   }
 `;
 
-// styling for the page titles in <HeaderContainer>
+// styling for the page titles in <Header2Container>
 const PageTitlesContainer = styled.div`
 
 `

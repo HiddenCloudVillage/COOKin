@@ -7,7 +7,7 @@ export default function Suggestions({ userInfo, setUserInfo, recipes }) {
   const [includedIngredients, setIncludedIngredients] = useState([]);
   const [excludedIngredients, setExcludedIngredients] = useState([]);
 
-  const filterAndSortRecipes = () => {
+  const filterAndSortRecipes = recipes.length > 0 ?  () => {
     const filteredRecipes = recipes.filter((recipe) => {
       let include = true;
       let exclude = false;
@@ -36,11 +36,12 @@ export default function Suggestions({ userInfo, setUserInfo, recipes }) {
       recipe.percent = Math.floor((count / ingredientCount) * 100);
     });
     return filteredRecipes.sort((a, b) => b.percent - a.percent);
-  };
+  } : [];
   return (
     <div>
       <div>
-        <RecipeList filteredAndSortedRecipes={filterAndSortRecipes()} />
+        {' '}
+        {recipes.length && <RecipeList filteredAndSortedRecipes={filterAndSortRecipes()} />}
       </div>
       <IncludeIngredient
         includedIngredients={includedIngredients}
