@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 
-// some sort of modal for inserting ingredient
-
-function IngredientForm({
+function EditForm({
+  ingredient,
+  ingredientInfo,
   userInfo,
   setUserInfo,
-  setShow,
   setUpdatePantry,
+  setShow,
 }) {
-  const [name, setName] = useState();
-  const [amount, setAmount] = useState();
-  const [category, setCategory] = useState();
-  const [expiration, setExpiration] = useState();
+  const [name, setName] = useState(ingredient);
+  const [amount, setAmount] = useState(ingredientInfo.q);
+  const [category, setCategory] = useState(ingredientInfo.c);
+  const [expiration, setExpiration] = useState(ingredientInfo.e);
 
-  function handleSubmit() {
+  function handleEdit() {
     const newUserInfo = userInfo;
     newUserInfo.pantry[name] = {
       q: Number(amount),
@@ -28,7 +27,7 @@ function IngredientForm({
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleSubmit();
+        handleEdit();
         setShow(false);
       }}
     >
@@ -37,6 +36,7 @@ function IngredientForm({
         <input
           type="text"
           name="name"
+          value={name}
           required
           onChange={(e) => setName(e.target.value)}
         />
@@ -44,8 +44,9 @@ function IngredientForm({
       <label>
         Amount :
         <input
-          type="integer"
+          type="number"
           name="amount"
+          value={amount}
           required
           onChange={(e) => setAmount(e.target.value)}
         />
@@ -55,6 +56,7 @@ function IngredientForm({
         <input
           type="text"
           name="category"
+          value={category}
           required
           onChange={(e) => setCategory(e.target.value)}
         />
@@ -64,13 +66,14 @@ function IngredientForm({
         <input
           type="text"
           name="expiration"
+          value={expiration}
           required
           onChange={(e) => setExpiration(e.target.value)}
         />
       </label>
-        <input type="submit" />
+      <input type="submit" value="update" />
     </form>
   );
 }
 
-export default IngredientForm;
+export default EditForm;

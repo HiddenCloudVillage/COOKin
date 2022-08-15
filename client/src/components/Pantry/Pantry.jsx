@@ -11,8 +11,13 @@ function Pantry({ userInfo, setUserInfo }) {
   return (
     <div>
       this is the pantry!
-      {userInfo.pantry ? (
-        <IngredientList pantry={userInfo.pantry} />
+      {Object.keys(userInfo.pantry).length > 0 ? (
+        <IngredientList
+          pantry={userInfo.pantry}
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          setUpdatePantry={setUpdatePantry}
+        />
       ) : (
         <div>Pantry Empty please enter items</div>
       )}
