@@ -44,8 +44,6 @@ function GroceryList({ userInfo, setUserInfo }) {
       }
       tempList.push(tempObj);
     });
-    // setAlteredGroceryList(tempList);
-    console.log(tempList);
 
     const axiosObj = { grocery: tempList, userId: userInfo.userId };
     axios
@@ -57,7 +55,6 @@ function GroceryList({ userInfo, setUserInfo }) {
   return (
     <div>
       this is the grocery list!
-      <GroceryForm />
       THIS IS THE GROCERY LIST BITCHES
       {userInfo.groceryList
         && alteredGroceryList.map((ingredient) => (
@@ -68,6 +65,7 @@ function GroceryList({ userInfo, setUserInfo }) {
             key={ingredient.name}
           />
         ))}
+      <GroceryForm />
     </div>
   );
 }
