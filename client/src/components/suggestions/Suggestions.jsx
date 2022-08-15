@@ -3,11 +3,10 @@ import RecipeList from './RecipeList';
 import IncludeIngredient from './IncludeIngredient';
 import ExcludeIngredient from './ExcludeIngredient';
 
-export default function Suggestions({ recipes, userInfo, setUserInfo }) {
-  console.log('USERINFO', userInfo);
+export default function Suggestions({ recipes, userInfo, setUserInfo,
+}) {
   const [includeIngredients, setIncludeIngredients] = useState([]);
   const [excludeIngredients, setExcludeIngredients] = useState([]);
-  const [filteredAndSortedRecipes, setFilteredAndSortedRecipes] = useState([]);
 
   // filter recipes by include ingredients and exclude ingredients
   const filterRecipes = () => {
@@ -31,7 +30,7 @@ export default function Suggestions({ recipes, userInfo, setUserInfo }) {
     console.log(recipes);
     console.log('filteredRecipes', filteredRecipes);
 
-    const pantryIngredients = Object.keys(userInfo?.pantry);
+    const pantryIngredients = userInfo.pantry ? Object.keys(userInfo?.pantry) : [];
     const recipesWithPercent = filteredRecipes.map((recipe) => {
       const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredientName);
       const recipePercent = recipeIngredients.reduce((acc, ingredient) => {
@@ -43,17 +42,16 @@ export default function Suggestions({ recipes, userInfo, setUserInfo }) {
       const percent = Math.floor((recipePercent / recipeIngredients.length) * 100);
       return { ...recipe, percent };
     }).sort((a, b) => b.percent - a.percent);
-   // setFilteredAndSortedRecipes(recipesWithPercent);
     return recipesWithPercent;
   };
-  // useEffect(() => {
-  //   filterRecipes();
-  //   console.log('filteredAndSortedRecipes', filteredAndSortedRecipes);
-  // }, [recipes]);
   return (
     <div>
       <div>
-        <RecipeList recipes={filterRecipes()} />
+        <RecipeList
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          recipes={filterRecipes()}
+        />
       </div>
       <IncludeIngredient inclusion={includeIngredients} setInclusion={setIncludeIngredients} />
       <ExcludeIngredient exclusion={excludeIngredients} setExclusion={setExcludeIngredients} />
