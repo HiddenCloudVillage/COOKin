@@ -4,8 +4,6 @@ export default function RecipeList({x, recipes, filterRecipes}) {
   const [page, setPage] = useState(0);
   const [pageCount, setPageCount] = useState(Math.ceil(recipes.length / 5));
 
-  console.log('loaded')
-
   return (
     <div>
       <h3>Recipes</h3>
