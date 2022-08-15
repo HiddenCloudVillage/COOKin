@@ -7,7 +7,10 @@ import ingredients from '../../lib/ingredients';
 export default function IncludeIngredient() {
   const [inclusion, setInclusion] = useState([]);
   function handleClick(e, ing) {
-    inclusion.indexOf(ing);
+    const newInclusion = inclusion.slice();
+    const ind = newInclusion.indexOf(ing);
+    newInclusion.splice(ind, 1);
+    setInclusion(newInclusion);
   }
   return (
     <div>
