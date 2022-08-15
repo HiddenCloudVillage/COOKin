@@ -7,7 +7,6 @@ export default function Favorites({ userInfo, recipes }) {
   function handleChange(e) {
     setSort(e.target.value);
   }
-
   function sortAlpha(recipes, key) {
     // eslint-disable-next-line prefer-arrow-callback
     return recipes.sort(function (a, b) {
@@ -17,7 +16,6 @@ export default function Favorites({ userInfo, recipes }) {
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
   }
-
   function findFaves(recipes) {
     const faveRecipes = [];
     const names = [];
