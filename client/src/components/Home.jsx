@@ -6,7 +6,6 @@ import Suggestions from './Suggestions/Suggestions';
 import Favorites from './Favorites/Favorites';
 import GroceryList from './GroceryList/GroceryList';
 import Pantry from './Pantry/Pantry';
-import Recipe from './Recipe/Recipe';
 import Load from './Load';
 
 function Home({ user, currentPage }) {

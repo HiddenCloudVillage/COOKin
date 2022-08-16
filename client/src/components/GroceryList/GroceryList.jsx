@@ -106,7 +106,7 @@ function GroceryList({ userInfo, setUserInfo }) {
 
   return (
     <div>
-      What you're shopping for!
+      What you are shopping for!
       <GroceryListDiv>
         {userInfo.groceryList
           && alteredGroceryList.map((ingredient) => (
