@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import RecipeList from './RecipeList';
 import IncludeIngredient from './IncludeIngredient';
 import ExcludeIngredient from './ExcludeIngredient';
+import IncludeContext from '../IncludeContext';
 
-export default function Suggestions({ recipes, userInfo, setUserInfo,
-}) {
-  const [includeIngredients, setIncludeIngredients] = useState([]);
+export default function Suggestions({ recipes, userInfo, setUserInfo }) {
   const [excludeIngredients, setExcludeIngredients] = useState([]);
+  const [includeIngredients, setIncludeIngredients] =
+    useContext(IncludeContext);
 
   // filter recipes by include ingredients and exclude ingredients
   const filterRecipes = () => {
@@ -18,7 +19,9 @@ export default function Suggestions({ recipes, userInfo, setUserInfo,
           exclude = true;
         }
       });
-      const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredientName);
+      const recipeIngredients = recipe.ingredients.map(
+        (ingredient) => ingredient.ingredientName,
+      );
       includeIngredients.forEach((ingredient) => {
         if (!recipeIngredients.includes(ingredient)) {
           include = false;
@@ -30,18 +33,26 @@ export default function Suggestions({ recipes, userInfo, setUserInfo,
     console.log(recipes);
     console.log('filteredRecipes', filteredRecipes);
 
-    const pantryIngredients = userInfo.pantry ? Object.keys(userInfo?.pantry) : [];
-    const recipesWithPercent = filteredRecipes.map((recipe) => {
-      const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredientName);
-      const recipePercent = recipeIngredients.reduce((acc, ingredient) => {
-        if (pantryIngredients.includes(ingredient)) {
-          return acc + 1;
-        }
-        return acc;
-      }, 0);
-      const percent = Math.floor((recipePercent / recipeIngredients.length) * 100);
-      return { ...recipe, percent };
-    }).sort((a, b) => b.percent - a.percent);
+    const pantryIngredients = userInfo.pantry
+      ? Object.keys(userInfo?.pantry)
+      : [];
+    const recipesWithPercent = filteredRecipes
+      .map((recipe) => {
+        const recipeIngredients = recipe.ingredients.map(
+          (ingredient) => ingredient.ingredientName,
+        );
+        const recipePercent = recipeIngredients.reduce((acc, ingredient) => {
+          if (pantryIngredients.includes(ingredient)) {
+            return acc + 1;
+          }
+          return acc;
+        }, 0);
+        const percent = Math.floor(
+          (recipePercent / recipeIngredients.length) * 100,
+        );
+        return { ...recipe, percent };
+      })
+      .sort((a, b) => b.percent - a.percent);
     return recipesWithPercent;
   };
   return (
@@ -53,8 +64,14 @@ export default function Suggestions({ recipes, userInfo, setUserInfo,
           recipes={filterRecipes()}
         />
       </div>
-      <IncludeIngredient inclusion={includeIngredients} setInclusion={setIncludeIngredients} />
-      <ExcludeIngredient exclusion={excludeIngredients} setExclusion={setExcludeIngredients} />
+      <IncludeIngredient
+        inclusion={includeIngredients}
+        setInclusion={setIncludeIngredients}
+      />
+      <ExcludeIngredient
+        exclusion={excludeIngredients}
+        setExclusion={setExcludeIngredients}
+      />
     </div>
   );
 }

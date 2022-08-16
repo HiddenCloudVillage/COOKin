@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import IngredientList from './IngredientList';
 import AddIngredient from './AddIngredient';
+import UserIdContext from '../UserIdContext';
 
-function Pantry({ userInfo, setUserInfo }) {
+function Pantry({ setCurrentPage }) {
+  const [userInfo, setUserInfo] = useContext(UserIdContext);
   useEffect(() => {}, [userInfo]);
   return (
     <div>
@@ -12,7 +14,7 @@ function Pantry({ userInfo, setUserInfo }) {
         <IngredientList
           pantry={userInfo.pantry}
           userInfo={userInfo}
-          setUserInfo={setUserInfo}
+          setCurrentPage={setCurrentPage}
         />
       ) : (
         <div>Pantry Empty please enter items</div>
