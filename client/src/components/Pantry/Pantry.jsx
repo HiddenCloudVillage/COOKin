@@ -8,7 +8,7 @@ function Pantry({ userInfo, setUserInfo }) {
   return (
     <div>
       this is the pantry!
-      {Object.keys(userInfo.pantry).length > 0 ? (
+      {userInfo.pantry && Object.keys(userInfo.pantry).length > 0 ? (
         <IngredientList
           pantry={userInfo.pantry}
           userInfo={userInfo}
