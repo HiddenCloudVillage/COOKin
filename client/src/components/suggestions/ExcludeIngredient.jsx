@@ -26,7 +26,7 @@ export default function ExcludeIngredient({ exclusion, setExclusion }) {
         <List>
           {[...new Set(exclusion)].map((ingredient) => (
             <Row key={ingredient}>
-              {ingredient}
+              <P>{ingredient}</P>
               <button type="submit" onClick={(e) => handleClick(e, ingredient)}> X </button>
             </Row>
           ))}
@@ -53,6 +53,11 @@ const Row = styled.div`
   justify-content: space-between;
   background: ${(props) => props.theme.background};
   width: 90%;
+  margin: 1%;
+`;
+
+const P = styled.p`
+  margin: 0;
 `;
 
 const InnerContainer = styled.div`
@@ -68,9 +73,11 @@ const List = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
   display: flex;
+  width: 90%;
+  overflow-y: auto;
   flex-direction: column;
   align-items: center;
-  color: ${(props) => props.theme.text2};
+  background: ${(props) => props.theme.background};
 `;
 
 const Title = styled.h1`
