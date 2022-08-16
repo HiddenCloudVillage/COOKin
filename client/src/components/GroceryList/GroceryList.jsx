@@ -12,7 +12,13 @@ function GroceryList({ userInfo, setUserInfo }) {
 
   function setGroceryList(newList) {
     const groceryListProp = [];
+
+    const arrayNames = userInfo.groceryList.map((ing) => ing?.name);
+
     newList.forEach((item) => {
+      if (arrayNames.includes(item) || item === null) {
+        return;
+      }
       if (item?.shopped === undefined) {
         const temp = {};
         temp.name = item;
@@ -83,7 +89,7 @@ function GroceryList({ userInfo, setUserInfo }) {
     const axiosObj = { grocery: tempList, userId: userInfo.userId };
     axios
       .put('/grocery', axiosObj)
-      .then((res) => setAlteredGroceryList(res.data.groceryList))
+      .then((res) => setUserInfo(res.data))
       .catch((err) => console.log(err));
   }
 
