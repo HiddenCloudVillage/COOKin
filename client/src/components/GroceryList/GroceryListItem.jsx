@@ -23,7 +23,7 @@ function GroceryListItem({
   }
 
   return (
-    <div>
+    <ListItem>
       {!tempIng.stateShopped ? (
         <span
           onClick={() => {
@@ -53,8 +53,28 @@ function GroceryListItem({
       >
         X
       </button>
-    </div>
+    </ListItem>
   );
 }
 
 export default GroceryListItem;
+
+const ListItem = styled.div`
+width: 70%;
+min-height: 5%;
+height: 5vh;
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
+padding-left: 10px;
+background-color: #ffffff;
+border-radius: 10px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+margin-bottom: 10px;
+cursor: pointer;
+transition: all 0.3s ease-in-out;
+&:hover {
+  transform: scale(1.01);
+}
+`;
