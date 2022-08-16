@@ -26,7 +26,7 @@ export default function Favorites({ userInfo, recipes }) {
         names.push(recipes[i].name);
       }
     }
-    const pantryItems = Object.keys(userInfo.pantry);
+    const pantryItems = userInfo?.pantry ? Object.keys(userInfo.pantry) : [];
     let ingredients = [];
     let count = 0;
     let percent = 0;
