@@ -18,17 +18,17 @@ function GroceryListItem({
   }
 
   if (pantryArray.includes(ingredient.name) && flag) {
-    setTempIng({ ...tempIng, shopped: true });
+    setTempIng({ ...tempIng, stateShopped: true });
     setFlag(false);
   }
 
   return (
     <div>
-      {!tempIng.shopped ? (
+      {!tempIng.stateShopped ? (
         <span
           onClick={() => {
             toggleStriked();
-            setTempIng({ ...tempIng, shopped: true });
+            setTempIng({ ...tempIng, stateShopped: true });
           }}
           onKeyPress={() => toggleStriked()}
         >
@@ -38,7 +38,7 @@ function GroceryListItem({
         <span>
           <strike
             onClick={() => {
-              setTempIng({ ...tempIng, shopped: false });
+              setTempIng({ ...tempIng, stateShopped: false });
               toggleStriked();
             }}
             onKeyPress={() => toggleStriked()}
