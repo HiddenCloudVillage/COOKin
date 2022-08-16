@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import EditIngredient from './EditIngredient';
+import IncludeContext from '../IncludeContext';
 
-function IngredientTile({ ingredient, ingredientInfo, userInfo, setUserInfo }) {
+function IngredientTile({ ingredient, ingredientInfo, setCurrentPage }) {
+  const [includeIngredients, setIncludeIngredients] =
+    useContext(IncludeContext);
+
+  function handleItems() {
+    setIncludeIngredients([ingredient]);
+    setCurrentPage('Suggestions');
+  }
   return (
     <div>
-      <span>{ingredient}</span>
+      <span onClick={handleItems}>{ingredient}</span>
       <span>{ingredientInfo.q}</span>
       <span>{ingredientInfo.c}</span>
       <span>{ingredientInfo.e}</span>
-      <EditIngredient
-        ingredient={ingredient}
-        ingredientInfo={ingredientInfo}
-        userInfo={userInfo}
-        setUserInfo={setUserInfo}
-      />
+      <EditIngredient ingredient={ingredient} ingredientInfo={ingredientInfo} />
     </div>
   );
 }
