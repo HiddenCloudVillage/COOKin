@@ -5,9 +5,6 @@ import React, { useState, useEffect } from 'react';
 export default function Favorites({ userInfo, recipes }) {
   const [fave, setFave] = useState([]);
   const [sort, setSort] = useState('alpha');
-  function handleChange(e) {
-    setSort(e.target.value);
-  }
   function sortAlpha(recipes, key) {
     // eslint-disable-next-line prefer-arrow-callback, func-names
     return recipes.sort(function (a, b) {
@@ -15,6 +12,15 @@ export default function Favorites({ userInfo, recipes }) {
       var x = a[key]; var y = b[key];
       // eslint-disable-next-line no-nested-ternary
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+  }
+  function sortPercent(recipes, key) {
+    recipes.sort((a, b) => {
+      const x = a[key];
+      const y = b[key];
+      if (x > y) return -1;
+      if (y < x) return 1;
+      return 0;
     });
   }
   function findFaves(recipes) {
@@ -33,25 +39,34 @@ export default function Favorites({ userInfo, recipes }) {
     for (let i = 0; i < faveRecipes.length; i += 1) {
       ingredients = faveRecipes[i].ingredients.map((recipe) => recipe.ingredientName)
         .filter((ingredient) => ingredient !== undefined);
+      // console.log('ing', ingredients);
+      // console.log('panties', pantryItems);
       count = ingredients.reduce((acc, ingredient) => {
         if (pantryItems.includes(ingredient)) {
           return acc + 1;
         }
         return acc;
       }, 0);
+      // console.log('count', count);
       percent = (count / ingredients.length) * 100;
+      console.log('percent', percent);
       faveRecipes[i]['percent'] = percent;
     }
+    console.log('preSort', faveRecipes);
     if (sort === 'alpha') {
       sortAlpha(faveRecipes, 'name');
-      setFave(faveRecipes);
+      setFave([...faveRecipes]);
     }
     if (sort === 'percent') {
-      sortAlpha(faveRecipes, 'percent');
-      setFave(faveRecipes);
+      sortPercent(faveRecipes, 'percent');
+      console.log('postSort', faveRecipes);
+      setFave([...faveRecipes]);
     }
   }
-  useEffect(() => { findFaves(recipes); }, []);
+  function handleChange(e) {
+    setSort(e.target.value);
+  }
+  useEffect(() => { findFaves(recipes); }, [sort]);
   return (
     <div>
       <h1>Favorites</h1>
