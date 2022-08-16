@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 /* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 
@@ -7,9 +8,8 @@ export default function Favorites({ userInfo, recipes }) {
   function handleChange(e) {
     setSort(e.target.value);
   }
-
   function sortAlpha(recipes, key) {
-    // eslint-disable-next-line prefer-arrow-callback
+    // eslint-disable-next-line prefer-arrow-callback, func-names
     return recipes.sort(function (a, b) {
       // eslint-disable-next-line no-var
       var x = a[key]; var y = b[key];
@@ -17,7 +17,6 @@ export default function Favorites({ userInfo, recipes }) {
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
   }
-
   function findFaves(recipes) {
     const faveRecipes = [];
     const names = [];
@@ -27,8 +26,28 @@ export default function Favorites({ userInfo, recipes }) {
         names.push(recipes[i].name);
       }
     }
+    const pantryItems = Object.keys(userInfo.pantry);
+    let ingredients = [];
+    let count = 0;
+    let percent = 0;
+    for (let i = 0; i < faveRecipes.length; i += 1) {
+      ingredients = faveRecipes[i].ingredients.map((recipe) => recipe.ingredientName)
+        .filter((ingredient) => ingredient !== undefined);
+      count = ingredients.reduce((acc, ingredient) => {
+        if (pantryItems.includes(ingredient)) {
+          return acc + 1;
+        }
+        return acc;
+      }, 0);
+      percent = (count / ingredients.length) * 100;
+      faveRecipes[i]['percent'] = percent;
+    }
     if (sort === 'alpha') {
       sortAlpha(faveRecipes, 'name');
+      setFave(faveRecipes);
+    }
+    if (sort === 'percent') {
+      sortAlpha(faveRecipes, 'percent');
       setFave(faveRecipes);
     }
   }
