@@ -4,7 +4,7 @@ const user = db.User;
 const recipes = db.Recipe;
 
 module.exports.getUser = (req) => (
-  user.findOneAndUpdate({ userId: req.body.uid }, {}, { upsert: true })
+  user.findOneAndUpdate({ userId: req.body.uid }, {}, { upsert: true, new: true })
 );
 
 module.exports.updateFavorites = (favorites, userId) => (
