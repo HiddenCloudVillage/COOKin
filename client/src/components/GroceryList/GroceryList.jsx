@@ -13,7 +13,7 @@ function GroceryList({ userInfo, setUserInfo }) {
   function setGroceryList(newList) {
     const groceryListProp = [];
     newList.forEach((item) => {
-      if (item.shopped === undefined) {
+      if (item?.shopped === undefined) {
         const temp = {};
         temp.name = item;
         temp.shopped = false;
