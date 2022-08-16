@@ -17,7 +17,7 @@ export default function IncludeIngredient({ inclusion, setInclusion }) {
       <InnerContainer>
         <Autocomplete
           options={ingredients}
-          sx={{ width: 300 }}
+          sx={{ width: 170 }}
           includeInputInList
           // eslint-disable-next-line react/jsx-props-no-spreading
           renderInput={(params) => <TextField {...params} />}
@@ -27,7 +27,7 @@ export default function IncludeIngredient({ inclusion, setInclusion }) {
         <List>
           {[...new Set(inclusion)].map((ingredient) => (
             <Row key={ingredient}>
-              {ingredient}
+              <P>{ingredient}</P>
               <button type="submit" onClick={(e) => handleClick(e, ingredient)}> X </button>
             </Row>
           ))}
@@ -41,9 +41,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 350px;
-  height: 500px;
-  background-color: #D4A373;
+  justify-content: space-evenly;
+  width: 250px;
+  height: 350px;
+  background: ${(props) => props.theme.tilebg2};
+  margin-bottom: 3%;
 `;
 
 const Row = styled.div`
@@ -51,8 +53,13 @@ const Row = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #FAEDCD;
-  width: 290px;
+  background: ${(props) => props.theme.background};
+  width: 90%;
+  margin: 1%;
+`;
+
+const P = styled.p`
+  margin: 0;
 `;
 
 const InnerContainer = styled.div`
@@ -60,19 +67,23 @@ const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #FAEDCD;
-  height: 390px;
+  background: ${(props) => props.theme.background};
+  height: 70%;
 `;
 
 const List = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
   display: flex;
+  width: 90%;
+  overflow-y: auto;
   flex-direction: column;
   align-items: center;
-  background-color: #FAEDCD;
+  background: ${(props) => props.theme.background};
 `;
 
 const Title = styled.h1`
-color: #FAEDCD;
+  font-size: 20px;
+  margin: 0px;
+  color: ${(props) => props.theme.text2};
 `;

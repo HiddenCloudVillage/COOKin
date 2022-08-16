@@ -18,7 +18,7 @@ function App() {
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
-  const [currentPage, setCurrentPage] = useState('Suggested Recipes');
+  const [currentPage, setCurrentPage] = useState('Suggestions');
 
   if (loading) {
     return <Load />;
@@ -26,27 +26,26 @@ function App() {
 
   return (
     <ThemeProvider theme={themeMode}>
-      <GlobalStyle />
-      <MainDiv>
-        {!user ? (
-          <Login />
-        ) : (
-          <HomeContainer>
-            <Header
-              themeToggler={themeToggler}
-              theme={theme}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              user={user}
-            />
-            <Home
-              user={user}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-            />
-          </HomeContainer>
-        )}
-      </MainDiv>
+      <>
+        <GlobalStyle />
+        <MainDiv>
+          {!user ? (
+            <Login />
+          )
+            : (
+              <HomeContainer>
+                <Header
+                  themeToggler={themeToggler}
+                  theme={theme}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                  user={user}
+                />
+                <Home user={user} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+              </HomeContainer>
+            )}
+        </MainDiv>
+      </>
     </ThemeProvider>
   );
 }

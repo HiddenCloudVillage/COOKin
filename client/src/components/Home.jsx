@@ -6,7 +6,6 @@ import Suggestions from './Suggestions/Suggestions';
 import Favorites from './Favorites/Favorites';
 import GroceryList from './GroceryList/GroceryList';
 import Pantry from './Pantry/Pantry';
-import Recipe from './Recipe/Recipe';
 import Load from './Load';
 import UserIdContext from './UserIdContext';
 import IncludeContext from './IncludeContext';
@@ -59,12 +58,12 @@ function Home({ user, currentPage, setCurrentPage }) {
       >
         <div>
           <h3>{`what's cookin, ${user.displayName}?`}</h3>
-
           {currentPage === 'Suggested Recipes' && (
             <Suggestions
               userInfo={userInfo}
               setUserInfo={setUserInfo}
               recipes={recipes}
+              setCurrentPage={setCurrentPage}
             />
           )}
           {currentPage === 'Favorite Recipes' && (

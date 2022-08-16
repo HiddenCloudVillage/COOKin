@@ -1,13 +1,12 @@
 /* eslint-disable dot-notation */
 /* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import star from './star.png';
 
 export default function Favorites({ userInfo, recipes }) {
   const [fave, setFave] = useState([]);
   const [sort, setSort] = useState('alpha');
-  function handleChange(e) {
-    setSort(e.target.value);
-  }
   function sortAlpha(recipes, key) {
     // eslint-disable-next-line prefer-arrow-callback, func-names
     return recipes.sort(function (a, b) {
@@ -15,6 +14,15 @@ export default function Favorites({ userInfo, recipes }) {
       var x = a[key]; var y = b[key];
       // eslint-disable-next-line no-nested-ternary
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+  }
+  function sortPercent(recipes, key) {
+    recipes.sort((a, b) => {
+      const x = a[key];
+      const y = b[key];
+      if (x > y) return -1;
+      if (y < x) return 1;
+      return 0;
     });
   }
   function findFaves(recipes) {
@@ -44,14 +52,17 @@ export default function Favorites({ userInfo, recipes }) {
     }
     if (sort === 'alpha') {
       sortAlpha(faveRecipes, 'name');
-      setFave(faveRecipes);
+      setFave([...faveRecipes]);
     }
     if (sort === 'percent') {
-      sortAlpha(faveRecipes, 'percent');
-      setFave(faveRecipes);
+      sortPercent(faveRecipes, 'percent');
+      setFave([...faveRecipes]);
     }
   }
-  useEffect(() => { findFaves(recipes); }, []);
+  function handleChange(e) {
+    setSort(e.target.value);
+  }
+  useEffect(() => { findFaves(recipes); }, [sort]);
   return (
     <div>
       <h1>Favorites</h1>
@@ -60,17 +71,72 @@ export default function Favorites({ userInfo, recipes }) {
         <option value="alpha">alphabetical</option>
         <option value="percent">percent ingredients</option>
       </select>
-      {fave.map((recipe) => (
-        <div key={recipe.name}>
-          <div>
-            {recipe.name}
-          </div>
-          <div>
-            {recipe.instructions}
-          </div>
-          <img src={recipe.thumbnail} alt="instructions" />
-        </div>
-      ))}
+      <div>
+        {fave.map((recipe) => (
+          <Grid key={recipe.name}>
+            <Row>
+              <Star src={star} alt="star" />
+              <Name>
+                {recipe.name}
+                <Desc>
+                  You have&nbsp;
+                  {recipe.percent}
+                  % of the necessary ingredients to make this recipe!
+                </Desc>
+              </Name>
+              <Percent>
+                {recipe.percent}
+                %
+              </Percent>
+              <Thumb src={recipe.thumbnail} alt="instructions" />
+            </Row>
+          </Grid>
+        ))}
+      </div>
     </div>
   );
 }
+
+const Thumb = styled.img`
+width: 10%;
+margin-left: 10px;
+`;
+
+const Row = styled.div`
+display: flex;
+margin: 0 auto;
+background-color: red;
+width: 70%;
+justify-content: space-between;
+`;
+
+const Desc = styled.div`
+/* display: flex; */
+font-size: 20px;
+width: 80%;
+background-color: yellow;
+`;
+
+const Star = styled.img`
+width: 2%;
+height: 2%
+`;
+
+const Name = styled.div`
+font-size: 40px;
+margin-right: 20px;
+margin-left: 10px;
+height: 50%;
+`;
+
+const Percent = styled.div`
+font-size: 40px;
+margin-right: 20px;
+height: 10%;
+`;
+
+const Grid = styled.div`
+margin: 0 auto;
+width: 100%;
+background-color: blue;
+`;

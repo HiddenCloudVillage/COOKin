@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import RecipeTile from './RecipeTile';
 import OpenTile from './OpenTile';
 
-export default function RecipeList({recipes, userInfo, setUserInfo }) {
+export default function RecipeList({ recipes, userInfo, setUserInfo, setCurrentPage,
+}) {
   const [page, setPage] = useState(0);
   const [pageCount, setPageCount] = useState(Math.ceil(recipes.length / 5));
   const [openTile, setOpenTile] = useState(0);
-  console.log('loaded');
 
   useEffect(() => {
     setPage(0);
@@ -16,10 +16,8 @@ export default function RecipeList({recipes, userInfo, setUserInfo }) {
     setPageCount(Math.ceil(recipes.length / 5));
   }, [recipes]);
   return (
-    <div>
-      <h3>Recipes</h3>
+    <RecListContainer>
       <RecList>
-
         {recipes.slice(page * 5, page * 5 + 5).map((recipe, i) => (
           (i === openTile)
             ? (
@@ -28,13 +26,14 @@ export default function RecipeList({recipes, userInfo, setUserInfo }) {
                 recipe={recipe}
                 userInfo={userInfo}
                 setUserInfo={setUserInfo}
+                setCurrentPage={setCurrentPage}
               />
             )
             : <RecipeTile setOpen={setOpenTile} i={i} key={recipe._id} recipe={recipe} />
         ))}
       </RecList>
-      <div>
-        <button
+      <Buttons>
+        <Button
           type="button"
           onClick={() => {
             setOpenTile(0);
@@ -43,7 +42,7 @@ export default function RecipeList({recipes, userInfo, setUserInfo }) {
         >
           Previous
 
-        </button>
+        </Button>
         page
         {' '}
         {page + 1}
@@ -51,7 +50,7 @@ export default function RecipeList({recipes, userInfo, setUserInfo }) {
         of
         {' '}
         {pageCount}
-        <button
+        <Button
           type="button"
           onClick={() => {
             setOpenTile(0);
@@ -60,12 +59,19 @@ export default function RecipeList({recipes, userInfo, setUserInfo }) {
         >
           Next
 
-        </button>
+        </Button>
 
-      </div>
-    </div>
+      </Buttons>
+    </RecListContainer>
   );
 }
+
+const RecListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:center;
+`;
 const RecList = styled.div`
   display: flex;
   flex-direction: column;
@@ -73,4 +79,30 @@ const RecList = styled.div`
   align-items: center;
   width: 100%;
   min-height: 304px;
-  `;
+`;
+
+const Buttons = styled.div`
+  margin-top: 3%;
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+`;
+
+const Button = styled.button`
+  height: auto;
+  width: 15%;
+  border-radius: 5%;
+  border: 1px solid;
+  padding: 10px;
+  background: none;
+  color: ${(props) => props.theme.text2};
+  background-color: ${(props) => props.theme.tilebg2};
+  &:hover{
+    cursor: pointer;
+    opacity: 70%;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
+`;

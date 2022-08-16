@@ -1,10 +1,23 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useContext } from 'react';
+=======
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+>>>>>>> 559d0442625b82274669128073d213e46d1db4d5
 import RecipeList from './RecipeList';
 import IncludeIngredient from './IncludeIngredient';
 import ExcludeIngredient from './ExcludeIngredient';
 import IncludeContext from '../IncludeContext';
 
+<<<<<<< HEAD
 export default function Suggestions({ recipes, userInfo, setUserInfo }) {
+=======
+export default function Suggestions({
+  recipes, userInfo, setUserInfo,
+  setCurrentPage,
+}) {
+  const [includeIngredients, setIncludeIngredients] = useState([]);
+>>>>>>> 559d0442625b82274669128073d213e46d1db4d5
   const [excludeIngredients, setExcludeIngredients] = useState([]);
   const [includeIngredients, setIncludeIngredients] =
     useContext(IncludeContext);
@@ -30,8 +43,6 @@ export default function Suggestions({ recipes, userInfo, setUserInfo }) {
 
       return include && !exclude;
     });
-    console.log(recipes);
-    console.log('filteredRecipes', filteredRecipes);
 
     const pantryIngredients = userInfo.pantry
       ? Object.keys(userInfo?.pantry)
@@ -56,13 +67,15 @@ export default function Suggestions({ recipes, userInfo, setUserInfo }) {
     return recipesWithPercent;
   };
   return (
-    <div>
-      <div>
+    <Page>
+      <Left>
         <RecipeList
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           recipes={filterRecipes()}
+          setCurrentPage={setCurrentPage}
         />
+<<<<<<< HEAD
       </div>
       <IncludeIngredient
         inclusion={includeIngredients}
@@ -73,5 +86,33 @@ export default function Suggestions({ recipes, userInfo, setUserInfo }) {
         setExclusion={setExcludeIngredients}
       />
     </div>
+=======
+      </Left>
+      <Right>
+        <IncludeIngredient inclusion={includeIngredients} setInclusion={setIncludeIngredients} />
+        <ExcludeIngredient exclusion={excludeIngredients} setExclusion={setExcludeIngredients} />
+      </Right>
+    </Page>
+>>>>>>> 559d0442625b82274669128073d213e46d1db4d5
   );
 }
+
+const Page = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+`;
+
+const Left = styled.div`
+  width: 70%;
+`;
+
+const Right = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+`;
