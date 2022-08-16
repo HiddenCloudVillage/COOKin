@@ -18,7 +18,7 @@ function App() {
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
-  const [currentPage, setCurrentPage] = useState('Suggested Recipes');
+  const [currentPage, setCurrentPage] = useState('Suggestions');
 
   if (loading) {
     return (

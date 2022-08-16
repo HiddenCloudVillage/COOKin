@@ -44,6 +44,39 @@ export default function OpenTile({
   return (
     <Tile>
       <Name onClick={() => setOpenModal(true)}>{recipe.name}</Name>
+      <TileBot>
+        <Thumbnail src={recipe.thumbnail} alt={recipe.name} />
+        <BotRight>
+          <Perc>
+            {recipe.percent}
+            %
+            <Sp>match of the ingredients in your pantry</Sp>
+          </Perc>
+
+          <Ingredients>
+            <Sp>including</Sp>
+            <ul>
+              {recipe.ingredients.slice(0, 4).map((ingredient) => (
+                <li key={ingredient.ingredientName}>
+                  {ingredient.ingredientName}
+                </li>
+              ))}
+              <em>... and more</em>
+            </ul>
+          </Ingredients>
+          <Buttons>
+            <Button onClick={() => setOpenModal(true)}>
+              Expand
+            </Button>
+            <Button
+              onClick={handleAddToList}
+              recipe={recipe}
+            >
+              Add to grocery list!
+            </Button>
+          </Buttons>
+        </BotRight>
+      </TileBot>
       {isFavorite ? (
         <button type="button" onClick={handleFavorite}>
           Remove From Favorites
@@ -54,107 +87,94 @@ export default function OpenTile({
         </button>
 
       )}
-      <div>
-        You have
-        <h3>
-          {recipe.percent}
-          %
-        </h3>
-        of the needed ingredients.
-      </div>
-      <Button
-        onClick={handleAddToList}
-        recipe={recipe}
-      >
-        Add ingredients to your grocery list!
-
-      </Button>
-
-      <Ingredients>
-        <h4>Ingredients</h4>
-        <ul>
-          {recipe.ingredients.slice(0, 6).map((ingredient) => (
-            <li key={ingredient.ingredientName}>
-              {ingredient.ingredientName}
-              {' '}
-              /
-              {' '}
-              {ingredient.ingredientQuantity}
-            </li>
-          ))}
-        </ul>
-        {recipe.ingredients.length > 6 && (
-        <div>
-          Visit the recipe page to see all ingredients!
-        </div>
-        )}
-      </Ingredients>
-      <Thumbnail src={recipe.thumbnail} alt={recipe.name} />
     </Tile>
   );
 }
 const Tile = styled.div`
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   width: 85%;
   min-height: 250px;
-  height: 20vh;
-  display: inline;
-  padding: 10px;
-  background-color: #ffffff;
+  padding: 2%;
+  background: ${(props) => props.theme.tilebg1};
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
   margin-bottom: 10px;
-  cursor: pointer;
   transition: all 0.3s ease-in-out;
   &:hover {
     transform: scale(1.01);
   }
 `;
+
+const TileBot = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+`;
+
+const BotRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 70%;
+  height: 100%;
+`;
+
+const Perc = styled.p`
+  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
+`;
+const Sp = styled.span`
+  margin-left: 3%;
+  font-size: 15px;
+  font-weight: normal;
+`;
+
 const Thumbnail = styled.img`
-  width: 15vh;
-  float: right;
-  top: -40%;
-  position: relative;
-  margin-right: 10px;
-  border-radius: 10px;
+  width: 30%;
+  resize: auto;
+  margin-right: 3%;
 `;
 const Ingredients = styled.div`
-position: relative;
-height: 100%;
+  height: 100%;
   width: 40%;
-  float: left;
   border-radius: 10px;
-  left: 30%;
-  top : -60%;
-  margin-top: 20px;
-  `;
+`;
+const Buttons = styled(TileBot)`
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0;
+`;
 const Button = styled.button`
-  position: relative;
-  height: 20%;
-  width: 20%;
-  border-radius:5%;
-  left: -40%;
-  top: 10%;
-  background-color: #ffffff;
-  border: 1px solid #000000;
+  height: auto;
+  width: 30%;
+  border-radius: 5%;
+  border: 1px solid;
   padding: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    transform: scale(1.03);
+  background: none;
+  color: ${(props) => props.theme.text2};
+  background-color: ${(props) => props.theme.tilebg2};
+  &:hover{
+    cursor: pointer;
+    opacity: 70%;
   }
 `;
+
 const Name = styled.h3`
   font-weight: bold;
+  font-size: 25px;
   display:block;
-  background-color: gray;
-  margin-top: -10px;
+  background: ${(props) => props.theme.maintilebg};
+  margin: 0;
+  margin-bottom: 2%;
   width: auto;
   overflow: auto;
-  margin-left: -4px; margin-right: -4px;
-  padding: 10px;
-  &:hover {
-    text-decoration: underline;
-    color: #ff0000;
+  border-bottom: 1px solid;
+  cursor: default;
+  &:hover{
+    opacity: 70%;
   }
 `;

@@ -52,7 +52,7 @@ function Home({ user, currentPage, setCurrentPage }) {
     <div>
       <h3>{`what's cookin, ${user.displayName}?`}</h3>
 
-      {currentPage === 'Suggested Recipes' && (
+      {currentPage === 'Suggestions' && (
         <Suggestions
           userInfo={userInfo}
           setUserInfo={setUserInfo}
@@ -60,7 +60,7 @@ function Home({ user, currentPage, setCurrentPage }) {
           setCurrentPage={setCurrentPage}
         />
       )}
-      {currentPage === 'Favorite Recipes' && (
+      {currentPage === 'Favorites' && (
         <Favorites
           userInfo={userInfo}
           setUserInfo={setUserInfo}
