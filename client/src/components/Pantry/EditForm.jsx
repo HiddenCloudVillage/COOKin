@@ -7,7 +7,6 @@ function EditForm({
   ingredientInfo,
   userInfo,
   setUserInfo,
-  setUpdatePantry,
   setShow,
 }) {
   const [name, setName] = useState(ingredient);
