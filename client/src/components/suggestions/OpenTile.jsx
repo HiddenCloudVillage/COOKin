@@ -28,24 +28,34 @@ export default function OpenTile({ userInfo, recipe, setUserInfo }) {
 
   return (
     <Tile>
-      <Name onClick={()=> setOpenModal(true) } >{recipe.name}</Name>
-      <div>
+      <Name onClick={() => setOpenModal(true)}>{recipe.name}</Name>
+      <TileBot>
+        <Thumbnail src={recipe.thumbnail} alt={recipe.name} />
+        <BotRight>
+          <Perc>
+            {recipe.percent}
+            %
+            <Sp>match of the ingredients in your pantry</Sp>
+          </Perc>
+          <AddToGroceryList
+            onClick={handleAddToList}
+            recipe={recipe}
+          >
+            Add ingredients to your grocery list!
+
+          </AddToGroceryList>
+        </BotRight>
+      </TileBot>
+      {/* <div>
         You have
         <h3>
           {recipe.percent}
           %
         </h3>
         of the needed ingredients.
-      </div>
-      <AddToGroceryList
-        onClick={handleAddToList}
-        recipe={recipe}
-      >
-        Add ingredients to your grocery list!
+      </div> */}
 
-      </AddToGroceryList>
-
-      <Ingredients>
+      {/* <Ingredients>
         <h4>Ingredients</h4>
         <ul>
           {recipe.ingredients.slice(0, 6).map((ingredient) => (
@@ -63,18 +73,18 @@ export default function OpenTile({ userInfo, recipe, setUserInfo }) {
           Visit the recipe page to see all ingredients!
         </div>
         )}
-      </Ingredients>
-      <Thumbnail src={recipe.thumbnail} alt={recipe.name} />
+      </Ingredients> */}
+
     </Tile>
   );
 }
 const Tile = styled.div`
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   width: 85%;
   min-height: 250px;
-  height: 20vh;
-  display: inline;
-  padding: 10px;
+  padding: 2%;
   background: ${(props) => props.theme.maintilebg};
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
@@ -85,31 +95,46 @@ const Tile = styled.div`
     transform: scale(1.01);
   }
 `;
+
+const TileBot = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+`;
+
+const BotRight = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Perc = styled.p`
+  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
+`;
+const Sp = styled.span`
+  margin: 0;
+  font-size: 15px;
+  font-weight: normal;
+`;
+
 const Thumbnail = styled.img`
-  width: 15vh;
-  float: right;
-  top: -40%;
-  position: relative;
-  margin-right: 10px;
-  border-radius: 10px;
+  width: 30%;
+  resize: auto;
+  margin-right: 3%;
 `;
 const Ingredients = styled.div`
-position: relative;
-height: 100%;
+  height: 100%;
   width: 40%;
-  float: left;
   border-radius: 10px;
-  left: 30%;
-  top : -60%;
-  margin-top: 20px;
-  `;
+`;
 const AddToGroceryList = styled.button`
-  position: relative;
+
   height: 20%;
   width: 20%;
   border-radius:5%;
-  left: -40%;
-  top: 10%;
+
   background: ${(props) => props.theme.maintilebg};
   border: 1px solid;
   padding: 10px;
@@ -123,14 +148,13 @@ const Name = styled.h3`
   font-weight: bold;
   display:block;
   background: ${(props) => props.theme.maintilebg};
-  margin-top: -10px;
+  margin: 0;
+  margin-bottom: 2%;
   width: auto;
   overflow: auto;
   border-bottom: 1px solid;
-  margin-left: -4px; margin-right: -4px;
-  padding: 10px;
-  &:hover {
+  /* &:hover {
     text-decoration: underline;
     color: #ff0000;
-  }
+  } */
 `;

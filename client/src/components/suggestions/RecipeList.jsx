@@ -18,7 +18,6 @@ export default function RecipeList({recipes, userInfo, setUserInfo }) {
   return (
     <div>
       <RecList>
-
         {recipes.slice(page * 5, page * 5 + 5).map((recipe, i) => (
           (i === openTile)
             ? (
