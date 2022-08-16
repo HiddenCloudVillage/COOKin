@@ -16,7 +16,7 @@ function GroceryList({ userInfo, setUserInfo }) {
     const arrayNames = userInfo.groceryList.map((ing) => ing?.name);
 
     newList.forEach((item) => {
-      if (arrayNames.includes(item)) {
+      if (arrayNames.includes(item) || item === null) {
         return;
       }
       if (item?.shopped === undefined) {
