@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Autocomplete, TextField } from '@mui/material/';
 import ingredient from '../../lib/ingredients';
+import UserIdContext from '../UserIdContext';
 
 const axios = require('axios');
 // some sort of modal for inserting ingredient
 
-function IngredientForm({ userInfo, setUserInfo, setShow }) {
+function IngredientForm({ setShow }) {
+  const [userInfo, setUserInfo] = useContext(UserIdContext);
   const [name, setName] = useState();
   const [amount, setAmount] = useState();
   const [category, setCategory] = useState();
