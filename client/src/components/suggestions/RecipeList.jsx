@@ -78,9 +78,10 @@ const RecList = styled.div`
   align-items: center;
   width: 100%;
   min-height: 304px;
-  `;
+`;
 
 const Buttons = styled.div`
+  margin-top: 3%;
   width: 85%;
   display: flex;
   flex-direction: row;
