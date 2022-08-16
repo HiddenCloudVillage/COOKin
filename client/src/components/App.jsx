@@ -43,7 +43,7 @@ function App() {
                   setCurrentPage={setCurrentPage}
                   user={user}
                 />
-                <Home user={user} currentPage={currentPage} />
+                <Home user={user} currentPage={currentPage} setCurrentPage={setCurrentPage} />
               </HomeContainer>
             )}
         </MainDiv>
