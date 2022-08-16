@@ -27,8 +27,6 @@ export default function Suggestions({ recipes, userInfo, setUserInfo,
 
       return include && !exclude;
     });
-    console.log(recipes);
-    console.log('filteredRecipes', filteredRecipes);
 
     const pantryIngredients = userInfo.pantry ? Object.keys(userInfo?.pantry) : [];
     const recipesWithPercent = filteredRecipes.map((recipe) => {
