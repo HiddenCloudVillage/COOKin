@@ -4,8 +4,11 @@ import React from 'react';
 import styled from 'styled-components';
 import RecipeModal from './RecipeModal';
 
-export default function OpenTile({ userInfo, recipe, setUserInfo }) {
+export default function OpenTile({
+  userInfo, recipe, setUserInfo, setCurrentPage,
+}) {
   const [openModal, setOpenModal] = React.useState(false);
+  const isFavorite = userInfo.favorites.includes(recipe.mealId);
   const handleAddToList = () => {
     const set = new Set(userInfo.groceryList);
     recipe.ingredients.forEach((ingredient) => {
@@ -14,14 +17,26 @@ export default function OpenTile({ userInfo, recipe, setUserInfo }) {
     const newList = Array.from(set);
     const newUserInfo = { ...userInfo, grocery: newList };
     axios.put('/grocery', newUserInfo).then((res) => { setUserInfo(res.data); })
-      .then(() => alert('Recipe added to grocery list'));
+      .then(() => setCurrentPage('Grocery List'));
   };
+
+  const handleFavorite = () => {
+    const newFavorites = userInfo.favorites.includes(recipe.mealId)
+      ? userInfo.favorites.filter((id) => id !== recipe.mealId)
+      : [...userInfo.favorites, recipe.mealId];
+    const newUserInfo = { ...userInfo, favorites: newFavorites };
+    axios.put('/favorites', newUserInfo).then((res) => { setUserInfo(res.data); }).then(() => setCurrentPage('Favorite Recipes'));
+  };
+
   if (openModal) {
     return (
       <RecipeModal
         recipe={recipe}
         setOpenModal={setOpenModal}
         handleAddToList={handleAddToList}
+        handleFavorite={handleFavorite}
+        isFavorite={isFavorite}
+        setCurrentPage={setCurrentPage}
       />
     );
   }
@@ -37,6 +52,7 @@ export default function OpenTile({ userInfo, recipe, setUserInfo }) {
             %
             <Sp>match of the ingredients in your pantry</Sp>
           </Perc>
+
           <Ingredients>
             <Sp>including</Sp>
             <ul>
@@ -61,6 +77,16 @@ export default function OpenTile({ userInfo, recipe, setUserInfo }) {
           </Buttons>
         </BotRight>
       </TileBot>
+      {isFavorite ? (
+        <button type="button" onClick={handleFavorite}>
+          Remove From Favorites
+        </button>
+      ) : (
+        <button type="button" onClick={handleFavorite}>
+          Add to Favorites
+        </button>
+
+      )}
     </Tile>
   );
 }

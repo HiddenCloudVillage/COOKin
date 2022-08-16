@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import RecipeTile from './RecipeTile';
 import OpenTile from './OpenTile';
 
-export default function RecipeList({recipes, userInfo, setUserInfo }) {
+export default function RecipeList({ recipes, userInfo, setUserInfo, setCurrentPage,
+}) {
   const [page, setPage] = useState(0);
   const [pageCount, setPageCount] = useState(Math.ceil(recipes.length / 5));
   const [openTile, setOpenTile] = useState(0);
-  console.log('loaded');
 
   useEffect(() => {
     setPage(0);
@@ -26,6 +26,7 @@ export default function RecipeList({recipes, userInfo, setUserInfo }) {
                 recipe={recipe}
                 userInfo={userInfo}
                 setUserInfo={setUserInfo}
+                setCurrentPage={setCurrentPage}
               />
             )
             : <RecipeTile setOpen={setOpenTile} i={i} key={recipe._id} recipe={recipe} />
