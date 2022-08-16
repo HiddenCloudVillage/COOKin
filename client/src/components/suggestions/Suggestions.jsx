@@ -3,7 +3,9 @@ import RecipeList from './RecipeList';
 import IncludeIngredient from './IncludeIngredient';
 import ExcludeIngredient from './ExcludeIngredient';
 
-export default function Suggestions({ recipes, userInfo, setUserInfo,
+export default function Suggestions({
+  recipes, userInfo, setUserInfo,
+  setCurrentPage,
 }) {
   const [includeIngredients, setIncludeIngredients] = useState([]);
   const [excludeIngredients, setExcludeIngredients] = useState([]);
@@ -49,6 +51,7 @@ export default function Suggestions({ recipes, userInfo, setUserInfo,
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           recipes={filterRecipes()}
+          setCurrentPage={setCurrentPage}
         />
       </div>
       <IncludeIngredient inclusion={includeIngredients} setInclusion={setIncludeIngredients} />
