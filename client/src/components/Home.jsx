@@ -53,14 +53,14 @@ function Home({ user, currentPage }) {
     <div>
       <h3>{`what's cookin, ${user.displayName}?`}</h3>
 
-      {currentPage === 'Suggested Recipes' && (
+      {currentPage === 'Suggestions' && (
         <Suggestions
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           recipes={recipes}
         />
       )}
-      {currentPage === 'Favorite Recipes' && (
+      {currentPage === 'Favorites' && (
         <Favorites
           userInfo={userInfo}
           setUserInfo={setUserInfo}

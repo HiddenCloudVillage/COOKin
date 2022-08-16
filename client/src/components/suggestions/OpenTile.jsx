@@ -75,7 +75,7 @@ const Tile = styled.div`
   height: 20vh;
   display: inline;
   padding: 10px;
-  background-color: #ffffff;
+  background: ${(props) => props.theme.maintilebg};
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
   margin-bottom: 10px;
@@ -110,8 +110,8 @@ const AddToGroceryList = styled.button`
   border-radius:5%;
   left: -40%;
   top: 10%;
-  background-color: #ffffff;
-  border: 1px solid #000000;
+  background: ${(props) => props.theme.maintilebg};
+  border: 1px solid;
   padding: 10px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -122,10 +122,11 @@ const AddToGroceryList = styled.button`
 const Name = styled.h3`
   font-weight: bold;
   display:block;
-  background-color: gray;
+  background: ${(props) => props.theme.maintilebg};
   margin-top: -10px;
   width: auto;
   overflow: auto;
+  border-bottom: 1px solid;
   margin-left: -4px; margin-right: -4px;
   padding: 10px;
   &:hover {

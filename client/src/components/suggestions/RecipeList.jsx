@@ -17,7 +17,6 @@ export default function RecipeList({recipes, userInfo, setUserInfo }) {
   }, [recipes]);
   return (
     <div>
-      <h3>Recipes</h3>
       <RecList>
 
         {recipes.slice(page * 5, page * 5 + 5).map((recipe, i) => (

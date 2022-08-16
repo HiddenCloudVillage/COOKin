@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { auth } from '../lib/firebase';
 
-const pageTitles = ['Suggested Recipes', 'Favorite Recipes', 'Grocery List', 'Pantry'];
+const pageTitles = ['Suggestions', 'Favorites', 'Grocery List', 'Pantry'];
 
 function Header({ user, setCurrentPage, currentPage, themeToggler, theme }) {
   const signOut = () => {
@@ -31,14 +31,17 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme }) {
         {/* set style of currentPage to Special CSS... not code for anything just make it feel special */}
       <Nav>
         {pageTitles.map((title) => (
-          <PageTitle
-            key={title}
-            id={title}
-            name={title}
-            onClick={(e) => handlePageChange(e)}
-          >
-            {title}
-          </PageTitle>
+          <PageDiv currentPage={currentPage} name={title}>
+            <PageTitle
+              key={title}
+              id={title}
+              name={title}
+              onClick={(e) => handlePageChange(e)}
+              currentPage={currentPage}
+            >
+              {title}
+            </PageTitle>
+          </PageDiv>
         ))}
       </Nav>
       {/* </PageTitlesContainer> */}
@@ -80,13 +83,14 @@ const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   border-bottom: .5px solid;
+  background: ${(props) => props.theme.headerbg};
   cursor: default;
 `;
 
 const HeaderLeft = styled.div`
   font-size: 35px;
   letter-spacing: -1.5px;
-  width: 20%;
+  width: 10%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -108,9 +112,18 @@ const Title = styled.p`
   width: 100%;
 `;
 
+const PageDiv = styled.div`
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  height: 100%;
+  background: ${(props) => (props.currentPage === props.name ? props.theme.background : props.theme.headerbg)}
+`;
+
 const PageTitle = styled(Title)`
-  margin-left: 5%;
-  width: 90%;
+  width: 100%;
 `;
 const DarkMode = styled(Title)`
   margin-right: 5%;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import RecipeList from './RecipeList';
 import IncludeIngredient from './IncludeIngredient';
 import ExcludeIngredient from './ExcludeIngredient';
@@ -45,16 +46,38 @@ export default function Suggestions({ recipes, userInfo, setUserInfo,
     return recipesWithPercent;
   };
   return (
-    <div>
-      <div>
+    <Page>
+      <Left>
         <RecipeList
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           recipes={filterRecipes()}
         />
-      </div>
-      <IncludeIngredient inclusion={includeIngredients} setInclusion={setIncludeIngredients} />
-      <ExcludeIngredient exclusion={excludeIngredients} setExclusion={setExcludeIngredients} />
-    </div>
+      </Left>
+      <Right>
+        <IncludeIngredient inclusion={includeIngredients} setInclusion={setIncludeIngredients} />
+        <ExcludeIngredient exclusion={excludeIngredients} setExclusion={setExcludeIngredients} />
+      </Right>
+    </Page>
   );
 }
+
+const Page = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+`;
+
+const Left = styled.div`
+  width: 70%;
+`;
+
+const Right = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+`;
