@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function RecipeModal({ recipe, setOpenModal, handleAddToList }) {
+export default function RecipeModal({
+  handleFavorite, isFavorite, recipe, setOpenModal, handleAddToList,
+}) {
   const exitModal = (e) => {
     if ((e.target.id === 'outside')) {
       setOpenModal(false);
@@ -53,6 +55,13 @@ export default function RecipeModal({ recipe, setOpenModal, handleAddToList }) {
             <p>{recipe.instructions}</p>
           </Instructions>
         </Grid>
+        <button type="button" onClick={handleAddToList}>
+          Add ingredients to your grocery list!
+        </button>
+        <button type="button" onClick={handleFavorite}>
+          {isFavorite ? 'Remove From Favorites' : 'Add to Favorites'}
+        </button>
+
       </Modal>
     </Overlay>
   );
