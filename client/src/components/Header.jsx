@@ -82,7 +82,7 @@ const HeaderContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border-bottom: .5px solid;
+  /* border-bottom: .5px solid; */
   background: ${(props) => props.theme.headerbg};
   cursor: default;
 `;

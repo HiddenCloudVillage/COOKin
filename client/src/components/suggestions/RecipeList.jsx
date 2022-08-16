@@ -16,7 +16,7 @@ export default function RecipeList({recipes, userInfo, setUserInfo }) {
     setPageCount(Math.ceil(recipes.length / 5));
   }, [recipes]);
   return (
-    <div>
+    <RecListContainer>
       <RecList>
         {recipes.slice(page * 5, page * 5 + 5).map((recipe, i) => (
           (i === openTile)
@@ -31,8 +31,8 @@ export default function RecipeList({recipes, userInfo, setUserInfo }) {
             : <RecipeTile setOpen={setOpenTile} i={i} key={recipe._id} recipe={recipe} />
         ))}
       </RecList>
-      <div>
-        <button
+      <Buttons>
+        <Button
           type="button"
           onClick={() => {
             setOpenTile(0);
@@ -41,7 +41,7 @@ export default function RecipeList({recipes, userInfo, setUserInfo }) {
         >
           Previous
 
-        </button>
+        </Button>
         page
         {' '}
         {page + 1}
@@ -49,7 +49,7 @@ export default function RecipeList({recipes, userInfo, setUserInfo }) {
         of
         {' '}
         {pageCount}
-        <button
+        <Button
           type="button"
           onClick={() => {
             setOpenTile(0);
@@ -58,12 +58,19 @@ export default function RecipeList({recipes, userInfo, setUserInfo }) {
         >
           Next
 
-        </button>
+        </Button>
 
-      </div>
-    </div>
+      </Buttons>
+    </RecListContainer>
   );
 }
+
+const RecListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:center;
+`;
 const RecList = styled.div`
   display: flex;
   flex-direction: column;
@@ -72,3 +79,28 @@ const RecList = styled.div`
   width: 100%;
   min-height: 304px;
   `;
+
+const Buttons = styled.div`
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+`;
+
+const Button = styled.button`
+  height: auto;
+  width: 15%;
+  border-radius: 5%;
+  border: 1px solid;
+  padding: 10px;
+  background: none;
+  color: ${(props) => props.theme.text2};
+  background-color: ${(props) => props.theme.tilebg2};
+  &:hover{
+    cursor: pointer;
+    opacity: 70%;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
+`;

@@ -35,10 +35,6 @@ const Name = styled.h3`
   font-weight: bold;
   background: ${(props) => props.theme.tilebg1};
   margin: 0;
-  /* &:hover {
-    text-decoration: underline;
-    color: #ff0000;
-  } */
 `;
 
 const Perc = styled(Name)`

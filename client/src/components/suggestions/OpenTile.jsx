@@ -119,6 +119,7 @@ const Ingredients = styled.div`
 `;
 const Buttons = styled(TileBot)`
   justify-content: space-evenly;
+  align-items: center;
   margin: 0;
 `;
 const Button = styled.button`
@@ -130,7 +131,10 @@ const Button = styled.button`
   background: none;
   color: ${(props) => props.theme.text2};
   background-color: ${(props) => props.theme.tilebg2};
-  cursor: pointer;
+  &:hover{
+    cursor: pointer;
+    opacity: 70%;
+  }
 `;
 
 const Name = styled.h3`
@@ -143,4 +147,8 @@ const Name = styled.h3`
   width: auto;
   overflow: auto;
   border-bottom: 1px solid;
+  cursor: default;
+  &:hover{
+    opacity: 70%;
+  }
 `;
