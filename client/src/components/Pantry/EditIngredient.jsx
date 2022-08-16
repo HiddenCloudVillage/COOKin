@@ -3,13 +3,7 @@ import EditForm from './EditForm';
 
 const axios = require('axios');
 
-function EditIngredient({
-  ingredient,
-  ingredientInfo,
-  userInfo,
-  setUserInfo,
-  setUpdatePantry,
-}) {
+function EditIngredient({ ingredient, ingredientInfo, userInfo, setUserInfo }) {
   const [show, setShow] = useState(false);
 
   function handleDelete() {
@@ -30,7 +24,6 @@ function EditIngredient({
           ingredient={ingredient}
           ingredientInfo={ingredientInfo}
           userInfo={userInfo}
-          setUpdatePantry={setUpdatePantry}
           setUserInfo={setUserInfo}
         />
       ) : (
