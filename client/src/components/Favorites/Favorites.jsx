@@ -71,27 +71,28 @@ export default function Favorites({ userInfo, recipes }) {
         <option value="alpha">alphabetical</option>
         <option value="percent">percent ingredients</option>
       </select>
-      {fave.map((recipe) => (
-        <Grid key={recipe.name}>
-          <Row>
-            <Star src={star} alt="star" />
-            <Name>
-              {recipe.name}
-              <Desc>
-                You have
+      <div>
+        {fave.map((recipe) => (
+          <Grid key={recipe.name}>
+            <Row>
+              <Star src={star} alt="star" />
+              <Name>
+                {recipe.name}
+                <Desc>
+                  You have&nbsp;
+                  {recipe.percent}
+                  % of the necessary ingredients to make this recipe!
+                </Desc>
+              </Name>
+              <Percent>
                 {recipe.percent}
-                % of the necessary ingredients to make this recipe!
-              </Desc>
-            </Name>
-            <Percent>
-              {recipe.percent}
-              %
-            </Percent>
-            <Thumb src={recipe.thumbnail} alt="instructions" />
-          </Row>
-
-        </Grid>
-      ))}
+                %
+              </Percent>
+              <Thumb src={recipe.thumbnail} alt="instructions" />
+            </Row>
+          </Grid>
+        ))}
+      </div>
     </div>
   );
 }
@@ -103,12 +104,17 @@ margin-left: 10px;
 
 const Row = styled.div`
 display: flex;
+margin: 0 auto;
+background-color: red;
+width: 70%;
+justify-content: space-between;
 `;
 
 const Desc = styled.div`
 /* display: flex; */
 font-size: 20px;
-width: 500px;
+width: 80%;
+background-color: yellow;
 `;
 
 const Star = styled.img`
@@ -118,14 +124,19 @@ height: 2%
 
 const Name = styled.div`
 font-size: 40px;
-margin-right: 100px;
+margin-right: 20px;
 margin-left: 10px;
+height: 50%;
 `;
 
 const Percent = styled.div`
 font-size: 40px;
+margin-right: 20px;
+height: 10%;
 `;
 
 const Grid = styled.div`
-width: 2000px;
+margin: 0 auto;
+width: 100%;
+background-color: blue;
 `;
