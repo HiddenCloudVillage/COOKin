@@ -1,6 +1,8 @@
 /* eslint-disable dot-notation */
 /* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import star from './star.png';
 
 export default function Favorites({ userInfo, recipes }) {
   const [fave, setFave] = useState([]);
@@ -39,27 +41,21 @@ export default function Favorites({ userInfo, recipes }) {
     for (let i = 0; i < faveRecipes.length; i += 1) {
       ingredients = faveRecipes[i].ingredients.map((recipe) => recipe.ingredientName)
         .filter((ingredient) => ingredient !== undefined);
-      // console.log('ing', ingredients);
-      // console.log('panties', pantryItems);
       count = ingredients.reduce((acc, ingredient) => {
         if (pantryItems.includes(ingredient)) {
           return acc + 1;
         }
         return acc;
       }, 0);
-      // console.log('count', count);
       percent = (count / ingredients.length) * 100;
-      console.log('percent', percent);
       faveRecipes[i]['percent'] = percent;
     }
-    console.log('preSort', faveRecipes);
     if (sort === 'alpha') {
       sortAlpha(faveRecipes, 'name');
       setFave([...faveRecipes]);
     }
     if (sort === 'percent') {
       sortPercent(faveRecipes, 'percent');
-      console.log('postSort', faveRecipes);
       setFave([...faveRecipes]);
     }
   }
@@ -76,16 +72,60 @@ export default function Favorites({ userInfo, recipes }) {
         <option value="percent">percent ingredients</option>
       </select>
       {fave.map((recipe) => (
-        <div key={recipe.name}>
-          <div>
-            {recipe.name}
-          </div>
-          <div>
-            {recipe.instructions}
-          </div>
-          <img src={recipe.thumbnail} alt="instructions" />
-        </div>
+        <Grid key={recipe.name}>
+          <Row>
+            <Star src={star} alt="star" />
+            <Name>
+              {recipe.name}
+              <Desc>
+                You have
+                {recipe.percent}
+                % of the necessary ingredients to make this recipe!
+              </Desc>
+            </Name>
+            <Percent>
+              {recipe.percent}
+              %
+            </Percent>
+            <Thumb src={recipe.thumbnail} alt="instructions" />
+          </Row>
+
+        </Grid>
       ))}
     </div>
   );
 }
+
+const Thumb = styled.img`
+width: 10%;
+margin-left: 10px;
+`;
+
+const Row = styled.div`
+display: flex;
+`;
+
+const Desc = styled.div`
+/* display: flex; */
+font-size: 20px;
+width: 500px;
+`;
+
+const Star = styled.img`
+width: 2%;
+height: 2%
+`;
+
+const Name = styled.div`
+font-size: 40px;
+margin-right: 100px;
+margin-left: 10px;
+`;
+
+const Percent = styled.div`
+font-size: 40px;
+`;
+
+const Grid = styled.div`
+width: 2000px;
+`;
