@@ -12,7 +12,13 @@ function GroceryList({ userInfo, setUserInfo }) {
 
   function setGroceryList(newList) {
     const groceryListProp = [];
+
+    const arrayNames = userInfo.groceryList.map((ing) => ing?.name);
+
     newList.forEach((item) => {
+      if (arrayNames.includes(item)) {
+        return;
+      }
       if (item?.shopped === undefined) {
         const temp = {};
         temp.name = item;
