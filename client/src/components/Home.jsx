@@ -9,7 +9,7 @@ import Pantry from './Pantry/Pantry';
 import Recipe from './Recipe/Recipe';
 import Load from './Load';
 
-function Home({ user, currentPage }) {
+function Home({ user, currentPage, setCurrentPage }) {
   const [userInfo, setUserInfo] = useState({});
   const [recipes, setRecipes] = useState([]);
   const checkInUser = (userObj) => {
@@ -58,6 +58,7 @@ function Home({ user, currentPage }) {
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           recipes={recipes}
+          setCurrentPage={setCurrentPage}
         />
       )}
       {currentPage === 'Favorite Recipes' && (
