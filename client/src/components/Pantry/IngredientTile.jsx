@@ -9,7 +9,7 @@ function IngredientTile({ ingredient, ingredientInfo, setCurrentPage }) {
 
   function handleItems() {
     setIncludeIngredients([ingredient]);
-    setCurrentPage('Suggested Recipes');
+    setCurrentPage('Suggestions');
   }
   return (
     <div>
