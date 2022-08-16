@@ -18,7 +18,7 @@ const Tile = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 2%;
-  background: ${(props) => props.theme.maintilebg};
+  background: ${(props) => props.theme.tilebg1};
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
   margin-bottom: 10px;
@@ -33,7 +33,7 @@ const Name = styled.h3`
   /* top: -40%; */
   font-size: 20px;
   font-weight: bold;
-  background: ${(props) => props.theme.maintilebg};
+  background: ${(props) => props.theme.tilebg1};
   margin: 0;
   /* &:hover {
     text-decoration: underline;
