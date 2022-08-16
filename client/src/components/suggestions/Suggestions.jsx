@@ -1,23 +1,16 @@
-<<<<<<< HEAD
 import React, { useState, useEffect, useContext } from 'react';
-=======
-import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
->>>>>>> 559d0442625b82274669128073d213e46d1db4d5
 import RecipeList from './RecipeList';
 import IncludeIngredient from './IncludeIngredient';
 import ExcludeIngredient from './ExcludeIngredient';
 import IncludeContext from '../IncludeContext';
 
-<<<<<<< HEAD
-export default function Suggestions({ recipes, userInfo, setUserInfo }) {
-=======
 export default function Suggestions({
-  recipes, userInfo, setUserInfo,
+  recipes,
+  userInfo,
+  setUserInfo,
   setCurrentPage,
 }) {
-  const [includeIngredients, setIncludeIngredients] = useState([]);
->>>>>>> 559d0442625b82274669128073d213e46d1db4d5
   const [excludeIngredients, setExcludeIngredients] = useState([]);
   const [includeIngredients, setIncludeIngredients] =
     useContext(IncludeContext);
@@ -75,25 +68,18 @@ export default function Suggestions({
           recipes={filterRecipes()}
           setCurrentPage={setCurrentPage}
         />
-<<<<<<< HEAD
-      </div>
-      <IncludeIngredient
-        inclusion={includeIngredients}
-        setInclusion={setIncludeIngredients}
-      />
-      <ExcludeIngredient
-        exclusion={excludeIngredients}
-        setExclusion={setExcludeIngredients}
-      />
-    </div>
-=======
       </Left>
       <Right>
-        <IncludeIngredient inclusion={includeIngredients} setInclusion={setIncludeIngredients} />
-        <ExcludeIngredient exclusion={excludeIngredients} setExclusion={setExcludeIngredients} />
+        <IncludeIngredient
+          inclusion={includeIngredients}
+          setInclusion={setIncludeIngredients}
+        />
+        <ExcludeIngredient
+          exclusion={excludeIngredients}
+          setExclusion={setExcludeIngredients}
+        />
       </Right>
     </Page>
->>>>>>> 559d0442625b82274669128073d213e46d1db4d5
   );
 }
 
