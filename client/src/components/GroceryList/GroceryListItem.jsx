@@ -95,5 +95,17 @@ const Ing = styled.h3`
 // `;
 
 const DelButton = styled.button`
+  width: 1.5vw;
+  height: 1.5vw;
+  font-color: red;
   align-content: right;
+  background: transparent;
+  border: solid;
+  border-width: 2px;
+  border-color: red;
+  border-radius: 2vw;
+  &:hover {
+    cursor: pointer;
+    border-width: 3px;
+  }
 `;

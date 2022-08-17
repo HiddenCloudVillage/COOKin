@@ -137,11 +137,12 @@ function GroceryList({ userInfo, setUserInfo }) {
 export default GroceryList;
 
 const Page = styled.div`
+max-width: 900px;
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-around;
 `;
 
 const GroceryListDiv = styled.div`
