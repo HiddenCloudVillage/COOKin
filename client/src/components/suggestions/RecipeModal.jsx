@@ -129,6 +129,7 @@ const MainRight = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  overflow-y: auto;
 `;
 
 const Bottom = styled(Main)`
@@ -145,7 +146,7 @@ const VideoDiv = styled.div`
   height:47%;
 `;
 const Instructions = styled(Ingredients)`
-  overflow-y: auto;
+  /* overflow-y: auto; */
 `;
 const Thumbnail = styled.img`
   width: 100%;
