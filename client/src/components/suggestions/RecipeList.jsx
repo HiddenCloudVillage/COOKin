@@ -88,12 +88,12 @@ const Buttons = styled.div`
 const Button = styled.button`
   height: auto;
   width: 15%;
-  border-radius: 5%;
+  border-radius: 10px;
   border: 1px solid;
   padding: 10px;
   background: none;
-  color: ${(props) => props.theme.text2};
-  background-color: ${(props) => props.theme.tilebg2};
+  color: ${(props) => props.theme.buttontext};
+  background-color: ${(props) => props.theme.button2};
   &:hover{
     cursor: pointer;
     opacity: 70%;
