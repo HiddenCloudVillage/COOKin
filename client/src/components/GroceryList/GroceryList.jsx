@@ -105,29 +105,62 @@ function GroceryList({ userInfo, setUserInfo }) {
   }
 
   return (
-    <div>
-      THIS IS THE GROCERY LIST BITCHES
-      {userInfo.groceryList
-        && alteredGroceryList.map((ingredient) => (
-          <GroceryListItem
-            removeFromList={removeFromList}
-            updateUserInfo={updateUserInfo}
-            pantry={userInfo.pantry}
-            ingredient={ingredient}
-            key={ingredient.name}
+    <Page>
+      <GroceryListDiv>
+        What you are shopping for!
+        {userInfo.groceryList
+          && alteredGroceryList.map((ingredient) => (
+            <GroceryListItem
+              removeFromList={removeFromList}
+              updateUserInfo={updateUserInfo}
+              pantry={userInfo.pantry}
+              ingredient={ingredient}
+              key={ingredient.name}
+            />
+          ))}
+        <button onClick={clearFullList} type="submit">
+          Clear List
+        </button>
+      </GroceryListDiv>
+      <Right>
+        <AddForm>
+
+          <GroceryForm
+            setAlteredGroceryList={setAlteredGroceryList}
+            userInfo={userInfo}
+            alteredGroceryList={alteredGroceryList}
+            setUserInfo={setUserInfo}
           />
-        ))}
-      <GroceryForm
-        setAlteredGroceryList={setAlteredGroceryList}
-        userInfo={userInfo}
-        alteredGroceryList={alteredGroceryList}
-        setUserInfo={setUserInfo}
-      />
-      <button onClick={clearFullList} type="submit">
-        Clear List
-      </button>
-    </div>
+        </AddForm>
+      </Right>
+    </Page>
   );
 }
 
 export default GroceryList;
+
+const Page = styled.div`
+max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+`;
+
+const GroceryListDiv = styled.div`
+  width: 70%;
+`;
+
+const Right = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+`;
+
+const AddForm = styled.div`
+  position: fixed;
+`;
