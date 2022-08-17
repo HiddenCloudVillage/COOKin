@@ -131,9 +131,11 @@ function GroceryList({ userInfo, setUserInfo }) {
             alteredGroceryList={alteredGroceryList}
             setUserInfo={setUserInfo}
           />
+          <MapDiv>
+            <GroceryStore />
+          </MapDiv>
         </AddForm>
       </Right>
-      <GroceryStore />
     </Page>
   );
 }
@@ -163,4 +165,9 @@ const Right = styled.div`
 
 const AddForm = styled.div`
   position: fixed;
+`;
+
+const MapDiv = styled.div`
+  position: fixed;
+  width: 60vw;
 `;
