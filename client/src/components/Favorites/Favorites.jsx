@@ -65,12 +65,13 @@ export default function Favorites({ userInfo, recipes }) {
   useEffect(() => { findFaves(recipes); }, [sort]);
   return (
     <div>
-      <h1>Favorites</h1>
-      <h3>Sort By:</h3>
-      <select onChange={(e) => handleChange(e)}>
-        <option value="alpha">alphabetical</option>
-        <option value="percent">percent ingredients</option>
-      </select>
+      <SortC>
+        <h3>Sort By:</h3>
+        <Sort onChange={(e) => handleChange(e)}>
+          <option value="alpha">alphabetical</option>
+          <option value="percent">percent ingredients</option>
+        </Sort>
+      </SortC>
       <div>
         {fave.map((recipe) => (
           <Grid key={recipe.name}>
@@ -100,6 +101,18 @@ export default function Favorites({ userInfo, recipes }) {
     </div>
   );
 }
+const Sort = styled.select`
+  margin-left: 20px;
+  height: 40px;
+  background-color: transparent;
+`;
+
+const SortC = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: 120px;
+`;
 
 const Thumb = styled.img`
   width: 25%;
@@ -109,10 +122,7 @@ const Thumb = styled.img`
 
 const Row = styled.div`
 display: flex;
-/* margin: 0 auto; */
 width: 100%;
-margin-right: 100px;
-/* justify-content: space-between; */
 `;
 
 const TileBot = styled.div`
