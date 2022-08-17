@@ -71,7 +71,7 @@ justify-content: space-between;
 align-items: center;
 padding-left: 10px;
 padding-right: 10px;
-background-color: #ffffff;
+background: ${(props) => props.theme.tilebg1};
 border-radius: 10px;
 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 margin-bottom: 10px;
@@ -83,7 +83,6 @@ transition: all 0.3s ease-in-out;
 `;
 
 const Ing = styled.h3`
-  /* top: -40%; */
   font-size: 20px;
   font-weight: bold;
   background: ${(props) => props.theme.tilebg1};

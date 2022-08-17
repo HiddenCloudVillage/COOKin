@@ -108,23 +108,25 @@ function GroceryList({ userInfo, setUserInfo }) {
 
   return (
     <Page>
-      <GroceryListDiv>
-        What you are shopping for!
-        {userInfo.groceryList &&
-          alteredGroceryList.map((ingredient) => (
-            <GroceryListItem
-              removeFromList={removeFromList}
-              updateUserInfo={updateUserInfo}
-              pantry={userInfo.pantry}
-              ingredient={ingredient}
-              key={ingredient.name}
-            />
-          ))}
+      <Left>
+        <Title> Here is your grocery list.</Title>
+        <GroceryListCont>
+          {userInfo.groceryList &&
+            alteredGroceryList.map((ingredient) => (
+              <GroceryListItem
+                removeFromList={removeFromList}
+                updateUserInfo={updateUserInfo}
+                pantry={userInfo.pantry}
+                ingredient={ingredient}
+                key={ingredient.name}
+              />
+            ))}
+        </GroceryListCont>
         <button onClick={clearFullList} type="submit">
           Clear List
         </button>
         <InstructionsButton text="example instructions on how to use things" />
-      </GroceryListDiv>
+      </Left>
       <Right>
         <AddForm>
           <GroceryForm
@@ -144,21 +146,31 @@ function GroceryList({ userInfo, setUserInfo }) {
 
 export default GroceryList;
 
-const Page = styled.div`
-  max-width: 900px;
+// const Page = styled.div`
+//   max-width: 900px;
+//   width: 100%;
+//   display: flex;
+//   flex-direction: row;
+//   align-items: flex-start;
+//   justify-content: space-around;
+// `;
+
+const GroceryListCont = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-around;
 `;
 
-const GroceryListDiv = styled.div`
-  width: 70%;
-`;
+const Left = styled.div`
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+`
 
 const Right = styled.div`
   width: 30%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -166,10 +178,30 @@ const Right = styled.div`
 `;
 
 const AddForm = styled.div`
-  position: fixed;
+
 `;
 
 const MapDiv = styled.div`
-  position: fixed;
   width: 60vw;
 `;
+
+const Page = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+`;
+
+const Top = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Title = styled.p`
+  font-size: 20px;
+  margin: 0;
+`
