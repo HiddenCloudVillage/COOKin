@@ -21,12 +21,12 @@ function IngredientTile({
   if (isHeader) {
     return (
       <Header>
-        <Div>
+        <Info>
           <Name>Ingredient</Name>
           <Attribute>Quantity</Attribute>
           <Attribute>Category</Attribute>
           <Attribute>Expiration</Attribute>
-        </Div>
+        </Info>
         <AddIngredient userInfo={userInfo} setUserInfo={setUserInfo} />
       </Header>
     );
@@ -63,23 +63,22 @@ const Header = styled.div`
   transition: all 0.3s ease-in-out;
 `;
 
-const Div = styled.div`
+const Info = styled.div`
   width: 75%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+`;
+
+const Div = styled(Info)`
   &:hover {
     cursor: pointer;
     transform: scale(1.01);
     opacity: 0.7;
   }
-`
-
-const Info = styled(Header)`
-
 `;
-
 const Name = styled.div`
   font-size: 20px;
   font-weight: bold;

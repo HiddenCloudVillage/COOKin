@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
 import EditForm from './EditForm';
 import UserIdContext from '../UserIdContext';
-import styled from 'styled-components';
 
 const axios = require('axios');
 
@@ -21,17 +21,19 @@ function EditIngredient({ ingredient, ingredientInfo }) {
   }
   return (
     <Edit>
-      {show && <EditForm
-          setShow={setShow}
-          ingredient={ingredient}
-          ingredientInfo={ingredientInfo}
-        />}
-      <button type="button" onClick={() => setShow(true)}>
+      {show && (
+      <EditForm
+        setShow={setShow}
+        ingredient={ingredient}
+        ingredientInfo={ingredientInfo}
+      />
+      )}
+      <Button type="button" onClick={() => setShow(true)}>
         Edit
-      </button>
-      <button type="button" onClick={handleDelete}>
+      </Button>
+      <Button type="button" onClick={handleDelete}>
         Delete
-      </button>
+      </Button>
     </Edit>
   );
 }
@@ -44,4 +46,21 @@ const Edit = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+`;
+
+const Button = styled.button`
+  height: auto;
+  width: 45%;
+  border-radius: 10px;
+  border: 1px solid;
+  padding: 3px;
+  background: none;
+  color: ${(props) => props.theme.text};
+  background-color: ${(props) => props.theme.button1};
+  &:hover{
+    cursor: pointer;
+    opacity: 70%;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
 `;
