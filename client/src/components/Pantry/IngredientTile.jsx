@@ -23,21 +23,22 @@ function IngredientTile({
       <Header>
         <Div>
           <Name>Ingredient</Name>
-          <Attribute>Quantity</Attribute>
           <Attribute>Category</Attribute>
+          <Attribute>Quantity</Attribute>
           <Attribute>Expiration</Attribute>
         </Div>
         <AddIngredient userInfo={userInfo} setUserInfo={setUserInfo} />
       </Header>
     );
   }
+  const ingredientExp = ingredientInfo.e !== '' ? `${new Date(ingredientInfo.e).toString().slice(4, 10)}, ${new Date(ingredientInfo.e).toString().slice(13, 15)}` : '';
   return (
     <Header>
       <Div>
         <Name onClick={handleItems}>{ingredient}</Name>
         <Attribute>{ingredientInfo.c}</Attribute>
         <Attribute>{ingredientInfo.q}</Attribute>
-        <Attribute>{ingredientInfo.e}</Attribute>
+        <Attribute>{ingredientExp}</Attribute>
       </Div>
       <EditIngredient ingredient={ingredient} ingredientInfo={ingredientInfo} />
     </Header>
