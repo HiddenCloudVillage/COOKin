@@ -55,7 +55,7 @@ function IngredientForm({ setShow }) {
       <label>
         Amount :
         <input
-          type="integer"
+          type="number"
           name="amount"
           required
           onChange={(e) => setAmount(e.target.value)}
@@ -66,7 +66,6 @@ function IngredientForm({ setShow }) {
         <input
           type="text"
           name="category"
-          required
           onChange={(e) => setCategory(e.target.value)}
         />
       </label>
@@ -75,7 +74,6 @@ function IngredientForm({ setShow }) {
         <input
           type="text"
           name="expiration"
-          required
           onChange={(e) => setExpiration(e.target.value)}
         />
       </label>

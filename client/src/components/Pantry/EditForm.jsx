@@ -59,7 +59,6 @@ function EditForm({ ingredient, ingredientInfo, setShow }) {
           type="text"
           name="category"
           value={category}
-          required
           onChange={(e) => setCategory(e.target.value)}
         />
       </label>
@@ -69,7 +68,6 @@ function EditForm({ ingredient, ingredientInfo, setShow }) {
           type="text"
           name="expiration"
           value={expiration}
-          required
           onChange={(e) => setExpiration(e.target.value)}
         />
       </label>
