@@ -5,9 +5,11 @@ export const lightTheme = {
   border: '#1b1e10',
   background: '#e9edc9',
   tilebg1: '#fefae0',
-  tilebg2: '#d4a373',
+  tilebg2: '#d4a373', // orange
   headerbg: '#bcc59e',
   title: '606c38',
+  bgmodal1: 'rgb(0, 0, 0)',
+  bgmodal2: 'rgba(0, 0, 0, 0.2)',
 
 };
 
@@ -25,4 +27,6 @@ export const darkTheme = {
   tilebg2: '#363843',
   headerbg: '#363843',
   title: '#d4a373',
+  bgmodal1: 'rgb(1, 1, 1)',
+  bgmodal2: 'rgba(1, 1, 1, 0.2)',
 };
