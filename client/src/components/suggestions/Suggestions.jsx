@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import RecipeList from './RecipeList';
 import IncludeIngredient from './IncludeIngredient';
@@ -11,6 +11,10 @@ export default function Suggestions({
   userInfo,
   setUserInfo,
   setCurrentPage,
+  page,
+  setPage,
+  openTile,
+  setOpenTile,
 }) {
   const [excludeIngredients, setExcludeIngredients] =
     useContext(ExcludeContext);
@@ -69,6 +73,12 @@ export default function Suggestions({
           setUserInfo={setUserInfo}
           recipes={filterRecipes()}
           setCurrentPage={setCurrentPage}
+          page={page}
+          setPage={setPage}
+          openTile={openTile}
+          setOpenTile={setOpenTile}
+          includeIngredients={includeIngredients}
+          excludeIngredients={excludeIngredients}
         />
       </Left>
       <Right>

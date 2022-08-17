@@ -14,6 +14,8 @@ import ExcludeContext from './ExcludeContext';
 function Home({ user, currentPage, setCurrentPage }) {
   const [userInfo, setUserInfo] = useState({});
   const [recipes, setRecipes] = useState([]);
+  const [openTile, setOpenTile] = useState(0);
+  const [page, setPage] = useState(0);
   const [includeIngredients, setIncludeIngredients] = useState([]);
   const [excludeIngredients, setExcludeIngredients] = useState([]);
   const checkInUser = (userObj) => {
@@ -69,9 +71,13 @@ function Home({ user, currentPage, setCurrentPage }) {
                 setUserInfo={setUserInfo}
                 recipes={recipes}
                 setCurrentPage={setCurrentPage}
+                page={page}
+                setPage={setPage}
+                setOpenTile={setOpenTile}
+                openTile={openTile}
               />
             )}
-            {currentPage === 'Favorite' && (
+            {currentPage === 'Favorites' && (
               <Favorites
                 userInfo={userInfo}
                 setUserInfo={setUserInfo}
