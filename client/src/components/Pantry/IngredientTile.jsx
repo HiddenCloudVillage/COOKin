@@ -82,14 +82,8 @@ const Div = styled(Info)`
     transform: scale(1.01);
     opacity: 0.7;
   }
-<<<<<<< HEAD
-=======
 `;
 
-const Info = styled(Header)`
-
->>>>>>> dev
-`;
 const Name = styled.div`
   font-size: 20px;
   font-weight: bold;
