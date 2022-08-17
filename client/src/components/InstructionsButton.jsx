@@ -1,10 +1,12 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import HelpContext from './HelpContext';
 
-export default function VariableWidth({ text, display }) {
+export default function VariableWidth({ text }) {
   const longText = `${text}`;
+  const [display, setDisplay] = useContext(HelpContext);
 
   return (
     <div>

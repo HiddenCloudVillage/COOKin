@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import GroceryForm from './GroceryForm';
 import GroceryListItem from './GroceryListItem';
 import GroceryStore from './GroceryStore';
+import InstructionsButton from '../InstructionsButton';
 
 function GroceryList({ userInfo, setUserInfo }) {
   const [alteredGroceryList, setAlteredGroceryList] = useState([]);
@@ -122,6 +123,7 @@ function GroceryList({ userInfo, setUserInfo }) {
         <button onClick={clearFullList} type="submit">
           Clear List
         </button>
+        <InstructionsButton text="example instructions on how to use things" />
       </GroceryListDiv>
       <Right>
         <AddForm>
