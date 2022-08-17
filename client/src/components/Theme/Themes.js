@@ -7,6 +7,7 @@ export const lightTheme = {
   tilebg1: '#fefae0',
   tilebg2: '#d4a373',
   headerbg: '#bcc59e',
+  title: '606c38',
 
 };
 
@@ -16,8 +17,12 @@ export const lightTheme = {
 // #1b1e10 - slightly darker primary
 
 export const darkTheme = {
-  body: 'black',
-  text: 'white',
-  border: 'white',
-  background: 'black',
+  body: '#262833',
+  text: '#fefae0',
+  border: '#e9edc9',
+  background: '#262833',
+  tilebg1: '#363843',
+  tilebg2: '#363843',
+  headerbg: '#363843',
+  title: '#d4a373',
 };

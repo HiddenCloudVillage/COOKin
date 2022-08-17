@@ -105,6 +105,7 @@ const Nav = styled(HeaderLeft)`
 
 const Title = styled.p`
   margin: 0;
+  color: ${(props) => props.theme.title};
   &: hover{
     opacity: 70%;
     cursor: pointer;
@@ -124,8 +125,10 @@ const PageDiv = styled.div`
 
 const PageTitle = styled(Title)`
   width: 100%;
+  /* color: ${(props) => props.theme.text}; */
 `;
 const DarkMode = styled(Title)`
   margin-right: 5%;
   font-size: 20px;
+  /* color: ${(props) => props.theme.text}; */
 `;
