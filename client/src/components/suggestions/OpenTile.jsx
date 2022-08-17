@@ -1,11 +1,11 @@
 // OpenTile React component
 import axios from 'axios';
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import RecipeModal from './RecipeModal';
 
 export default function OpenTile({
-  userInfo, recipe, setUserInfo, setCurrentPage,
+  userInfo, recipe, setUserInfo, setCurrentPage, page, setPage,
 }) {
   const [openModal, setOpenModal] = React.useState(false);
   const isFavorite = userInfo.favorites.includes(recipe.mealId);
@@ -28,6 +28,15 @@ export default function OpenTile({
     axios.put('/favorites', newUserInfo).then((res) => { setUserInfo(res.data); }).then(() => setCurrentPage('Favorites'));
   };
 
+  const removeFromFavorite = () => {
+    pageBeforeRender.current = page;
+    const newFavorites = userInfo.favorites.includes(recipe.mealId)
+      ? userInfo.favorites.filter((id) => id !== recipe.mealId)
+      : [...userInfo.favorites, recipe.mealId];
+    const newUserInfo = { ...userInfo, favorites: newFavorites };
+    axios.put('/favorites', newUserInfo).then((res) => { setUserInfo(res.data); }).then(() => setPage(pageBeforeRender.current));
+  }
+
   if (openModal) {
     return (
       <RecipeModal
@@ -37,6 +46,7 @@ export default function OpenTile({
         handleFavorite={handleFavorite}
         isFavorite={isFavorite}
         setCurrentPage={setCurrentPage}
+        userInfo={userInfo}
       />
     );
   }
@@ -78,7 +88,7 @@ export default function OpenTile({
         </BotRight>
       </TileBot>
       {isFavorite ? (
-        <button type="button" onClick={handleFavorite}>
+        <button type="button" onClick={removeFromFavorite}>
           Remove From Favorites
         </button>
       ) : (

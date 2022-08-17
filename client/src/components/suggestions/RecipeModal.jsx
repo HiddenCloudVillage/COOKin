@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 export default function RecipeModal({
-  handleFavorite, isFavorite, recipe, setOpenModal, handleAddToList,
+  handleFavorite, isFavorite, recipe, setOpenModal, handleAddToList, userInfo,
 }) {
   const exitModal = (e) => {
     if ((e.target.id === 'outside')) {
@@ -11,6 +12,7 @@ export default function RecipeModal({
       setOpenModal(true);
     }
   };
+  const pantry = userInfo?.pantry ? Object.keys(userInfo.pantry) : [];
   return (
     <Overlay id="outside" onClick={exitModal}>
       <button type="button" onClick={exitModal}>X</button>
@@ -39,15 +41,32 @@ export default function RecipeModal({
           <Ingredients>
             <h4>Ingredients</h4>
             <ul>
-              {recipe.ingredients.filter((obj) => obj.ingredientName).map((ingredient) => (
-                <li key={ingredient.ingredientName}>
-                  {ingredient.ingredientName}
-                  {' '}
-                  /
-                  {' '}
-                  {ingredient.ingredientQuantity}
-                </li>
-              ))}
+              {recipe.ingredients.filter((obj) => obj.ingredientName).map((ingredient) => {
+                if (pantry.includes(ingredient.ingredientName)) {
+                  return (
+                    <li key={ingredient.ingredientName}>
+                      <strong>
+                        {ingredient.ingredientName}
+                        {' '}
+                        /
+                        {' '}
+                        {ingredient.ingredientQuantity}
+                        ✓
+
+                      </strong>
+                    </li>
+                  );
+                }
+                return (
+                  <li key={ingredient.ingredientName}>
+                    {ingredient.ingredientName}
+                    {' '}
+                    /
+                    {' '}
+                    {ingredient.ingredientQuantity}
+                  </li>
+                );
+              })}
             </ul>
           </Ingredients>
           <Instructions>
