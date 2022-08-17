@@ -7,7 +7,7 @@ import RecipeList from '../Suggestions/RecipeList';
 import OpenTile from '../Suggestions/OpenTile';
 import RecipeTile from '../Suggestions/RecipeTile';
 
-export default function Favorites({ userInfo, recipes, setUserInfo, setCurrentPage }) {
+export default function Favorites({ userInfo, recipes, setUserInfo, setCurrentPage, setPage }) {
   const [fave, setFave] = useState([]);
   const [sort, setSort] = useState('alpha');
   function sortAlpha(recipes, key) {
@@ -79,6 +79,7 @@ export default function Favorites({ userInfo, recipes, setUserInfo, setCurrentPa
         setUserInfo={setUserInfo}
         recipes={fave}
         setCurrentPage={setCurrentPage}
+        setPage={setPage}
       />
       {/* <div>
         {fave.map((recipe) => (
