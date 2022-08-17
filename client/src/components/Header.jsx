@@ -31,7 +31,7 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme, setDis
         {/* set style of currentPage to Special CSS... not code for anything just make it feel special */}
       <Nav>
         {pageTitles.map((title) => (
-          <PageDiv currentPage={currentPage} name={title}>
+          <PageDiv key={title} currentPage={currentPage} name={title}>
             <PageTitle
               key={title}
               id={title}
@@ -106,6 +106,7 @@ const Nav = styled(HeaderLeft)`
 
 const Title = styled.p`
   margin: 0;
+  color: ${(props) => props.theme.title};
   &: hover{
     opacity: 70%;
     cursor: pointer;
@@ -125,8 +126,10 @@ const PageDiv = styled.div`
 
 const PageTitle = styled(Title)`
   width: 100%;
+  /* color: ${(props) => props.theme.text}; */
 `;
 const DarkMode = styled(Title)`
   margin-right: 5%;
   font-size: 20px;
+  /* color: ${(props) => props.theme.text}; */
 `;

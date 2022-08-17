@@ -8,8 +8,7 @@ function Pantry({ setCurrentPage }) {
   const [userInfo, setUserInfo] = useContext(UserIdContext);
   useEffect(() => {}, [userInfo]);
   return (
-    <div>
-      this is the pantry!
+    <Page>
       {userInfo.pantry && Object.keys(userInfo.pantry).length > 0 ? (
         <IngredientList
           pantry={userInfo.pantry}
@@ -19,9 +18,17 @@ function Pantry({ setCurrentPage }) {
       ) : (
         <div>Pantry Empty please enter items</div>
       )}
-      <AddIngredient userInfo={userInfo} setUserInfo={setUserInfo} />
-    </div>
+      {/* <AddIngredient userInfo={userInfo} setUserInfo={setUserInfo} /> */}
+    </Page>
   );
 }
 
 export default Pantry;
+
+const Page = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+`;

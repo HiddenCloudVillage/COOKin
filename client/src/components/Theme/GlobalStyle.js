@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
   }
   .css-b7k0tb-MuiAutocomplete-listbox {
     background: ${({ theme }) => theme.body} !important;
+    color: ${({ theme }) => theme.text} !important;
   }
 `;
 

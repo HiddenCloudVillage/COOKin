@@ -3,27 +3,92 @@ import styled from 'styled-components';
 import EditIngredient from './EditIngredient';
 import IncludeContext from '../IncludeContext';
 import ExcludeContext from '../ExcludeContext';
+import AddIngredient from './AddIngredient';
+import UserIdContext from '../UserIdContext';
 
-function IngredientTile({ ingredient, ingredientInfo, setCurrentPage }) {
-  const [includeIngredients, setIncludeIngredients] =
-    useContext(IncludeContext);
-  const [excludeIngredients, setExcludeIngredients] =
-    useContext(ExcludeContext);
+function IngredientTile({
+  ingredient, ingredientInfo, setCurrentPage, isHeader,
+}) {
+  const [includeIngredients, setIncludeIngredients] = useContext(IncludeContext);
+  const [excludeIngredients, setExcludeIngredients] = useContext(ExcludeContext);
+  const [userInfo, setUserInfo] = useContext(UserIdContext);
 
   function handleItems() {
     setIncludeIngredients([ingredient]);
     setExcludeIngredients([]);
     setCurrentPage('Suggestions');
   }
+  if (isHeader) {
+    return (
+      <Header>
+        <Div>
+          <Name>Ingredient</Name>
+          <Attribute>Quantity</Attribute>
+          <Attribute>Category</Attribute>
+          <Attribute>Expiration</Attribute>
+        </Div>
+        <AddIngredient userInfo={userInfo} setUserInfo={setUserInfo} />
+      </Header>
+    );
+  }
   return (
-    <div>
-      <span onClick={handleItems}>{ingredient}</span>
-      <span>{ingredientInfo.q}</span>
-      <span>{ingredientInfo.c}</span>
-      <span>{ingredientInfo.e}</span>
+    <Header>
+      <Div>
+        <Name onClick={handleItems}>{ingredient}</Name>
+        <Attribute>{ingredientInfo.c}</Attribute>
+        <Attribute>{ingredientInfo.q}</Attribute>
+        <Attribute>{ingredientInfo.e}</Attribute>
+      </Div>
       <EditIngredient ingredient={ingredient} ingredientInfo={ingredientInfo} />
-    </div>
+    </Header>
   );
 }
 
 export default IngredientTile;
+
+const Header = styled.div`
+  width: 85%;
+  min-height: 5%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2%;
+  background: ${(props) => props.theme.tilebg1};
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  margin-bottom: 10px;
+  cursor: default;
+  transition: all 0.3s ease-in-out;
+`;
+
+const Div = styled.div`
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+    opacity: 0.7;
+  }
+`
+
+const Info = styled(Header)`
+
+`;
+
+const Name = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+  background: ${(props) => props.theme.tilebg1};
+  margin: 0;
+  width: 25%;
+`;
+
+const Attribute = styled(Name)`
+  width: 15%;
+  text-align:center;
+`;

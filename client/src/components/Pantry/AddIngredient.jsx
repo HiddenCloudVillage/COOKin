@@ -5,7 +5,7 @@ import IngredientForm from './IngredientForm';
 function AddIngredient({ userInfo, setUserInfo }) {
   const [show, setShow] = useState(false);
   return (
-    <div>
+    <Add>
       {show ? (
         <IngredientForm
           userInfo={userInfo}
@@ -17,8 +17,16 @@ function AddIngredient({ userInfo, setUserInfo }) {
           Add Ingredient
         </button>
       )}
-    </div>
+    </Add>
   );
 }
 
 export default AddIngredient;
+
+const Add = styled.div`
+  width: 15%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+`;
