@@ -39,41 +39,40 @@ export default function RecipeModal({
             </VideoDiv>
           </MainLeft>
           <MainRight>
-          <Ingredients>
-            <Subtitle>Ingredients</Subtitle>
-            <ul>
-              {recipe.ingredients.filter((obj) => obj.ingredientName).map((ingredient) => {
-                if (pantry.includes(ingredient.ingredientName)) {
+            <Ingredients>
+              <Subtitle>Ingredients</Subtitle>
+              <ul>
+                {recipe.ingredients.filter((obj) => obj.ingredientName).map((ingredient) => {
+                  if (pantry.includes(ingredient.ingredientName)) {
+                    return (
+                      <li key={ingredient.ingredientName}>
+                        <strong>
+                          {ingredient.ingredientName}
+                          {' '}
+                          /
+                          {' '}
+                          {ingredient.ingredientQuantity}
+                          ✓
+                        </strong>
+                      </li>
+                    );
+                  }
                   return (
                     <li key={ingredient.ingredientName}>
-                      <strong>
-                        {ingredient.ingredientName}
-                        {' '}
-                        /
-                        {' '}
-                        {ingredient.ingredientQuantity}
-                        ✓
-
-                      </strong>
+                      {ingredient.ingredientName}
+                      {' '}
+                      /
+                      {' '}
+                      {ingredient.ingredientQuantity}
                     </li>
                   );
-                }
-                return (
-                  <li key={ingredient.ingredientName}>
-                    {ingredient.ingredientName}
-                    {' '}
-                    /
-                    {' '}
-                    {ingredient.ingredientQuantity}
-                  </li>
-                );
-              })}
-            </ul>
-          </Ingredients>
-          <Instructions>
-            <Subtitle>Instructions</Subtitle>
-            <ul>{recipe.instructions.split('. ').map((step) => <li key={step}>{step}</li>)}</ul>
-          </Instructions>
+                })}
+              </ul>
+            </Ingredients>
+            <Instructions>
+              <Subtitle>Instructions</Subtitle>
+              <ul>{recipe.instructions.split('. ').map((step) => <li key={step}>{`${step}.`}</li>)}</ul>
+            </Instructions>
           </MainRight>
         </Main>
         <Bottom>
@@ -93,14 +92,15 @@ export default function RecipeModal({
 const Title = styled.h1`
   font-size: 30px;
   margin: 0;
-`
+`;
 
 const Subtitle = styled(Title)`
   font-size: 20px;
-`
+`;
 
 const Top = styled.div`
   width: 100%;
+  height: 10%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -113,7 +113,7 @@ const Main = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-evenly;
-`
+`;
 const MainLeft = styled.div`
   width: 40%;
   height: 100%;
@@ -121,7 +121,7 @@ const MainLeft = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-`
+`;
 const MainRight = styled.div`
   margin-left: 5%;
   width: 60%;
@@ -190,8 +190,10 @@ const Inner = styled.div`
   align-items: center;
   opacity: 1;
   width: 80vw;
-  height: auto;
-  padding: 5%;
+  height: 70vh;
+  padding: 3%;
+  padding-bottom: 1%;
+  padding-top: 1%;
   /* max-width: 400px;
   max-height: 400px; */
   overflow-y: auto;
