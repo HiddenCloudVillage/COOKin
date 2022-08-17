@@ -65,6 +65,7 @@ function Home({ user, currentPage, setCurrentPage }) {
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           recipes={recipes}
+          setCurrentPage={setCurrentPage}
         />
       )}
       {currentPage === 'Grocery List' && (

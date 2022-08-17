@@ -25,7 +25,7 @@ export default function OpenTile({
       ? userInfo.favorites.filter((id) => id !== recipe.mealId)
       : [...userInfo.favorites, recipe.mealId];
     const newUserInfo = { ...userInfo, favorites: newFavorites };
-    axios.put('/favorites', newUserInfo).then((res) => { setUserInfo(res.data); }).then(() => setCurrentPage('Favorite Recipes'));
+    axios.put('/favorites', newUserInfo).then((res) => { setUserInfo(res.data); }).then(() => setCurrentPage('Favorites'));
   };
 
   if (openModal) {

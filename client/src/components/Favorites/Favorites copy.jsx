@@ -3,11 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import star from './star.png';
-import RecipeList from '../Suggestions/RecipeList';
-import OpenTile from '../Suggestions/OpenTile';
-import RecipeTile from '../Suggestions/RecipeTile';
 
-export default function Favorites({ userInfo, recipes, setUserInfo, setCurrentPage }) {
+export default function Favorites({ userInfo, recipes }) {
   const [fave, setFave] = useState([]);
   const [sort, setSort] = useState('alpha');
   function sortAlpha(recipes, key) {
@@ -67,20 +64,14 @@ export default function Favorites({ userInfo, recipes, setUserInfo, setCurrentPa
   }
   useEffect(() => { findFaves(recipes); }, [sort]);
   return (
-    <Page>
-      <Left>
+    <div>
+      <h1>Favorites</h1>
       <h3>Sort By:</h3>
       <select onChange={(e) => handleChange(e)}>
         <option value="alpha">alphabetical</option>
         <option value="percent">percent ingredients</option>
       </select>
-      <RecipeList
-        userInfo={userInfo}
-        setUserInfo={setUserInfo}
-        recipes={fave}
-        setCurrentPage={setCurrentPage}
-      />
-      {/* <div>
+      <div>
         {fave.map((recipe) => (
           <Grid key={recipe.name}>
             <Row>
@@ -101,23 +92,10 @@ export default function Favorites({ userInfo, recipes, setUserInfo, setCurrentPa
             </Row>
           </Grid>
         ))}
-      </div> */}
-      </Left>
-    </Page>
+      </div>
+    </div>
   );
 }
-
-const Page = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-`;
-
-const Left = styled.div`
-  width: 70%;
-`;
 
 const Thumb = styled.img`
 width: 10%;
