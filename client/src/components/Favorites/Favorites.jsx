@@ -4,12 +4,14 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import star from './star.png';
 import RecipeList from '../Suggestions/RecipeList';
-import OpenTile from '../Suggestions/OpenTile';
-import RecipeTile from '../Suggestions/RecipeTile';
 
-export default function Favorites({ userInfo, recipes, setUserInfo, setCurrentPage, setPage }) {
+export default function Favorites({
+  userInfo, recipes, setUserInfo, setCurrentPage,
+}) {
   const [fave, setFave] = useState([]);
   const [sort, setSort] = useState('alpha');
+  const [page, setPage] = useState(0);
+  const [openTile, setOpenTile] = useState(0);
   function sortAlpha(recipes, key) {
     // eslint-disable-next-line prefer-arrow-callback, func-names
     return recipes.sort(function (a, b) {
@@ -68,42 +70,23 @@ export default function Favorites({ userInfo, recipes, setUserInfo, setCurrentPa
   useEffect(() => { findFaves(recipes); }, [sort]);
   return (
     <Page>
-      <Left>
-      <h3>Sort By:</h3>
-      <select onChange={(e) => handleChange(e)}>
-        <option value="alpha">alphabetical</option>
-        <option value="percent">percent ingredients</option>
-      </select>
+      <Sort>
+        <h3>Sort By:</h3>
+        <select onChange={(e) => handleChange(e)}>
+          <option value="alpha">alphabetical</option>
+          <option value="percent">percent ingredients</option>
+        </select>
+      </Sort>
       <RecipeList
         userInfo={userInfo}
         setUserInfo={setUserInfo}
         recipes={fave}
         setCurrentPage={setCurrentPage}
+        page={page}
         setPage={setPage}
+        openTile={openTile}
+        setOpenTile={setOpenTile}
       />
-      {/* <div>
-        {fave.map((recipe) => (
-          <Grid key={recipe.name}>
-            <Row>
-              <Star src={star} alt="star" />
-              <Name>
-                {recipe.name}
-                <Desc>
-                  You have&nbsp;
-                  {recipe.percent}
-                  % of the necessary ingredients to make this recipe!
-                </Desc>
-              </Name>
-              <Percent>
-                {recipe.percent}
-                %
-              </Percent>
-              <Thumb src={recipe.thumbnail} alt="instructions" />
-            </Row>
-          </Grid>
-        ))}
-      </div> */}
-      </Left>
     </Page>
   );
 }
@@ -111,12 +94,12 @@ export default function Favorites({ userInfo, recipes, setUserInfo, setCurrentPa
 const Page = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 `;
 
-const Left = styled.div`
+const Sort = styled.div`
   width: 70%;
 `;
 
