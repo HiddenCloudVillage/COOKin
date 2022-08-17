@@ -47,14 +47,14 @@ function GroceryListItem({
           </strike>
         </Ing>
       )}
-      <Del>
-        <button
-          onClick={(event) => removeFromList(ingredient.name, event)}
-          type="submit"
-        >
-          X
-        </button>
-      </Del>
+
+      <DelButton
+        onClick={(event) => removeFromList(ingredient.name, event)}
+        type="submit"
+      >
+        X
+      </DelButton>
+
     </ListItem>
   );
 }
@@ -89,6 +89,10 @@ const Ing = styled.h3`
   margin: 0;
 `;
 
-const Del = styled(Ing)`
+// const Del = styled(Ing)`
+//   align-content: right;
+// `;
+
+const DelButton = styled.button`
   align-content: right;
 `;
