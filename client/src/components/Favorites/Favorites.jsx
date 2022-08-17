@@ -1,7 +1,7 @@
 /* eslint-disable dot-notation */
 /* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import star from './star.png';
 import RecipeList from '../Suggestions/RecipeList';
 
@@ -93,12 +93,19 @@ export default function Favorites({
   );
 }
 
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
+
 const Page = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  animation-name: ${fadeIn};
+  animation-duration: 0.5s;
 `;
 
 const Top = styled.div`

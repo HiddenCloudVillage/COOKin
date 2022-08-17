@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import GroceryForm from './GroceryForm';
 import GroceryListItem from './GroceryListItem';
 import GroceryStore from './GroceryStore';
@@ -186,12 +186,18 @@ const MapDiv = styled.div`
 
 `;
 
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
 const Page = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-evenly;
+  animation-name: ${fadeIn};
+  animation-duration: 0.5s;
 `;
 
 const Top = styled.div`
