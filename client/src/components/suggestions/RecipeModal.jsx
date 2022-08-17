@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 
 export default function RecipeModal({
   handleFavorite, isFavorite, recipe, setOpenModal, handleAddToList, userInfo,
@@ -20,7 +21,17 @@ export default function RecipeModal({
     <Outer id="recmodaloutside" onClick={exitModal}>
       <Inner>
         <Top>
-          <Title>{recipe.name}</Title>
+          <NameDiv>
+            {isFavorite ? (
+              <StarIcon onClick={handleFavorite} />
+
+            ) : (
+              <StarBorderOutlinedIcon onClick={handleFavorite} />
+
+            )}
+            <Title>{recipe.name}</Title>
+
+          </NameDiv>
           <Title>
             {`${recipe.percent}%`}
           </Title>
@@ -218,4 +229,14 @@ const Button = styled.button`
     cursor: pointer;
     opacity: 70%;
   }
+`;
+const NameDiv = styled.div`
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  //width: 100%;
+  //height: 10%;
+  //margin-bottom: 10px;
 `;
