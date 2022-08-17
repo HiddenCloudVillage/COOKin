@@ -34,7 +34,7 @@ function IngredientTile({
 
   const ingredientExp = ingredientInfo.e !== '' ? `${new Date(ingredientInfo.e).toString().slice(4, 10)}, ${new Date(ingredientInfo.e).toString().slice(13, 15)}` : '';
   const currentDate = new Date();
-  const expiring = Date.parse(ingredientInfo.e) - Date.parse(currentDate) < 259200000 ? true : false;
+  const expiring = Date.parse(ingredientInfo.e) - Date.parse(currentDate) < 259200000;
   return (
     <Header>
       <Div>
@@ -78,7 +78,7 @@ const Div = styled.div`
     transform: scale(1.01);
     opacity: 0.7;
   }
-`
+`;
 
 const Info = styled(Header)`
 
