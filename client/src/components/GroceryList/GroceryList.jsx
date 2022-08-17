@@ -105,8 +105,10 @@ function GroceryList({ userInfo, setUserInfo }) {
   }
 
   return (
-    <div>
-      What you are shopping for!
+    <Page>
+      <div>
+        What you are shopping for!
+      </div>
       <GroceryListDiv>
         {userInfo.groceryList
           && alteredGroceryList.map((ingredient) => (
@@ -118,38 +120,40 @@ function GroceryList({ userInfo, setUserInfo }) {
               key={ingredient.name}
             />
           ))}
+        <button onClick={clearFullList} type="submit">
+          Clear List
+        </button>
       </GroceryListDiv>
-      <AddToDiv>
+      <Right>
         <GroceryForm
           setAlteredGroceryList={setAlteredGroceryList}
           userInfo={userInfo}
           alteredGroceryList={alteredGroceryList}
           setUserInfo={setUserInfo}
         />
-      </AddToDiv>
-      <button onClick={clearFullList} type="submit">
-        Clear List
-      </button>
-    </div>
+      </Right>
+    </Page>
   );
 }
 
 export default GroceryList;
 
-const GroceryListDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-  min-height: 304px;
-`;
-
-const AddToDiv = styled.div`
+const Page = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
   justify-content: center;
-  align-items: right;
+`;
+
+const GroceryListDiv = styled.div`
+  width: 70%;
+`;
+
+const Right = styled.div`
   width: 30%;
-  min-height: 304px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 `;
