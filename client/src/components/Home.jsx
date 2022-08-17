@@ -7,10 +7,15 @@ import Favorites from './Favorites/Favorites';
 import GroceryList from './GroceryList/GroceryList';
 import Pantry from './Pantry/Pantry';
 import Load from './Load';
+import UserIdContext from './UserIdContext';
+import IncludeContext from './IncludeContext';
 
 function Home({ user, currentPage, setCurrentPage }) {
   const [userInfo, setUserInfo] = useState({});
   const [recipes, setRecipes] = useState([]);
+  const [openTile, setOpenTile] = useState(0);
+  const [page, setPage] = useState(0);
+  const [includeIngredients, setIncludeIngredients] = useState([]);
   const checkInUser = (userObj) => {
     axios
       .post('/login', userObj)
@@ -49,32 +54,45 @@ function Home({ user, currentPage, setCurrentPage }) {
   }
 
   return (
-    <div>
-      <h3>{`what's cookin, ${user.displayName}?`}</h3>
-
-      {currentPage === 'Suggestions' && (
-        <Suggestions
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
-          recipes={recipes}
-          setCurrentPage={setCurrentPage}
-        />
-      )}
-      {currentPage === 'Favorites' && (
-        <Favorites
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
-          recipes={recipes}
-          setCurrentPage={setCurrentPage}
-        />
-      )}
-      {currentPage === 'Grocery List' && (
-        <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />
-      )}
-      {currentPage === 'Pantry' && (
-        <Pantry userInfo={userInfo} setUserInfo={setUserInfo} />
-      )}
-    </div>
+    <UserIdContext.Provider value={[userInfo, setUserInfo]}>
+      <IncludeContext.Provider
+        value={[includeIngredients, setIncludeIngredients]}
+      >
+        <div>
+          <h3>{`what's cookin, ${user.displayName}?`}</h3>
+          {currentPage === 'Suggestions' && (
+            <Suggestions
+              userInfo={userInfo}
+              setUserInfo={setUserInfo}
+              recipes={recipes}
+              setCurrentPage={setCurrentPage}
+              page={page}
+              setPage={setPage}
+              setOpenTile={setOpenTile}
+              openTile={openTile}
+            />
+          )}
+          {currentPage === 'Favorites' && (
+            <Favorites
+              userInfo={userInfo}
+              setUserInfo={setUserInfo}
+              recipes={recipes}
+              setCurrentPage={setCurrentPage}
+            />
+          )}
+          {currentPage === 'Grocery List' && (
+            <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />
+          )}
+          {currentPage === 'Pantry' && (
+            <Pantry
+              userInfo={userInfo}
+              setUserInfo={setUserInfo}
+              setCurrentPage={setCurrentPage}
+            />
+          )}
+        </div>
+      </IncludeContext.Provider>
+    </UserIdContext.Provider>
   );
 }
 

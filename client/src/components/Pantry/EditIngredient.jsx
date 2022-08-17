@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import EditForm from './EditForm';
+import UserIdContext from '../UserIdContext';
 
 const axios = require('axios');
 
-function EditIngredient({
-  ingredient,
-  ingredientInfo,
-  userInfo,
-  setUserInfo,
-  setUpdatePantry,
-}) {
+function EditIngredient({ ingredient, ingredientInfo }) {
   const [show, setShow] = useState(false);
+  const [userInfo, setUserInfo] = useContext(UserIdContext);
 
   function handleDelete() {
     delete userInfo.pantry[ingredient];
@@ -29,9 +25,6 @@ function EditIngredient({
           setShow={setShow}
           ingredient={ingredient}
           ingredientInfo={ingredientInfo}
-          userInfo={userInfo}
-          setUpdatePantry={setUpdatePantry}
-          setUserInfo={setUserInfo}
         />
       ) : (
         <button type="button" onClick={() => setShow(true)}>

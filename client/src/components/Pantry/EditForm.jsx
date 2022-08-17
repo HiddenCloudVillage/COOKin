@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import UserIdContext from '../UserIdContext';
 
 const axios = require('axios');
 
-function EditForm({
-  ingredient,
-  ingredientInfo,
-  userInfo,
-  setUserInfo,
-  setUpdatePantry,
-  setShow,
-}) {
+function EditForm({ ingredient, ingredientInfo, setShow }) {
   const [name, setName] = useState(ingredient);
   const [amount, setAmount] = useState(ingredientInfo.q);
   const [category, setCategory] = useState(ingredientInfo.c);
   const [expiration, setExpiration] = useState(ingredientInfo.e);
+  const [userInfo, setUserInfo] = useContext(UserIdContext);
 
   function handleEdit() {
     const newUserInfo = userInfo;
