@@ -11,7 +11,8 @@ export const lightTheme = {
   bgmodal1: 'rgb(0, 0, 0)',
   bgmodal2: 'rgba(0, 0, 0, 0.2)',
   button1: '#e9edc9',
-  button2: '',
+  button2: '#d4a373',
+  buttontext: '#fefae0',
 
 };
 
@@ -32,5 +33,6 @@ export const darkTheme = {
   bgmodal1: 'rgb(1, 1, 1)',
   bgmodal2: 'rgba(1, 1, 1, 0.2)',
   button1: '#262833',
-  button2: '',
+  button2: '#262833',
+  buttontext: '#fefae0',
 };
