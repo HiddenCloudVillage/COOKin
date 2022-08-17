@@ -25,7 +25,7 @@ function GroceryListItem({
   return (
     <ListItem>
       {!tempIng.stateShopped ? (
-        <span
+        <Ing
           onClick={() => {
             toggleStriked();
             setTempIng({ ...tempIng, stateShopped: true });
@@ -33,9 +33,9 @@ function GroceryListItem({
           onKeyPress={() => toggleStriked()}
         >
           {ingredient.name}
-        </span>
+        </Ing>
       ) : (
-        <span>
+        <Ing>
           <strike
             onClick={() => {
               setTempIng({ ...tempIng, stateShopped: false });
@@ -45,14 +45,16 @@ function GroceryListItem({
           >
             {ingredient.name}
           </strike>
-        </span>
+        </Ing>
       )}
-      <button
-        onClick={(event) => removeFromList(ingredient.name, event)}
-        type="submit"
-      >
-        X
-      </button>
+      <Del>
+        <button
+          onClick={(event) => removeFromList(ingredient.name, event)}
+          type="submit"
+        >
+          X
+        </button>
+      </Del>
     </ListItem>
   );
 }
@@ -77,4 +79,16 @@ transition: all 0.3s ease-in-out;
 &:hover {
   transform: scale(1.01);
 }
+`;
+
+const Ing = styled.h3`
+  /* top: -40%; */
+  font-size: 20px;
+  font-weight: bold;
+  background: ${(props) => props.theme.tilebg1};
+  margin: 0;
+`;
+
+const Del = styled(Ing)`
+  align-content: right;
 `;
