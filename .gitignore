@@ -4,4 +4,4 @@ package-lock.json
 key.js
 client/dist/bundle.js
 .prettierrc.json
-.mapKey.js
+mapKey.js

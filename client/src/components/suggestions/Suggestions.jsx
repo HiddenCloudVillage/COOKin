@@ -4,6 +4,7 @@ import RecipeList from './RecipeList';
 import IncludeIngredient from './IncludeIngredient';
 import ExcludeIngredient from './ExcludeIngredient';
 import IncludeContext from '../IncludeContext';
+import ExcludeContext from '../ExcludeContext';
 
 export default function Suggestions({
   recipes,
@@ -11,7 +12,8 @@ export default function Suggestions({
   setUserInfo,
   setCurrentPage,
 }) {
-  const [excludeIngredients, setExcludeIngredients] = useState([]);
+  const [excludeIngredients, setExcludeIngredients] =
+    useContext(ExcludeContext);
   const [includeIngredients, setIncludeIngredients] =
     useContext(IncludeContext);
 

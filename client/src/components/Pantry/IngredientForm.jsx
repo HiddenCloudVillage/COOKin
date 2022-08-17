@@ -15,14 +15,12 @@ function IngredientForm({ setShow }) {
   const [expiration, setExpiration] = useState();
 
   function handleSubmit() {
-    console.log(userInfo);
-    if (userInfo.pantry) {
-      newUserInfo.pantry[name] = {
-        q: Number(amount),
-        c: category,
-        e: expiration,
-      };
-    }
+    const newUserInfo = userInfo;
+    newUserInfo.pantry[name] = {
+      q: Number(amount),
+      c: category,
+      e: expiration,
+    };
     axios({
       method: 'put',
       url: '/pantry',

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
-import mapKey from './mapKey';
+import mapKey from '../../lib/mapKey';
 
 function GroceryStore() {
   const [center, setCenter] = useState('');

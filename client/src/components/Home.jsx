@@ -9,11 +9,13 @@ import Pantry from './Pantry/Pantry';
 import Load from './Load';
 import UserIdContext from './UserIdContext';
 import IncludeContext from './IncludeContext';
+import ExcludeContext from './ExcludeContext';
 
 function Home({ user, currentPage, setCurrentPage }) {
   const [userInfo, setUserInfo] = useState({});
   const [recipes, setRecipes] = useState([]);
   const [includeIngredients, setIncludeIngredients] = useState([]);
+  const [excludeIngredients, setExcludeIngredients] = useState([]);
   const checkInUser = (userObj) => {
     axios
       .post('/login', userObj)
@@ -56,34 +58,38 @@ function Home({ user, currentPage, setCurrentPage }) {
       <IncludeContext.Provider
         value={[includeIngredients, setIncludeIngredients]}
       >
-        <div>
-          <h3>{`what's cookin, ${user.displayName}?`}</h3>
-          {currentPage === 'Suggestions' && (
-            <Suggestions
-              userInfo={userInfo}
-              setUserInfo={setUserInfo}
-              recipes={recipes}
-              setCurrentPage={setCurrentPage}
-            />
-          )}
-          {currentPage === 'Favorite' && (
-            <Favorites
-              userInfo={userInfo}
-              setUserInfo={setUserInfo}
-              recipes={recipes}
-            />
-          )}
-          {currentPage === 'Grocery List' && (
-            <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />
-          )}
-          {currentPage === 'Pantry' && (
-            <Pantry
-              userInfo={userInfo}
-              setUserInfo={setUserInfo}
-              setCurrentPage={setCurrentPage}
-            />
-          )}
-        </div>
+        <ExcludeContext.Provider
+          value={[excludeIngredients, setExcludeIngredients]}
+        >
+          <div>
+            <h3>{`what's cookin, ${user.displayName}?`}</h3>
+            {currentPage === 'Suggestions' && (
+              <Suggestions
+                userInfo={userInfo}
+                setUserInfo={setUserInfo}
+                recipes={recipes}
+                setCurrentPage={setCurrentPage}
+              />
+            )}
+            {currentPage === 'Favorite' && (
+              <Favorites
+                userInfo={userInfo}
+                setUserInfo={setUserInfo}
+                recipes={recipes}
+              />
+            )}
+            {currentPage === 'Grocery List' && (
+              <GroceryList userInfo={userInfo} setUserInfo={setUserInfo} />
+            )}
+            {currentPage === 'Pantry' && (
+              <Pantry
+                userInfo={userInfo}
+                setUserInfo={setUserInfo}
+                setCurrentPage={setCurrentPage}
+              />
+            )}
+          </div>
+        </ExcludeContext.Provider>
       </IncludeContext.Provider>
     </UserIdContext.Provider>
   );
