@@ -13,6 +13,8 @@ import IncludeContext from './IncludeContext';
 function Home({ user, currentPage, setCurrentPage }) {
   const [userInfo, setUserInfo] = useState({});
   const [recipes, setRecipes] = useState([]);
+  const [openTile, setOpenTile] = useState(0);
+  const [page, setPage] = useState(0);
   const [includeIngredients, setIncludeIngredients] = useState([]);
   const checkInUser = (userObj) => {
     axios
@@ -64,6 +66,10 @@ function Home({ user, currentPage, setCurrentPage }) {
               setUserInfo={setUserInfo}
               recipes={recipes}
               setCurrentPage={setCurrentPage}
+              page={page}
+              setPage={setPage}
+              setOpenTile={setOpenTile}
+              openTile={openTile}
             />
           )}
           {currentPage === 'Favorites' && (
@@ -71,6 +77,8 @@ function Home({ user, currentPage, setCurrentPage }) {
               userInfo={userInfo}
               setUserInfo={setUserInfo}
               recipes={recipes}
+              setCurrentPage={setCurrentPage}
+              setPage={setPage}
             />
           )}
           {currentPage === 'Grocery List' && (

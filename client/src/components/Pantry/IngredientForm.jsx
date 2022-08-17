@@ -15,6 +15,9 @@ function IngredientForm({ setShow }) {
   const [expiration, setExpiration] = useState();
 
   function handleSubmit() {
+    if (userInfo.pantry === undefined) {
+      userInfo.pantry = {};
+    }
     const newUserInfo = userInfo;
     newUserInfo.pantry[name] = {
       q: Number(amount),
