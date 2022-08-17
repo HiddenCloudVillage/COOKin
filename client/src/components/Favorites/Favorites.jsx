@@ -47,7 +47,7 @@ export default function Favorites({ userInfo, recipes }) {
         }
         return acc;
       }, 0);
-      percent = (count / ingredients.length) * 100;
+      percent = Math.trunc((count / ingredients.length) * 100);
       faveRecipes[i]['percent'] = percent;
     }
     if (sort === 'alpha') {
