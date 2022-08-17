@@ -15,12 +15,14 @@ function IngredientForm({ setShow }) {
   const [expiration, setExpiration] = useState();
 
   function handleSubmit() {
-    const newUserInfo = userInfo;
-    newUserInfo.pantry[name] = {
-      q: Number(amount),
-      c: category,
-      e: expiration,
-    };
+    console.log(userInfo);
+    if (userInfo.pantry) {
+      newUserInfo.pantry[name] = {
+        q: Number(amount),
+        c: category,
+        e: expiration,
+      };
+    }
     axios({
       method: 'put',
       url: '/pantry',
@@ -52,7 +54,7 @@ function IngredientForm({ setShow }) {
       <label>
         Amount :
         <input
-          type="integer"
+          type="number"
           name="amount"
           required
           onChange={(e) => setAmount(e.target.value)}
@@ -63,7 +65,6 @@ function IngredientForm({ setShow }) {
         <input
           type="text"
           name="category"
-          required
           onChange={(e) => setCategory(e.target.value)}
         />
       </label>
@@ -72,7 +73,6 @@ function IngredientForm({ setShow }) {
         <input
           type="text"
           name="expiration"
-          required
           onChange={(e) => setExpiration(e.target.value)}
         />
       </label>

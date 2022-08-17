@@ -66,7 +66,7 @@ function Home({ user, currentPage, setCurrentPage }) {
               setCurrentPage={setCurrentPage}
             />
           )}
-          {currentPage === 'Favorites' && (
+          {currentPage === 'Favorite' && (
             <Favorites
               userInfo={userInfo}
               setUserInfo={setUserInfo}

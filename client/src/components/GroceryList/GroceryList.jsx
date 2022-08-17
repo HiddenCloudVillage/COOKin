@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import GroceryForm from './GroceryForm';
 import GroceryListItem from './GroceryListItem';
+import GroceryStore from './GroceryStore';
 
 function GroceryList({ userInfo, setUserInfo }) {
   const [alteredGroceryList, setAlteredGroceryList] = useState([]);
@@ -107,8 +108,8 @@ function GroceryList({ userInfo, setUserInfo }) {
   return (
     <div>
       THIS IS THE GROCERY LIST BITCHES
-      {userInfo.groceryList
-        && alteredGroceryList.map((ingredient) => (
+      {userInfo.groceryList &&
+        alteredGroceryList.map((ingredient) => (
           <GroceryListItem
             removeFromList={removeFromList}
             updateUserInfo={updateUserInfo}
@@ -126,6 +127,7 @@ function GroceryList({ userInfo, setUserInfo }) {
       <button onClick={clearFullList} type="submit">
         Clear List
       </button>
+      <GroceryStore />
     </div>
   );
 }
