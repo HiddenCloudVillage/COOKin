@@ -14,6 +14,9 @@ function GroceryStore() {
     });
   }, []);
 
+  const options = {
+    mapId: '268e33d195d16b40',
+  };
   const mapStyles = {
     height: '50vh',
     width: '50%',
@@ -21,7 +24,12 @@ function GroceryStore() {
 
   return (
     <LoadScript googleMapsApiKey={mapKey}>
-      <GoogleMap mapContainerStyle={mapStyles} zoom={15} center={center} />
+      <GoogleMap
+        mapContainerStyle={mapStyles}
+        zoom={15}
+        center={center}
+        options={options}
+      />
     </LoadScript>
   );
 }
