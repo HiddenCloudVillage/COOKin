@@ -10,6 +10,10 @@ export default function Suggestions({
   userInfo,
   setUserInfo,
   setCurrentPage,
+  page,
+  setPage,
+  openTile,
+  setOpenTile,
 }) {
   const [excludeIngredients, setExcludeIngredients] = useState([]);
   const [includeIngredients, setIncludeIngredients] =
@@ -67,6 +71,12 @@ export default function Suggestions({
           setUserInfo={setUserInfo}
           recipes={filterRecipes()}
           setCurrentPage={setCurrentPage}
+          page={page}
+          setPage={setPage}
+          openTile={openTile}
+          setOpenTile={setOpenTile}
+          includeIngredients={includeIngredients}
+          excludeIngredients={excludeIngredients}
         />
       </Left>
       <Right>

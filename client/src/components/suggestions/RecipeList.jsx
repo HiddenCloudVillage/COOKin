@@ -4,17 +4,19 @@ import styled from 'styled-components';
 import RecipeTile from './RecipeTile';
 import OpenTile from './OpenTile';
 
-export default function RecipeList({ recipes, userInfo, setUserInfo, setCurrentPage,
+export default function RecipeList({
+  recipes,
+  userInfo,
+  setUserInfo,
+  setCurrentPage, page, setPage, openTile, setOpenTile, includeIngredients, excludeIngredients,
 }) {
-  const [page, setPage] = useState(0);
   const [pageCount, setPageCount] = useState(Math.ceil(recipes.length / 5));
-  const [openTile, setOpenTile] = useState(0);
 
   useEffect(() => {
     setPage(0);
     setOpenTile(0);
     setPageCount(Math.ceil(recipes.length / 5));
-  }, [recipes]);
+  }, [includeIngredients, excludeIngredients]);
   return (
     <RecListContainer>
       <RecList>
@@ -37,7 +39,7 @@ export default function RecipeList({ recipes, userInfo, setUserInfo, setCurrentP
           type="button"
           onClick={() => {
             setOpenTile(0);
-            setPage(page > 0 ? page - 1 : page);
+            setPage((prev) => (prev > 0 ? prev - 1 : prev));
           }}
         >
           Previous
@@ -54,7 +56,7 @@ export default function RecipeList({ recipes, userInfo, setUserInfo, setCurrentP
           type="button"
           onClick={() => {
             setOpenTile(0);
-            setPage(page < pageCount ? page + 1 : page);
+            setPage((prev) => (prev < pageCount ? prev + 1 : prev));
           }}
         >
           Next
