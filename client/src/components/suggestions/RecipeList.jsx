@@ -10,7 +10,6 @@ export default function RecipeList({
   setUserInfo,
   setCurrentPage, page, setPage, openTile, setOpenTile,
 }) {
-
   return (
     <RecListContainer>
       <RecList>
@@ -50,7 +49,7 @@ export default function RecipeList({
           type="button"
           onClick={() => {
             setOpenTile(0);
-            setPage((prev) => ((prev < Math.ceil(recipes.length / 5)) ? prev + 1 : prev));
+            setPage((prev) => ((prev < Math.ceil(recipes.length / 5) - 1) ? prev + 1 : prev));
           }}
         >
           Next
