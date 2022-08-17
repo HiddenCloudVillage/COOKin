@@ -15,13 +15,14 @@ export default function VariableWidth({ text }) {
           arrow
           title={<span style={{ fontSize: '14px' }}>{longText}</span>}
         >
-          <Button sx={{ p: 0, m: 0, fontSize: '12px' }}>
+          <Button sx={{
+            p: 0, m: 0, fontSize: '12px', minWidth: '0px',
+          }}
+          >
             <HelpOutlineIcon />
           </Button>
         </Tooltip>
-      ) : (
-        null
-      )}
+      ) : null}
     </div>
   );
 }
