@@ -95,7 +95,7 @@ const Tile = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 85%;
+  width: 100%;
   min-height: 250px;
   padding: 2%;
   background: ${(props) => props.theme.tilebg1};

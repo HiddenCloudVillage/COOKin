@@ -12,6 +12,8 @@ function GroceryList({ userInfo, setUserInfo }) {
   const groceryListSet = new Set(userInfo.groceryList);
   const groceryListArray = Array.from(groceryListSet);
 
+  const [show, setShow] = useState(false);
+
   function setGroceryList(newList) {
     const groceryListProp = [];
 
@@ -108,35 +110,44 @@ function GroceryList({ userInfo, setUserInfo }) {
 
   return (
     <Page>
-      <GroceryListDiv>
-        What you are shopping for!
-        {userInfo.groceryList &&
-          alteredGroceryList.map((ingredient) => (
-            <GroceryListItem
-              removeFromList={removeFromList}
-              updateUserInfo={updateUserInfo}
-              pantry={userInfo.pantry}
-              ingredient={ingredient}
-              key={ingredient.name}
-            />
-          ))}
-        <button onClick={clearFullList} type="submit">
-          Clear List
-        </button>
+      <Left>
+        <Top>
+          <Title>Here is your grocery list.</Title>
+          <Buttons>
+            <Button onClick={clearFullList} type="submit">
+              Clear List
+            </Button>
+            <Button onClick={() => setShow(true)}>Add</Button>
+          </Buttons>
+        </Top>
+        <GroceryListCont>
+          {userInfo.groceryList
+              && alteredGroceryList.map((ingredient) => (
+                <GroceryListItem
+                  removeFromList={removeFromList}
+                  updateUserInfo={updateUserInfo}
+                  pantry={userInfo.pantry}
+                  ingredient={ingredient}
+                  key={ingredient.name}
+                />
+              ))}
+        </GroceryListCont>
+
         <InstructionsButton text="example instructions on how to use things" />
-      </GroceryListDiv>
+      </Left>
       <Right>
-        <AddForm>
-          <GroceryForm
-            setAlteredGroceryList={setAlteredGroceryList}
-            userInfo={userInfo}
-            alteredGroceryList={alteredGroceryList}
-            setUserInfo={setUserInfo}
-          />
-          <MapDiv>
-            <GroceryStore />
-          </MapDiv>
-        </AddForm>
+        {show && (
+        <GroceryForm
+          setAlteredGroceryList={setAlteredGroceryList}
+          userInfo={userInfo}
+          alteredGroceryList={alteredGroceryList}
+          setUserInfo={setUserInfo}
+          setShow={setShow}
+        />
+        )}
+        <MapDiv>
+          <GroceryStore />
+        </MapDiv>
       </Right>
     </Page>
   );
@@ -144,32 +155,79 @@ function GroceryList({ userInfo, setUserInfo }) {
 
 export default GroceryList;
 
-const Page = styled.div`
-  max-width: 900px;
+const GroceryListCont = styled.div`
+  margin-top: 3%;
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-around;
 `;
 
-const GroceryListDiv = styled.div`
-  width: 70%;
-`;
-
-const Right = styled.div`
-  width: 30%;
+const Left = styled.div`
+  width: 60%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 `;
 
-const AddForm = styled.div`
-  position: fixed;
+const Right = styled.div`
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 `;
 
 const MapDiv = styled.div`
-  position: fixed;
-  width: 60vw;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+
+`;
+
+const Page = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+`;
+
+const Top = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Title = styled.p`
+  font-size: 20px;
+  margin: 0;
+`;
+
+const Buttons = styled.div`
+  width: 35%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+`
+
+const Button = styled.button`
+  height: auto;
+  width: 45%;
+  border-radius: 10px;
+  border: 1px solid;
+  padding: 10px;
+  background: none;
+  color: ${(props) => props.theme.buttontext};
+  background-color: ${(props) => props.theme.button2};
+  &:hover{
+    cursor: pointer;
+    opacity: 70%;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
 `;
