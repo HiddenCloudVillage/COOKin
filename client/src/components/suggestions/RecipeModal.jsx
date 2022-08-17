@@ -1,45 +1,46 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 export default function RecipeModal({
   handleFavorite, isFavorite, recipe, setOpenModal, handleAddToList, userInfo,
 }) {
   const exitModal = (e) => {
-    if ((e.target.id === 'outside' || e.target.id === 'exit') && setOpenModal) {
+    if ((e.target.id === 'recmodaloutside') && setOpenModal) {
       setOpenModal(false);
     } else {
       setOpenModal(true);
     }
   };
   const pantry = userInfo?.pantry ? Object.keys(userInfo.pantry) : [];
-  return (
-    <Overlay id="outside" onClick={exitModal}>
-      <button id="exit" type="button" onClick={exitModal}>X</button>
-      <Modal>
-        <h2>{recipe.name}</h2>
-        <h3>
-          You have
-          {' '}
-          {recipe.percent}
-          % of the needed ingredients.
-        </h3>
-        <Grid>
-          <div>
 
+  // console.log(recipe.instructions.split('. '));
+
+  return (
+    <Outer id="recmodaloutside" onClick={exitModal}>
+      <Inner>
+        <Top>
+          <Title>{recipe.name}</Title>
+          <Title>
+            {`${recipe.percent}%`}
+          </Title>
+        </Top>
+        <Main>
+          <MainLeft>
             <Thumbnail src={recipe.thumbnail} alt={recipe.name} />
-          </div>
-          <VideoDiv>
-            <VideoFrame
-              src={`https://www.youtube.com/embed/${recipe.video.split('=')[1]}`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title="video"
-            />
-          </VideoDiv>
+            <VideoDiv>
+              <VideoFrame
+                src={`https://www.youtube.com/embed/${recipe.video.split('=')[1]}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="video"
+              />
+            </VideoDiv>
+          </MainLeft>
+          <MainRight>
           <Ingredients>
-            <h4>Ingredients</h4>
+            <Subtitle>Ingredients</Subtitle>
             <ul>
               {recipe.ingredients.filter((obj) => obj.ingredientName).map((ingredient) => {
                 if (pantry.includes(ingredient.ingredientName)) {
@@ -70,82 +71,149 @@ export default function RecipeModal({
             </ul>
           </Ingredients>
           <Instructions>
-            <h4>Instructions</h4>
-            <p>{recipe.instructions}</p>
+            <Subtitle>Instructions</Subtitle>
+            <ul>{recipe.instructions.split('. ').map((step) => <li key={step}>{step}</li>)}</ul>
           </Instructions>
-        </Grid>
-        <button type="button" onClick={handleAddToList}>
-          Add ingredients to your grocery list!
-        </button>
-        <button type="button" onClick={handleFavorite}>
-          {isFavorite ? 'Remove From Favorites' : 'Add to Favorites'}
-        </button>
+          </MainRight>
+        </Main>
+        <Bottom>
+          <Button type="button" onClick={handleAddToList}>
+            Add to grocery list!
+          </Button>
+          <Button type="button" onClick={handleFavorite}>
+            {isFavorite ? 'Remove From Favorites' : 'Add to Favorites'}
+          </Button>
+        </Bottom>
 
-      </Modal>
-    </Overlay>
+      </Inner>
+    </Outer>
   );
 }
-const Modal = styled.div`
-  text-align: center;
-  background-color: whitesmoke;
-  border: 1px solid #979797;
-  border-radius: 20px;
-  position: fixed;
-  z-index: 20;
-  width: 100%;
-  height: auto;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-`;
 
-const Overlay = styled.div`
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, .7);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-`;
-const Grid = styled.div`
+const Title = styled.h1`
+  font-size: 30px;
+  margin: 0;
+`
 
-  display: grid;
-  grid-template-columns: repeat(2, minmax(200px, 1fr));
-  grid-gap: 10px;
-  justify-content: center;
+const Subtitle = styled(Title)`
+  font-size: 20px;
+`
+
+const Top = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  `;
+  justify-content: space-between;
+`;
+const Main = styled.div`
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+`
+const MainLeft = styled.div`
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+`
+const MainRight = styled.div`
+  margin-left: 5%;
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const Bottom = styled(Main)`
+  height: 10%;
+`;
 const Ingredients = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  height: 100%;
-  border-radius: 10px;
- `;
+`;
 const VideoDiv = styled.div`
   width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  `;
-const Instructions = styled.div`
-text-align: justify;
-  `;
+  height:47%;
+`;
+const Instructions = styled(Ingredients)`
+  overflow-y: auto;
+`;
 const Thumbnail = styled.img`
-  width: 20vh;
-  float: left;
-  top: -40%;
-  left: 20%;
-  position: relative;
-  margin-right: 10px;
-  border-radius: 10px;
-  `;
+  width: 100%;
+  height: 47%;
+  object-fit: cover;
+  /* resize: auto; */
+`;
 const VideoFrame = styled.iframe`
   width: 100%;
   height: 100%;
+`;
+
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
+
+const Outer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 200;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  overflow: auto;
+  background-color: ${(props) => props.theme.bgmodal1};
+  background-color: ${(props) => props.theme.bgmodal2};
+  animation-name: ${fadeIn};
+  animation-duration: 0.3s;
+`;
+
+const Inner = styled.div`
+  display: flex;
+  z-index: 201;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  opacity: 1;
+  width: 80vw;
+  height: auto;
+  padding: 5%;
+  /* max-width: 400px;
+  max-height: 400px; */
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: ${(props) => props.theme.tilebg1};
+  border: .5px solid;
   border-radius: 10px;
-  `;
+  animation-name: ${fadeIn};
+  animation-duration: 0.3s;
+`;
+
+const Button = styled.button`
+  height: auto;
+  width: 30%;
+  border-radius: 10px;
+  border: 1px solid;
+  padding: 10px;
+  background: none;
+  color: ${(props) => props.theme.buttontext};
+  background-color: ${(props) => props.theme.button2};
+  &:hover{
+    cursor: pointer;
+    opacity: 70%;
+  }
+`;
