@@ -31,7 +31,7 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme }) {
         {/* set style of currentPage to Special CSS... not code for anything just make it feel special */}
       <Nav>
         {pageTitles.map((title) => (
-          <PageDiv currentPage={currentPage} name={title}>
+          <PageDiv key={title} currentPage={currentPage} name={title}>
             <PageTitle
               key={title}
               id={title}
