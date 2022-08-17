@@ -31,10 +31,12 @@ function IngredientTile({
       </Header>
     );
   }
-
-  const ingredientExp = ingredientInfo.e !== '' ? `${new Date(ingredientInfo.e).toString().slice(4, 10)}, ${new Date(ingredientInfo.e).toString().slice(13, 15)}` : '';
+  const dating = ingredientInfo.e !== '' ? new Date(ingredientInfo.e) : '';
+  const modifiedDate = dating !== '' ? dating.setDate(dating.getDate() + 1) : '';
+  const ingredientExp = modifiedDate !== '' ? `${dating.toString().slice(4, 10)}, ${dating.toString().slice(13, 15)}` : '';
   const currentDate = new Date();
   const expiring = Date.parse(ingredientInfo.e) - Date.parse(currentDate) < 259200000;
+
   return (
     <Header>
       <Div>
