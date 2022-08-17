@@ -43,6 +43,7 @@ function GroceryForm({
         <h3>Add To List</h3>
         <TextField
           value={newItem}
+          placeholder="enter item"
           onChange={(event) => setNewItem(event.target.value)}
         />
         <Button onClick={addUserInput} type="submit">

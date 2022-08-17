@@ -113,7 +113,12 @@ function GroceryList({ userInfo, setUserInfo }) {
       <Left>
         <Top>
           <Title>Here is your grocery list.</Title>
-          <Button onClick={() => setShow(true)}>Add</Button>
+          <Buttons>
+            <Button onClick={clearFullList} type="submit">
+              Clear List
+            </Button>
+            <Button onClick={() => setShow(true)}>Add</Button>
+          </Buttons>
         </Top>
         <GroceryListCont>
           {userInfo.groceryList
@@ -127,24 +132,22 @@ function GroceryList({ userInfo, setUserInfo }) {
                 />
               ))}
         </GroceryListCont>
-        <Button onClick={clearFullList} type="submit">
-          Clear List
-        </Button>
+
         <InstructionsButton text="example instructions on how to use things" />
       </Left>
       <Right>
-          {show && (
-            <GroceryForm
-              setAlteredGroceryList={setAlteredGroceryList}
-              userInfo={userInfo}
-              alteredGroceryList={alteredGroceryList}
-              setUserInfo={setUserInfo}
-              setShow={setShow}
-            />
-          )}
-          <MapDiv>
-            <GroceryStore />
-          </MapDiv>
+        {show && (
+        <GroceryForm
+          setAlteredGroceryList={setAlteredGroceryList}
+          userInfo={userInfo}
+          alteredGroceryList={alteredGroceryList}
+          setUserInfo={setUserInfo}
+          setShow={setShow}
+        />
+        )}
+        <MapDiv>
+          <GroceryStore />
+        </MapDiv>
       </Right>
     </Page>
   );
@@ -153,6 +156,7 @@ function GroceryList({ userInfo, setUserInfo }) {
 export default GroceryList;
 
 const GroceryListCont = styled.div`
+  margin-top: 3%;
   width: 100%;
 `;
 
@@ -173,7 +177,6 @@ const Right = styled.div`
   align-items: center;
   justify-content: flex-start;
 `;
-
 
 const MapDiv = styled.div`
   display: grid;
@@ -204,9 +207,17 @@ const Title = styled.p`
   margin: 0;
 `;
 
+const Buttons = styled.div`
+  width: 35%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+`
+
 const Button = styled.button`
   height: auto;
-  width: 15%;
+  width: 45%;
   border-radius: 10px;
   border: 1px solid;
   padding: 10px;

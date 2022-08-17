@@ -18,7 +18,7 @@ function GroceryStore() {
 
   const mapStyles = {
     height: '50vh',
-    width: '50%',
+    width: '100%',
   };
 
   return (
