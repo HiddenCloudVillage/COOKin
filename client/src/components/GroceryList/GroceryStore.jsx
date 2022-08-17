@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, usLoadScript } from '@react-google-maps/api';
 import mapKey from '../../lib/mapKey';
 
 function GroceryStore() {

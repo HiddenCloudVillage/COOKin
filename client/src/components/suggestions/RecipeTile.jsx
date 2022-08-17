@@ -29,7 +29,7 @@ const Tile = styled.div`
     opacity: 0.7;
   }
 `;
-const Name = styled.h3`
+const Name = styled.div`
   /* top: -40%; */
   font-size: 20px;
   font-weight: bold;

@@ -1,10 +1,15 @@
 /* eslint-disable react/jsx-props-no-multi-spaces */
 import styled from 'styled-components';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Autocomplete, TextField } from '@mui/material/';
 import ingredients from '../../lib/ingredients';
 
-export default function IncludeIngredient({ inclusion, setInclusion }) {
+export default function IncludeIngredient({ inclusion, setInclusion, setPage, setOpenTile }) {
+  useEffect(() => {
+    setPage(0);
+    setOpenTile(0);
+  }, [inclusion]);
+
   function handleClick(e, ing) {
     const newInclusion = inclusion.slice();
     const ind = newInclusion.indexOf(ing);

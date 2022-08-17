@@ -8,15 +8,9 @@ export default function RecipeList({
   recipes,
   userInfo,
   setUserInfo,
-  setCurrentPage, page, setPage, openTile, setOpenTile, includeIngredients, excludeIngredients,
+  setCurrentPage, page, setPage, openTile, setOpenTile,
 }) {
-  const [pageCount, setPageCount] = useState(Math.ceil(recipes.length / 5));
 
-  useEffect(() => {
-    setPage(0);
-    setOpenTile(0);
-    setPageCount(Math.ceil(recipes.length / 5));
-  }, [includeIngredients, excludeIngredients]);
   return (
     <RecListContainer>
       <RecList>
@@ -51,12 +45,12 @@ export default function RecipeList({
         {' '}
         of
         {' '}
-        {pageCount}
+        {Math.ceil(recipes.length / 5)}
         <Button
           type="button"
           onClick={() => {
             setOpenTile(0);
-            setPage((prev) => (prev < pageCount ? prev + 1 : prev));
+            setPage((prev) => ((prev < Math.ceil(recipes.length / 5)) ? prev + 1 : prev));
           }}
         >
           Next

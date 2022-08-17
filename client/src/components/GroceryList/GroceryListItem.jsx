@@ -23,9 +23,9 @@ function GroceryListItem({
   }
 
   return (
-    <div>
+    <ListItem>
       {!tempIng.stateShopped ? (
-        <span
+        <Ing
           onClick={() => {
             toggleStriked();
             setTempIng({ ...tempIng, stateShopped: true });
@@ -33,9 +33,9 @@ function GroceryListItem({
           onKeyPress={() => toggleStriked()}
         >
           {ingredient.name}
-        </span>
+        </Ing>
       ) : (
-        <span>
+        <Ing>
           <strike
             onClick={() => {
               setTempIng({ ...tempIng, stateShopped: false });
@@ -45,16 +45,63 @@ function GroceryListItem({
           >
             {ingredient.name}
           </strike>
-        </span>
+        </Ing>
       )}
-      <button
+
+      <DelButton
         onClick={(event) => removeFromList(ingredient.name, event)}
         type="submit"
       >
         X
-      </button>
-    </div>
+      </DelButton>
+
+    </ListItem>
   );
 }
 
 export default GroceryListItem;
+
+const ListItem = styled.div`
+width: 70%;
+min-height: 5%;
+height: 5vh;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding-left: 10px;
+padding-right: 10px;
+background-color: #ffffff;
+border-radius: 10px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+margin-bottom: 10px;
+cursor: pointer;
+transition: all 0.3s ease-in-out;
+&:hover {
+  transform: scale(1.01);
+}
+`;
+
+const Ing = styled.h3`
+  /* top: -40%; */
+  font-size: 20px;
+  font-weight: bold;
+  background: ${(props) => props.theme.tilebg1};
+  margin: 0;
+`;
+
+const DelButton = styled.button`
+  width: 1.5vw;
+  height: 1.5vw;
+  font-color: red;
+  align-content: right;
+  background: transparent;
+  border: solid;
+  border-width: 2px;
+  border-color: red;
+  border-radius: 2vw;
+  &:hover {
+    cursor: pointer;
+    border-width: 3px;
+  }
+`;

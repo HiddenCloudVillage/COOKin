@@ -11,16 +11,17 @@ export default function Suggestions({
   userInfo,
   setUserInfo,
   setCurrentPage,
-  page,
-  setPage,
-  openTile,
-  setOpenTile,
+  // page,
+  // setPage,
+  // openTile,
+  // setOpenTile,
 }) {
   const [excludeIngredients, setExcludeIngredients] =
     useContext(ExcludeContext);
   const [includeIngredients, setIncludeIngredients] =
-    useContext(IncludeContext);
-
+  useContext(IncludeContext);
+  const [page, setPage] = useState(0);
+  const [openTile, setOpenTile] = useState(0);
   // filter recipes by include ingredients and exclude ingredients
   const filterRecipes = () => {
     const filteredRecipes = recipes.filter((recipe) => {
@@ -77,18 +78,24 @@ export default function Suggestions({
           setPage={setPage}
           openTile={openTile}
           setOpenTile={setOpenTile}
-          includeIngredients={includeIngredients}
-          excludeIngredients={excludeIngredients}
+          // includeIngredients={includeIngredients}
+          // excludeIngredients={excludeIngredients}
         />
       </Left>
       <Right>
         <IncludeIngredient
           inclusion={includeIngredients}
           setInclusion={setIncludeIngredients}
+          setPage={setPage}
+          openTile={openTile}
+          setOpenTile={setOpenTile}
         />
         <ExcludeIngredient
           exclusion={excludeIngredients}
           setExclusion={setExcludeIngredients}
+          setPage={setPage}
+          openTile={openTile}
+          setOpenTile={setOpenTile}
         />
       </Right>
     </Page>
