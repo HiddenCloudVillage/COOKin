@@ -106,36 +106,11 @@ function GroceryList({ userInfo, setUserInfo }) {
   }
 
   return (
-<<<<<<< HEAD
-    <div>
-      THIS IS THE GROCERY LIST BITCHES
-      {userInfo.groceryList &&
-        alteredGroceryList.map((ingredient) => (
-          <GroceryListItem
-            removeFromList={removeFromList}
-            updateUserInfo={updateUserInfo}
-            pantry={userInfo.pantry}
-            ingredient={ingredient}
-            key={ingredient.name}
-          />
-        ))}
-      <GroceryForm
-        setAlteredGroceryList={setAlteredGroceryList}
-        userInfo={userInfo}
-        alteredGroceryList={alteredGroceryList}
-        setUserInfo={setUserInfo}
-      />
-      <button onClick={clearFullList} type="submit">
-        Clear List
-      </button>
-      <GroceryStore />
-    </div>
-=======
     <Page>
       <GroceryListDiv>
         What you are shopping for!
-        {userInfo.groceryList
-          && alteredGroceryList.map((ingredient) => (
+        {userInfo.groceryList &&
+          alteredGroceryList.map((ingredient) => (
             <GroceryListItem
               removeFromList={removeFromList}
               updateUserInfo={updateUserInfo}
@@ -150,7 +125,6 @@ function GroceryList({ userInfo, setUserInfo }) {
       </GroceryListDiv>
       <Right>
         <AddForm>
-
           <GroceryForm
             setAlteredGroceryList={setAlteredGroceryList}
             userInfo={userInfo}
@@ -159,15 +133,15 @@ function GroceryList({ userInfo, setUserInfo }) {
           />
         </AddForm>
       </Right>
+      <GroceryStore />
     </Page>
->>>>>>> 8c8e0b1e722155275cab357af532fa996e1e8292
   );
 }
 
 export default GroceryList;
 
 const Page = styled.div`
-max-width: 900px;
+  max-width: 900px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -185,7 +159,6 @@ const Right = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
 `;
 
 const AddForm = styled.div`
