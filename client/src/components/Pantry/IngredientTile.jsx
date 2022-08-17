@@ -31,14 +31,17 @@ function IngredientTile({
       </Header>
     );
   }
+
   const ingredientExp = ingredientInfo.e !== '' ? `${new Date(ingredientInfo.e).toString().slice(4, 10)}, ${new Date(ingredientInfo.e).toString().slice(13, 15)}` : '';
+  const currentDate = new Date();
+  const expiring = Date.parse(ingredientInfo.e) - Date.parse(currentDate) < 259200000 ? true : false;
   return (
     <Header>
       <Div>
         <Name onClick={handleItems}>{ingredient}</Name>
         <Attribute>{ingredientInfo.c}</Attribute>
         <Attribute>{ingredientInfo.q}</Attribute>
-        <Attribute>{ingredientExp}</Attribute>
+        {expiring ? <Attribute style={{ color: 'red' }}>{ingredientExp}</Attribute> : <Attribute>{ingredientExp}</Attribute>}
       </Div>
       <EditIngredient ingredient={ingredient} ingredientInfo={ingredientInfo} />
     </Header>
