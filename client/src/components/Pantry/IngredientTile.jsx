@@ -2,13 +2,17 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import EditIngredient from './EditIngredient';
 import IncludeContext from '../IncludeContext';
+import ExcludeContext from '../ExcludeContext';
 
 function IngredientTile({ ingredient, ingredientInfo, setCurrentPage }) {
   const [includeIngredients, setIncludeIngredients] =
     useContext(IncludeContext);
+  const [excludeIngredients, setExcludeIngredients] =
+    useContext(ExcludeContext);
 
   function handleItems() {
     setIncludeIngredients([ingredient]);
+    setExcludeIngredients([]);
     setCurrentPage('Suggestions');
   }
   return (
