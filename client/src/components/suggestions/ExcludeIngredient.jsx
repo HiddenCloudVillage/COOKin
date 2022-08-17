@@ -1,9 +1,14 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Autocomplete, TextField } from '@mui/material/';
 import ingredients from '../../lib/ingredients';
 
-export default function ExcludeIngredient({ exclusion, setExclusion }) {
+export default function ExcludeIngredient({ exclusion, setExclusion, setPage, setOpenTile }) {
+  useEffect(() => {
+    setPage(0);
+    setOpenTile(0);
+  }, [exclusion]);
+
   function handleClick(e, ing) {
     const newExclusion = exclusion.slice();
     const ind = newExclusion.indexOf(ing);
