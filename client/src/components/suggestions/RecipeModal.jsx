@@ -6,7 +6,7 @@ export default function RecipeModal({
   handleFavorite, isFavorite, recipe, setOpenModal, handleAddToList, userInfo,
 }) {
   const exitModal = (e) => {
-    if ((e.target.id === 'outside')) {
+    if ((e.target.id === 'outside' || e.target.id === 'exit') && setOpenModal) {
       setOpenModal(false);
     } else {
       setOpenModal(true);
@@ -15,7 +15,7 @@ export default function RecipeModal({
   const pantry = userInfo?.pantry ? Object.keys(userInfo.pantry) : [];
   return (
     <Overlay id="outside" onClick={exitModal}>
-      <button type="button" onClick={exitModal}>X</button>
+      <button id="exit" type="button" onClick={exitModal}>X</button>
       <Modal>
         <h2>{recipe.name}</h2>
         <h3>
