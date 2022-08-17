@@ -12,6 +12,8 @@ function GroceryList({ userInfo, setUserInfo }) {
   const groceryListSet = new Set(userInfo.groceryList);
   const groceryListArray = Array.from(groceryListSet);
 
+  const [show, setShow] = useState(false);
+
   function setGroceryList(newList) {
     const groceryListProp = [];
 
@@ -109,51 +111,46 @@ function GroceryList({ userInfo, setUserInfo }) {
   return (
     <Page>
       <Left>
-        <Title> Here is your grocery list.</Title>
+        <Top>
+          <Title>Here is your grocery list.</Title>
+          <Button onClick={() => setShow(true)}>Add</Button>
+        </Top>
         <GroceryListCont>
-          {userInfo.groceryList &&
-            alteredGroceryList.map((ingredient) => (
-              <GroceryListItem
-                removeFromList={removeFromList}
-                updateUserInfo={updateUserInfo}
-                pantry={userInfo.pantry}
-                ingredient={ingredient}
-                key={ingredient.name}
-              />
-            ))}
+          {userInfo.groceryList
+              && alteredGroceryList.map((ingredient) => (
+                <GroceryListItem
+                  removeFromList={removeFromList}
+                  updateUserInfo={updateUserInfo}
+                  pantry={userInfo.pantry}
+                  ingredient={ingredient}
+                  key={ingredient.name}
+                />
+              ))}
         </GroceryListCont>
-        <button onClick={clearFullList} type="submit">
+        <Button onClick={clearFullList} type="submit">
           Clear List
-        </button>
+        </Button>
         <InstructionsButton text="example instructions on how to use things" />
       </Left>
       <Right>
-        <AddForm>
-          <GroceryForm
-            setAlteredGroceryList={setAlteredGroceryList}
-            userInfo={userInfo}
-            alteredGroceryList={alteredGroceryList}
-            setUserInfo={setUserInfo}
-          />
+          {show && (
+            <GroceryForm
+              setAlteredGroceryList={setAlteredGroceryList}
+              userInfo={userInfo}
+              alteredGroceryList={alteredGroceryList}
+              setUserInfo={setUserInfo}
+              setShow={setShow}
+            />
+          )}
           <MapDiv>
             <GroceryStore />
           </MapDiv>
-        </AddForm>
       </Right>
     </Page>
   );
 }
 
 export default GroceryList;
-
-// const Page = styled.div`
-//   max-width: 900px;
-//   width: 100%;
-//   display: flex;
-//   flex-direction: row;
-//   align-items: flex-start;
-//   justify-content: space-around;
-// `;
 
 const GroceryListCont = styled.div`
   width: 100%;
@@ -164,9 +161,9 @@ const Left = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
-`
+`;
 
 const Right = styled.div`
   width: 30%;
@@ -177,12 +174,13 @@ const Right = styled.div`
   justify-content: flex-start;
 `;
 
-const AddForm = styled.div`
-
-`;
 
 const MapDiv = styled.div`
-  width: 60vw;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+
 `;
 
 const Page = styled.div`
@@ -194,7 +192,7 @@ const Page = styled.div`
 `;
 
 const Top = styled.div`
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -204,4 +202,21 @@ const Top = styled.div`
 const Title = styled.p`
   font-size: 20px;
   margin: 0;
-`
+`;
+
+const Button = styled.button`
+  height: auto;
+  width: 15%;
+  border-radius: 10px;
+  border: 1px solid;
+  padding: 10px;
+  background: none;
+  color: ${(props) => props.theme.buttontext};
+  background-color: ${(props) => props.theme.button2};
+  &:hover{
+    cursor: pointer;
+    opacity: 70%;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
+`;

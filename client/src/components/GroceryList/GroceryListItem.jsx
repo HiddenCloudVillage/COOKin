@@ -62,15 +62,15 @@ function GroceryListItem({
 export default GroceryListItem;
 
 const ListItem = styled.div`
-width: 70%;
+width: 100%;
 min-height: 5%;
 height: 5vh;
 display: flex;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
-padding-left: 10px;
-padding-right: 10px;
+/* padding-left: 10px;
+padding-right: 10px; */
 background: ${(props) => props.theme.tilebg1};
 border-radius: 10px;
 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
