@@ -123,12 +123,15 @@ function GroceryList({ userInfo, setUserInfo }) {
         </button>
       </GroceryListDiv>
       <Right>
-        <GroceryForm
-          setAlteredGroceryList={setAlteredGroceryList}
-          userInfo={userInfo}
-          alteredGroceryList={alteredGroceryList}
-          setUserInfo={setUserInfo}
-        />
+        <AddForm>
+
+          <GroceryForm
+            setAlteredGroceryList={setAlteredGroceryList}
+            userInfo={userInfo}
+            alteredGroceryList={alteredGroceryList}
+            setUserInfo={setUserInfo}
+          />
+        </AddForm>
       </Right>
     </Page>
   );
@@ -154,4 +157,9 @@ const Right = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  position: float;
+`;
+
+const AddForm = styled.div`
+  position: fixed;
 `;
