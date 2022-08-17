@@ -16,10 +16,8 @@ export default function Suggestions({
   // openTile,
   // setOpenTile,
 }) {
-  const [excludeIngredients, setExcludeIngredients] =
-    useContext(ExcludeContext);
-  const [includeIngredients, setIncludeIngredients] =
-    useContext(IncludeContext);
+  const [excludeIngredients, setExcludeIngredients] = useContext(ExcludeContext);
+  const [includeIngredients, setIncludeIngredients] = useContext(IncludeContext);
   const [page, setPage] = useState(0);
   const [openTile, setOpenTile] = useState(0);
   // filter recipes by include ingredients and exclude ingredients
@@ -28,7 +26,15 @@ export default function Suggestions({
       let include = true;
       let exclude = false;
       recipe.ingredients.forEach((ingredient) => {
-        if (excludeIngredients.includes(ingredient.ingredientName)) {
+        const { ingredientName } = ingredient;
+        const lowerIngredient = ingredientName
+          && ingredientName.charAt(0).toLowerCase() + ingredientName.slice(1);
+
+        const upperIngredient = ingredientName
+          && ingredientName[0].toUpperCase() + ingredientName.slice(1);
+
+        if (excludeIngredients.includes(lowerIngredient)
+        || excludeIngredients.includes(upperIngredient)) {
           exclude = true;
         }
       });
@@ -36,7 +42,10 @@ export default function Suggestions({
         (ingredient) => ingredient.ingredientName,
       );
       includeIngredients.forEach((ingredient) => {
-        if (!recipeIngredients.includes(ingredient)) {
+        const lowerIngredient = ingredient && ingredient[0].toLowerCase() + ingredient.slice(1);
+        const upperIngredient = ingredient && ingredient[0].toUpperCase() + ingredient.slice(1);
+        if (!recipeIngredients.includes(lowerIngredient)
+        && !recipeIngredients.includes(upperIngredient)) {
           include = false;
         }
       });

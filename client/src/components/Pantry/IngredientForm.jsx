@@ -81,7 +81,7 @@ function IngredientForm({ setShow }) {
           <Label>
             Expiration :
             <input
-              type="text"
+              type="date"
               name="expiration"
               onChange={(e) => setExpiration(e.target.value)}
             />

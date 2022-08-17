@@ -23,21 +23,25 @@ function IngredientTile({
       <Header>
         <Info>
           <Name>Ingredient</Name>
-          <Attribute>Quantity</Attribute>
           <Attribute>Category</Attribute>
+          <Attribute>Quantity</Attribute>
           <Attribute>Expiration</Attribute>
         </Info>
         <AddIngredient userInfo={userInfo} setUserInfo={setUserInfo} />
       </Header>
     );
   }
+
+  const ingredientExp = ingredientInfo.e !== '' ? `${new Date(ingredientInfo.e).toString().slice(4, 10)}, ${new Date(ingredientInfo.e).toString().slice(13, 15)}` : '';
+  const currentDate = new Date();
+  const expiring = Date.parse(ingredientInfo.e) - Date.parse(currentDate) < 259200000;
   return (
     <Header>
       <Div>
         <Name onClick={handleItems}>{ingredient}</Name>
         <Attribute>{ingredientInfo.c}</Attribute>
         <Attribute>{ingredientInfo.q}</Attribute>
-        <Attribute>{ingredientInfo.e}</Attribute>
+        {expiring ? <Attribute style={{ color: 'red' }}>{ingredientExp}</Attribute> : <Attribute>{ingredientExp}</Attribute>}
       </Div>
       <EditIngredient ingredient={ingredient} ingredientInfo={ingredientInfo} />
     </Header>
@@ -78,6 +82,13 @@ const Div = styled(Info)`
     transform: scale(1.01);
     opacity: 0.7;
   }
+<<<<<<< HEAD
+=======
+`;
+
+const Info = styled(Header)`
+
+>>>>>>> dev
 `;
 const Name = styled.div`
   font-size: 20px;
