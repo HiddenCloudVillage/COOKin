@@ -10,7 +10,7 @@ export default function RecipeTile({ recipe, setOpen, i }) {
   );
 }
 const Tile = styled.div`
-  width: 85%;
+  width: 100%;
   min-height: 5%;
   height: auto;
   display: flex;

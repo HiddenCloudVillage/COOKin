@@ -63,6 +63,7 @@ export default function RecipeList({
 
 const RecListContainer = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: flex-start;
   align-items:center;

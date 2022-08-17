@@ -116,15 +116,15 @@ const Page = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-evenly;
 `;
 
 const Left = styled.div`
-  width: 70%;
+  width: 60%;
 `;
 
 const Right = styled.div`
-  width: 30%;
+  width: 25%;
   display: flex;
   flex-direction: column;
   align-items: center;
