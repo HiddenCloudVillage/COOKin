@@ -78,18 +78,22 @@ export default function Favorites({ userInfo, recipes }) {
               <Star src={star} alt="star" />
               <Name>
                 {recipe.name}
+              </Name>
+            </Row>
+            <TileBot>
+              <Thumb src={recipe.thumbnail} alt="instructions" />
+              <BotRight>
+                <Percent>
+                  {recipe.percent}
+                  %
+                </Percent>
                 <Desc>
                   You have&nbsp;
                   {recipe.percent}
                   % of the necessary ingredients to make this recipe!
                 </Desc>
-              </Name>
-              <Percent>
-                {recipe.percent}
-                %
-              </Percent>
-              <Thumb src={recipe.thumbnail} alt="instructions" />
-            </Row>
+              </BotRight>
+            </TileBot>
           </Grid>
         ))}
       </div>
@@ -98,23 +102,30 @@ export default function Favorites({ userInfo, recipes }) {
 }
 
 const Thumb = styled.img`
-width: 10%;
-margin-left: 10px;
+  width: 25%;
+  resize: auto;
+  margin-right: 3%;
 `;
 
 const Row = styled.div`
 display: flex;
-margin: 0 auto;
-background-color: red;
-width: 70%;
-justify-content: space-between;
+/* margin: 0 auto; */
+width: 100%;
+margin-right: 100px;
+/* justify-content: space-between; */
+`;
+
+const TileBot = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 `;
 
 const Desc = styled.div`
 /* display: flex; */
 font-size: 20px;
 width: 80%;
-background-color: yellow;
 `;
 
 const Star = styled.img`
@@ -123,20 +134,51 @@ height: 2%
 `;
 
 const Name = styled.div`
-font-size: 40px;
-margin-right: 20px;
-margin-left: 10px;
-height: 50%;
+font-weight: bold;
+  font-size: 25px;
+  display:block;
+  background: ${(props) => props.theme.maintilebg};
+  margin: 0;
+  margin-bottom: 2%;
+  width: auto;
+  overflow: auto;
+  border-bottom: 1px solid;
+  cursor: default;
+  &:hover{
+    opacity: 70%;
+  }
+`;
+
+const BotRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 70%;
+  height: 100%;
 `;
 
 const Percent = styled.div`
-font-size: 40px;
-margin-right: 20px;
-height: 10%;
+margin: 0;
+font-size: 30px;
+font-weight: bold;
 `;
 
 const Grid = styled.div`
 margin: 0 auto;
 width: 100%;
 background-color: blue;
+display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 85%;
+  min-height: 250px;
+  padding: 2%;
+  background: ${(props) => props.theme.tilebg1};
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.01);
+  }
 `;

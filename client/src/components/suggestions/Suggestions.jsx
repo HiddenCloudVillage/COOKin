@@ -17,7 +17,7 @@ export default function Suggestions({
 }) {
   const [excludeIngredients, setExcludeIngredients] = useState([]);
   const [includeIngredients, setIncludeIngredients] =
-    useContext(IncludeContext);
+useContext(IncludeContext);
 
   // filter recipes by include ingredients and exclude ingredients
   const filterRecipes = () => {
