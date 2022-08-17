@@ -52,7 +52,7 @@ export default function Favorites({
         }
         return acc;
       }, 0);
-      percent = (count / ingredients.length) * 100;
+      percent = Math.trunc((count / ingredients.length) * 100);
       faveRecipes[i]['percent'] = percent;
     }
     if (sort === 'alpha') {
@@ -90,6 +90,18 @@ export default function Favorites({
     </Page>
   );
 }
+const Sort = styled.select`
+  margin-left: 20px;
+  height: 40px;
+  background-color: transparent;
+`;
+
+const SortC = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: 120px;
+`;
 
 const Page = styled.div`
   width: 100%;
@@ -97,52 +109,4 @@ const Page = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-const Sort = styled.div`
-  width: 70%;
-`;
-
-const Thumb = styled.img`
-width: 10%;
-margin-left: 10px;
-`;
-
-const Row = styled.div`
-display: flex;
-margin: 0 auto;
-background-color: red;
-width: 70%;
-justify-content: space-between;
-`;
-
-const Desc = styled.div`
-/* display: flex; */
-font-size: 20px;
-width: 80%;
-background-color: yellow;
-`;
-
-const Star = styled.img`
-width: 2%;
-height: 2%
-`;
-
-const Name = styled.div`
-font-size: 40px;
-margin-right: 20px;
-margin-left: 10px;
-height: 50%;
-`;
-
-const Percent = styled.div`
-font-size: 40px;
-margin-right: 20px;
-height: 10%;
-`;
-
-const Grid = styled.div`
-margin: 0 auto;
-width: 100%;
-background-color: blue;
 `;
