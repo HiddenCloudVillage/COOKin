@@ -4,7 +4,7 @@ import { auth } from '../lib/firebase';
 
 const pageTitles = ['Suggestions', 'Favorites', 'Grocery List', 'Pantry'];
 
-function Header({ user, setCurrentPage, currentPage, themeToggler, theme }) {
+function Header({ user, setCurrentPage, currentPage, themeToggler, theme, setDisplay }) {
   const signOut = () => {
     const result = confirm('signing out?');
     if (result) {
@@ -49,6 +49,7 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme }) {
         <DarkMode onClick={themeToggler}>
           {theme}
         </DarkMode>
+        <button onClick={() => setDisplay((prev) => !prev)} type="button">Show Help</button>
         {user && <Img onClick={signOut} id="Header-icon" src={user?.photoURL} alt={user?.displayName} referrerPolicy="no-referrer" />}
       </HeaderRight>
     </HeaderContainer>

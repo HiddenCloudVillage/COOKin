@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../lib/firebase';
@@ -9,11 +9,13 @@ import Login from './Login';
 import Home from './Home';
 import Header from './Header';
 import Load from './Load';
+import HelpContext from './HelpContext';
 
 function App() {
   const [user, loading] = useAuthState(auth);
   // const [theme, setTheme] = useState('light');
   const [theme, setTheme] = useDarkMode();
+  const [display, setDisplay] = useState(false);
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
@@ -25,28 +27,31 @@ function App() {
   }
 
   return (
-    <ThemeProvider theme={themeMode}>
-      <>
-        <GlobalStyle />
-        <MainDiv>
-          {!user ? (
-            <Login />
-          )
-            : (
-              <HomeContainer>
-                <Header
-                  themeToggler={themeToggler}
-                  theme={theme}
-                  currentPage={currentPage}
-                  setCurrentPage={setCurrentPage}
-                  user={user}
-                />
-                <Home user={user} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-              </HomeContainer>
-            )}
-        </MainDiv>
-      </>
-    </ThemeProvider>
+    <HelpContext.Provider value={[display, setDisplay]}>
+      <ThemeProvider theme={themeMode}>
+        <>
+          <GlobalStyle />
+          <MainDiv>
+            {!user ? (
+              <Login />
+            )
+              : (
+                <HomeContainer>
+                  <Header
+                    themeToggler={themeToggler}
+                    theme={theme}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    user={user}
+                    setDisplay={setDisplay}
+                  />
+                  <Home user={user} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                </HomeContainer>
+              )}
+          </MainDiv>
+        </>
+      </ThemeProvider>
+    </HelpContext.Provider>
   );
 }
 
