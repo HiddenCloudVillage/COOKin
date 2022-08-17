@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import RecipeList from './RecipeList';
 import IncludeIngredient from './IncludeIngredient';
@@ -19,7 +19,7 @@ export default function Suggestions({
   const [excludeIngredients, setExcludeIngredients] =
     useContext(ExcludeContext);
   const [includeIngredients, setIncludeIngredients] =
-  useContext(IncludeContext);
+    useContext(IncludeContext);
   const [page, setPage] = useState(0);
   const [openTile, setOpenTile] = useState(0);
   // filter recipes by include ingredients and exclude ingredients
