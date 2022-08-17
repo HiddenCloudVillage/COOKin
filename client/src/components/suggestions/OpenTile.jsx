@@ -37,6 +37,7 @@ export default function OpenTile({
         handleFavorite={handleFavorite}
         isFavorite={isFavorite}
         setCurrentPage={setCurrentPage}
+        userInfo={userInfo}
       />
     );
   }
