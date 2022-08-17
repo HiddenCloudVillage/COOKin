@@ -2,6 +2,8 @@
 import axios from 'axios';
 import React from 'react';
 import styled from 'styled-components';
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import RecipeModal from './RecipeModal';
 
 export default function OpenTile({
@@ -44,7 +46,17 @@ export default function OpenTile({
 
   return (
     <Tile>
-      <Name onClick={() => setOpenModal(true)}>{recipe.name}</Name>
+      <NameDiv>
+
+        <Name onClick={() => setOpenModal(true)}>{recipe.name}</Name>
+        {isFavorite ? (
+          <StarIcon onClick={handleFavorite} />
+
+        ) : (
+          <StarBorderOutlinedIcon onClick={handleFavorite} />
+
+        )}
+      </NameDiv>
       <TileBot>
         <Thumbnail src={recipe.thumbnail} alt={recipe.name} />
         <BotRight>
@@ -78,16 +90,6 @@ export default function OpenTile({
           </Buttons>
         </BotRight>
       </TileBot>
-      {isFavorite ? (
-        <button type="button" onClick={handleFavorite}>
-          Remove From Favorites
-        </button>
-      ) : (
-        <button type="button" onClick={handleFavorite}>
-          Add to Favorites
-        </button>
-
-      )}
     </Tile>
   );
 }
@@ -173,9 +175,20 @@ const Name = styled.h3`
   margin-bottom: 2%;
   width: auto;
   overflow: auto;
-  border-bottom: 1px solid;
   cursor: default;
   &:hover{
     opacity: 70%;
   }
 `;
+const NameDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 2%;
+  background: ${(props) => props.theme.maintilebg};
+  border-bottom: 1px solid;
+  `;
