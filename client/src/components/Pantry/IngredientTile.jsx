@@ -36,6 +36,7 @@ function IngredientTile({
   const ingredientExp = modifiedDate !== '' ? `${dating.toString().slice(4, 10)}, ${dating.toString().slice(13, 15)}` : '';
   const currentDate = new Date();
   const expiring = Date.parse(ingredientInfo.e) - Date.parse(currentDate) < 259200000;
+
   return (
     <Header>
       <Div>
