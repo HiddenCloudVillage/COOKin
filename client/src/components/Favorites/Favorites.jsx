@@ -70,13 +70,13 @@ export default function Favorites({
   useEffect(() => { findFaves(recipes); }, [sort]);
   return (
     <Page>
-      <Sort>
+      <Top>
         <h3>Sort By:</h3>
-        <select onChange={(e) => handleChange(e)}>
+        <Sort onChange={(e) => handleChange(e)}>
           <option value="alpha">alphabetical</option>
           <option value="percent">percent ingredients</option>
-        </select>
-      </Sort>
+        </Sort>
+      </Top>
       <RecipeList
         userInfo={userInfo}
         setUserInfo={setUserInfo}
@@ -90,18 +90,6 @@ export default function Favorites({
     </Page>
   );
 }
-const Sort = styled.select`
-  margin-left: 20px;
-  height: 40px;
-  background-color: transparent;
-`;
-
-const SortC = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  margin-left: 120px;
-`;
 
 const Page = styled.div`
   width: 100%;
@@ -110,3 +98,14 @@ const Page = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+const Top = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Sort = styled.select`
+  background: transparent;
+`
