@@ -144,6 +144,7 @@ const Right = styled.div`
 const Title = styled.p`
   font-size: 20px;
   margin: 0;
+  margin-right: 1%;
 `;
 
 const Top = styled.div`
@@ -151,6 +152,6 @@ const Top = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-bottom: 2%;
 `;

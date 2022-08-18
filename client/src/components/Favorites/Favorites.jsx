@@ -72,12 +72,14 @@ export default function Favorites({
   return (
     <Page>
       <Top>
-        <Title>Here are your favorite recipes.</Title>
-        <InstructionsButton text="1. Your Favorites will be listed below.?
-        2. To remove from your favorites list just click on the star next to the recipe name, or click the button in the expanded view.?
-        3. You may add to your grocery list with the add to the grocery list button!?
-        4. If you want to view the full recipe details, just click the expan button, or click on the recipe title"
-        />
+        <TopLeft>
+          <Title>Here are your favorite recipes.</Title>
+          <InstructionsButton text="1. Your Favorites will be listed below.?
+          2. To remove from your favorites list just click on the star next to the recipe name, or click the button in the expanded view.?
+          3. You may add to your grocery list with the add to the grocery list button!?
+          4. If you want to view the full recipe details, just click the expan button, or click on the recipe title"
+          />
+        </TopLeft>
         <TopRight>
           <Sp>Sort By: </Sp>
           <Sort onChange={(e) => handleChange(e)}>
@@ -141,6 +143,7 @@ const Sort = styled.select`
 const Title = styled.p`
   font-size: 20px;
   margin: 0;
+  margin-right: 1%;
 `;
 
 const TopRight = styled.div`
@@ -149,6 +152,9 @@ const TopRight = styled.div`
   flex-direction: row;
   align-items: center;
 `;
+const TopLeft = styled(TopRight)`
+  width: 60%;
+`
 
 const Sp = styled.span`
   margin-right: 2%;
