@@ -25,6 +25,7 @@ function GroceryStore() {
           const storeArray = res.data.results.map(
             (store) => store.geometry.location,
           );
+          console.log('who do dis>', storeArray);
           setStores(storeArray);
         })
         .catch((err) => console.log('🚨', err));
@@ -43,6 +44,7 @@ function GroceryStore() {
   }
   return (
     <LoadScript googleMapsApiKey={mapKey}>
+      <h1>Check out the closest grocery stores</h1>
       <GoogleMap
         mapContainerStyle={mapStyles}
         zoom={16}
