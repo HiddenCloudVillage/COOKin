@@ -112,12 +112,14 @@ function GroceryList({ userInfo, setUserInfo }) {
     <Page>
       <Left>
         <Top>
-          <Title>Here is your grocery list.</Title>
-          <InstructionsButton text="1. Ingredients on the list will be automatically crossed off your list if they already exist in your pantry.?
-          2. To cross an item out on the list and add to your pantry, simply click the ingredient name.?
-          3. To un-cross the ingredient and remove from the pantry, simply click the ingredient name.?
-          4. To remove an item completely from your list, click the 'X' at the right of the list item."
-          />
+          <TopLeft>
+            <Title>Here is your grocery list.</Title>
+            <InstructionsButton text="1. Ingredients on the list will be automatically crossed off your list if they already exist in your pantry.?
+            2. To cross an item out on the list and add to your pantry, simply click the ingredient name.?
+            3. To un-cross the ingredient and remove from the pantry, simply click the ingredient name.?
+            4. To remove an item completely from your list, click the 'X' at the right of the list item."
+            />
+          </TopLeft>
           <Buttons>
             <Button onClick={clearFullList} type="submit">
               Clear List
@@ -224,6 +226,12 @@ const Buttons = styled.div`
   justify-content: space-evenly;
   align-items: center;
 `
+const TopLeft = styled.div`
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
 
 const Button = styled.button`
   height: auto;
