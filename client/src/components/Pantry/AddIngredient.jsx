@@ -34,6 +34,7 @@ const Add = styled.div`
 const Button = styled.button`
   height: auto;
   width: 100%;
+  min-width: 90px;
   border-radius: 10px;
   border: 1px solid;
   padding: 10px;

@@ -28,6 +28,7 @@ export default IngredientList;
 const IngListContainer = styled.div`
   display: flex;
   width: 100%;
+  min-width: 500px;
   flex-direction: column;
   justify-content: flex-start;
   align-items:center;

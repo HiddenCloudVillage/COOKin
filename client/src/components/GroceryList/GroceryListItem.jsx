@@ -109,6 +109,7 @@ const DelButton = styled.button`
 const Button = styled.button`
   height: auto;
   width: 15%;
+  min-width: 70px;
   border-radius: 10px;
   border: 1px solid;
   padding: 10px;
