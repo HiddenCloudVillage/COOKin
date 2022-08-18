@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
 import IngredientList from './IngredientList';
-import AddIngredient from './AddIngredient';
 import UserIdContext from '../UserIdContext';
 
 function Pantry({ setCurrentPage }) {
@@ -18,7 +17,6 @@ function Pantry({ setCurrentPage }) {
       ) : (
         <div>Pantry Empty please enter items</div>
       )}
-      {/* <AddIngredient userInfo={userInfo} setUserInfo={setUserInfo} /> */}
     </Page>
   );
 }
@@ -36,9 +34,6 @@ const Page = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-<<<<<<< HEAD
   animation-name: ${fadeIn};
   animation-duration: 0.5s;
-=======
->>>>>>> dev
 `;

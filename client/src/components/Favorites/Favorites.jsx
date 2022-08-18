@@ -118,13 +118,13 @@ const Top = styled.div`
 const Main = styled(Top)`
   flex-direction: column;
   align-items: center;
-`
+`;
 
 const Sort = styled.select`
   background: transparent;
-`
+`;
 
 const Title = styled.p`
   font-size: 20px;
   margin: 0;
-`
+`;

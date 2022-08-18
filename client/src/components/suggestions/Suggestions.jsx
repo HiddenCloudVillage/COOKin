@@ -11,10 +11,6 @@ export default function Suggestions({
   userInfo,
   setUserInfo,
   setCurrentPage,
-  // page,
-  // setPage,
-  // openTile,
-  // setOpenTile,
 }) {
   const [excludeIngredients, setExcludeIngredients] = useContext(ExcludeContext);
   const [includeIngredients, setIncludeIngredients] = useContext(IncludeContext);
@@ -87,8 +83,6 @@ export default function Suggestions({
           setPage={setPage}
           openTile={openTile}
           setOpenTile={setOpenTile}
-          // includeIngredients={includeIngredients}
-          // excludeIngredients={excludeIngredients}
         />
       </Left>
       <Right>
