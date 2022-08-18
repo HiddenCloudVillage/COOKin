@@ -50,7 +50,7 @@ function GroceryStore() {
         options={options}
       >
         {stores.map((eachStore) => (
-          <Marker position={eachStore} />
+          <Marker position={eachStore} key={Math.floor(Math.random() * 20)} />
         ))}
       </GoogleMap>
     </LoadScript>
