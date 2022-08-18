@@ -76,6 +76,8 @@ const Info = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  font-size: 20px;
+  font-weight: bold;
 `;
 
 const Div = styled(Info)`
@@ -84,17 +86,16 @@ const Div = styled(Info)`
     transform: scale(1.01);
     opacity: 0.7;
   }
+  font-weight: bold;
 `;
 
 const Name = styled.div`
-  font-size: 20px;
-  font-weight: bold;
   background: ${(props) => props.theme.tilebg1};
   margin: 0;
   width: 25%;
 `;
 
 const Attribute = styled(Name)`
-  width: 15%;
+  width: 20%;
   text-align:center;
 `;

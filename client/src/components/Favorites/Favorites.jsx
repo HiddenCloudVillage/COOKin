@@ -72,10 +72,13 @@ export default function Favorites({
     <Page>
       <Top>
         <Title>Here are your favorite recipes.</Title>
-        <Sort onChange={(e) => handleChange(e)}>
-          <option value="alpha">alphabetical</option>
-          <option value="percent">percent ingredients</option>
-        </Sort>
+        <TopRight>
+          <Sp>Sort By: </Sp>
+          <Sort onChange={(e) => handleChange(e)}>
+            <option value="alpha">alphabetical</option>
+            <option value="percent">percent ingredients</option>
+          </Sort>
+        </TopRight>
       </Top>
       <Main>
         <RecipeList
@@ -109,22 +112,40 @@ const Page = styled.div`
 `;
 
 const Top = styled.div`
-  width: 70%;
+  width: 72%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  font-size: 20px;
 `;
 const Main = styled(Top)`
+  width: 70%;
+  margin-top: 1%;
   flex-direction: column;
   align-items: center;
 `;
 
 const Sort = styled.select`
   background: transparent;
+  font-size: 20px;
+  color: ${(props) => props.theme.text};
 `;
 
 const Title = styled.p`
   font-size: 20px;
   margin: 0;
 `;
+
+const TopRight = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const Sp = styled.span`
+  margin-right: 2%;
+  width: 40%;
+  font-size: 18px;
+`

@@ -23,14 +23,29 @@ export default function RecipeModal({
         <Top>
           <NameDiv>
             {isFavorite ? (
-              <StarIcon onClick={handleFavorite} />
-
+              <StarIcon
+                onClick={handleFavorite}
+                sx={[{ fontSize: 36 },
+                  {
+                    '&:hover': {
+                      opacity: 0.7,
+                      cursor: 'pointer',
+                    },
+                  }]}
+              />
             ) : (
-              <StarBorderOutlinedIcon onClick={handleFavorite} />
-
+              <StarBorderOutlinedIcon
+                onClick={handleFavorite}
+                sx={[{ fontSize: 36 },
+                  {
+                    '&:hover': {
+                      opacity: 0.7,
+                      cursor: 'pointer',
+                    },
+                  }]}
+              />
             )}
             <Title>{recipe.name}</Title>
-
           </NameDiv>
           <Title>
             {`${recipe.percent}%`}
@@ -116,6 +131,8 @@ const Top = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  cursor: default;
+  border-bottom: .5px solid;
 `;
 const Main = styled.div`
   width: 100%;
@@ -184,8 +201,8 @@ const Outer = styled.div`
   z-index: 200;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   opacity: 1;
   overflow: auto;
   background-color: ${(props) => props.theme.bgmodal1};
@@ -232,12 +249,9 @@ const Button = styled.button`
   }
 `;
 const NameDiv = styled.div`
-
   display: flex;
+  width: auto;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  //width: 100%;
-  //height: 10%;
-  //margin-bottom: 10px;
+  justify-content: flex-start;
 `;
