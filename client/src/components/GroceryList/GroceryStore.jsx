@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, LoadScript, usLoadScript } from '@react-google-maps/api';
-import mapKey from '../../lib/mapKey';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import styled from 'styled-components';
+import mapKey from '../../lib/mapKey';
+
+const axios = require('axios');
 
 function GroceryStore() {
   const [center, setCenter] = useState('');
-  // const [longitude, setLongitude] = useState('');
+  const [stores, setStores] = useState();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -13,20 +15,45 @@ function GroceryStore() {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       });
+      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${position.coords.latitude}%2C${position.coords.longitude}&radius=1500&type=store&keyword=grocery&key=${mapKey}`;
+      axios({
+        method: 'put',
+        url: '/getStores',
+        data: { url },
+      })
+        .then((res) => {
+          const storeArray = res.data.results.map(
+            (store) => store.geometry.location,
+          );
+          setStores(storeArray);
+        })
+        .catch((err) => console.log('🚨', err));
     });
   }, []);
 
+  const options = {
+    mapId: 'e0dcd433510d5496',
+  };
   const mapStyles = {
     height: '50vh',
     width: '100%',
   };
-
+  if (!stores) {
+    return null;
+  }
   return (
-    <StoreContainer>
-      <LoadScript googleMapsApiKey={mapKey}>
-        <GoogleMap mapContainerStyle={mapStyles} zoom={15} center={center} />
-      </LoadScript>
-    </StoreContainer>
+    <LoadScript googleMapsApiKey={mapKey}>
+      <GoogleMap
+        mapContainerStyle={mapStyles}
+        zoom={16}
+        center={center}
+        options={options}
+      >
+        {stores.map((eachStore) => (
+          <Marker position={eachStore} key={Math.floor(Math.random() * 20)} />
+        ))}
+      </GoogleMap>
+    </LoadScript>
   );
 }
 
@@ -37,4 +64,4 @@ const StoreContainer = styled.div`
   place-items: center;
   width: 100%;
   height: 100%;
-`
+`;
