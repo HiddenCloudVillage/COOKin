@@ -2,6 +2,8 @@
 import axios from 'axios';
 import React from 'react';
 import styled from 'styled-components';
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import RecipeModal from './RecipeModal';
 
 export default function OpenTile({
@@ -44,7 +46,17 @@ export default function OpenTile({
 
   return (
     <Tile>
-      <Name onClick={() => setOpenModal(true)}>{recipe.name}</Name>
+      <NameDiv>
+
+        <Name onClick={() => setOpenModal(true)}>{recipe.name}</Name>
+        {isFavorite ? (
+          <StarIcon onClick={handleFavorite} />
+
+        ) : (
+          <StarBorderOutlinedIcon onClick={handleFavorite} />
+
+        )}
+      </NameDiv>
       <TileBot>
         <Thumbnail src={recipe.thumbnail} alt={recipe.name} />
         <BotRight>
@@ -78,16 +90,6 @@ export default function OpenTile({
           </Buttons>
         </BotRight>
       </TileBot>
-      {isFavorite ? (
-        <button type="button" onClick={handleFavorite}>
-          Remove From Favorites
-        </button>
-      ) : (
-        <button type="button" onClick={handleFavorite}>
-          Add to Favorites
-        </button>
-
-      )}
     </Tile>
   );
 }
@@ -95,7 +97,7 @@ const Tile = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 85%;
+  width: 100%;
   min-height: 250px;
   padding: 2%;
   background: ${(props) => props.theme.tilebg1};
@@ -152,12 +154,12 @@ const Buttons = styled(TileBot)`
 const Button = styled.button`
   height: auto;
   width: 30%;
-  border-radius: 5%;
+  border-radius: 10px;
   border: 1px solid;
   padding: 10px;
   background: none;
-  color: ${(props) => props.theme.text2};
-  background-color: ${(props) => props.theme.tilebg2};
+  color: ${(props) => props.theme.buttontext};
+  background-color: ${(props) => props.theme.button2};
   &:hover{
     cursor: pointer;
     opacity: 70%;
@@ -173,9 +175,20 @@ const Name = styled.h3`
   margin-bottom: 2%;
   width: auto;
   overflow: auto;
-  border-bottom: 1px solid;
   cursor: default;
   &:hover{
     opacity: 70%;
   }
 `;
+const NameDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 2%;
+  background: ${(props) => props.theme.maintilebg};
+  border-bottom: 1px solid;
+  `;

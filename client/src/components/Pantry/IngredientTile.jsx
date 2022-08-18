@@ -21,23 +21,29 @@ function IngredientTile({
   if (isHeader) {
     return (
       <Header>
-        <Div>
+        <Info>
           <Name>Ingredient</Name>
-          <Attribute>Quantity</Attribute>
           <Attribute>Category</Attribute>
+          <Attribute>Quantity</Attribute>
           <Attribute>Expiration</Attribute>
-        </Div>
+        </Info>
         <AddIngredient userInfo={userInfo} setUserInfo={setUserInfo} />
       </Header>
     );
   }
+  const dating = ingredientInfo.e !== '' ? new Date(ingredientInfo.e) : '';
+  const modifiedDate = dating !== '' ? dating.setDate(dating.getDate() + 1) : '';
+  const ingredientExp = modifiedDate !== '' ? `${dating.toString().slice(4, 10)}, ${dating.toString().slice(13, 15)}` : '';
+  const currentDate = new Date();
+  const expiring = Date.parse(ingredientInfo.e) - Date.parse(currentDate) < 259200000;
+
   return (
     <Header>
       <Div>
         <Name onClick={handleItems}>{ingredient}</Name>
         <Attribute>{ingredientInfo.c}</Attribute>
         <Attribute>{ingredientInfo.q}</Attribute>
-        <Attribute>{ingredientInfo.e}</Attribute>
+        {expiring ? <Attribute style={{ color: 'red' }}>{ingredientExp}</Attribute> : <Attribute>{ingredientExp}</Attribute>}
       </Div>
       <EditIngredient ingredient={ingredient} ingredientInfo={ingredientInfo} />
     </Header>
@@ -63,21 +69,21 @@ const Header = styled.div`
   transition: all 0.3s ease-in-out;
 `;
 
-const Div = styled.div`
+const Info = styled.div`
   width: 75%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+`;
+
+const Div = styled(Info)`
   &:hover {
     cursor: pointer;
     transform: scale(1.01);
     opacity: 0.7;
   }
-`
-
-const Info = styled(Header)`
-
 `;
 
 const Name = styled.div`

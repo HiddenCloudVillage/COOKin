@@ -43,7 +43,7 @@ function EditForm({ ingredient, ingredientInfo, setShow }) {
           }}
         >
           <Label>
-            Name :
+            Ingredient :
             <input
               type="text"
               name="name"
@@ -74,13 +74,13 @@ function EditForm({ ingredient, ingredientInfo, setShow }) {
           <Label>
             Expiration :
             <input
-              type="text"
+              type="date"
               name="expiration"
               value={expiration}
               onChange={(e) => setExpiration(e.target.value)}
             />
           </Label>
-          <input type="submit" value="update" />
+          <Button type="submit">update</Button>
         </Form>
       </FormInner>
     </FormOuter>
@@ -148,4 +148,21 @@ const Label = styled.label`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-`
+`;
+
+const Button = styled.button`
+  height: auto;
+  width: 45%;
+  border-radius: 10px;
+  border: 1px solid;
+  padding: 3px;
+  background: none;
+  color: ${(props) => props.theme.text};
+  background-color: ${(props) => props.theme.button1};
+  &:hover{
+    cursor: pointer;
+    opacity: 70%;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
+`;

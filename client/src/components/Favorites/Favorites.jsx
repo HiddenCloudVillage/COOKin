@@ -71,22 +71,24 @@ export default function Favorites({
   return (
     <Page>
       <Top>
-        <h3>Sort By:</h3>
+        <Title>Here are your favorite recipes.</Title>
         <Sort onChange={(e) => handleChange(e)}>
           <option value="alpha">alphabetical</option>
           <option value="percent">percent ingredients</option>
         </Sort>
       </Top>
-      <RecipeList
-        userInfo={userInfo}
-        setUserInfo={setUserInfo}
-        recipes={fave}
-        setCurrentPage={setCurrentPage}
-        page={page}
-        setPage={setPage}
-        openTile={openTile}
-        setOpenTile={setOpenTile}
-      />
+      <Main>
+        <RecipeList
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          recipes={fave}
+          setCurrentPage={setCurrentPage}
+          page={page}
+          setPage={setPage}
+          openTile={openTile}
+          setOpenTile={setOpenTile}
+        />
+      </Main>
     </Page>
   );
 }
@@ -102,10 +104,20 @@ const Page = styled.div`
 const Top = styled.div`
   width: 70%;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+const Main = styled(Top)`
   flex-direction: column;
   align-items: center;
-`;
+`
 
 const Sort = styled.select`
   background: transparent;
+`
+
+const Title = styled.p`
+  font-size: 20px;
+  margin: 0;
 `

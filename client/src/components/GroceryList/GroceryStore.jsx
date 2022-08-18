@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import styled from 'styled-components';
 import mapKey from '../../lib/mapKey';
 
 const axios = require('axios');
@@ -35,7 +36,7 @@ function GroceryStore() {
   };
   const mapStyles = {
     height: '50vh',
-    width: '50%',
+    width: '100%',
   };
   if (!stores) {
     return null;
@@ -57,3 +58,10 @@ function GroceryStore() {
 }
 
 export default GroceryStore;
+
+const StoreContainer = styled.div`
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+`;

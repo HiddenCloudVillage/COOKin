@@ -48,6 +48,7 @@ const Container = styled.div`
   justify-content: space-evenly;
   width: 250px;
   height: 350px;
+  border-radius: 5px;
   background: ${(props) => props.theme.tilebg2};
 `;
 
