@@ -15,7 +15,7 @@ function GroceryStore() {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       });
-      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${position.coords.latitude}%2C${position.coords.longitude}&radius=1500&type=store&keyword=grocery&key=${mapKey}`;
+      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${position.coords.latitude}%2C${position.coords.longitude}&radius=500&type=grocery_or_supermarket&key=${mapKey}`;
       axios({
         method: 'put',
         url: '/getStores',
