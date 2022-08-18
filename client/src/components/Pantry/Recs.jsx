@@ -50,9 +50,6 @@ export default function Recs({
     <>
       {
         recipesWithFewestIngredientsMissing.length > 0 ? (
-          <div>
-
-            <h1>Recipes with fewest ingredients missing</h1>
             <div className="recipe-list">
               {recipesWithFewestIngredientsMissing.map((recipe) => (
                 <RecRecipeTile
@@ -66,7 +63,6 @@ export default function Recs({
                 />
               ))}
             </div>
-          </div>
         ) : (
           <div>
             <h1>No recipes with fewest ingredients missing</h1>

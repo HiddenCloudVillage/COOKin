@@ -118,6 +118,7 @@ export default function RecipeModal({
 const Title = styled.h1`
   font-size: 30px;
   margin: 0;
+  margin-left: 1%;
 `;
 
 const Subtitle = styled(Title)`
@@ -250,7 +251,7 @@ const Button = styled.button`
 `;
 const NameDiv = styled.div`
   display: flex;
-  width: auto;
+  width: 80%;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
