@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import IngredientList from './IngredientList';
 import AddIngredient from './AddIngredient';
 import UserIdContext from '../UserIdContext';
+import Recs from './Recs';
 
-function Pantry({ setCurrentPage }) {
+function Pantry({ setCurrentPage, recipes }) {
   const [userInfo, setUserInfo] = useContext(UserIdContext);
   useEffect(() => {}, [userInfo]);
   return (
@@ -19,6 +20,12 @@ function Pantry({ setCurrentPage }) {
         <div>Pantry Empty please enter items</div>
       )}
       {/* <AddIngredient userInfo={userInfo} setUserInfo={setUserInfo} /> */}
+      <Recs
+        userInfo={userInfo}
+        recipes={recipes}
+        setCurrentPage={setCurrentPage}
+        setUserInfo={setUserInfo}
+      />
     </Page>
   );
 }
