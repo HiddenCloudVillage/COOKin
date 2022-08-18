@@ -55,7 +55,7 @@ function Pantry({ setCurrentPage, recipes }) {
           />
         </Main>
       </Right>
-    </Page >
+    </Page>
   );
 }
 
