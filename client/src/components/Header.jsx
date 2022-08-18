@@ -60,7 +60,7 @@ export default Header;
 const TitleImg = styled.img`
   height: 40px;
   resize: auto;
-`
+`;
 const Img = styled.img`
   width: 40px;
   height: 40px;
@@ -82,6 +82,7 @@ const HeaderRight = styled.div`
 `;
 const HeaderContainer = styled.div`
   width: 100%;
+  height: 50px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -93,6 +94,7 @@ const HeaderContainer = styled.div`
 const HeaderLeft = styled.div`
   font-size: 35px;
   letter-spacing: -1.5px;
+  padding: 5px;
   width: 10%;
   height: 100%;
   display: flex;
@@ -105,6 +107,7 @@ const Nav = styled(HeaderLeft)`
   font-size: 20px;
   letter-spacing: 0px;
   width: 50%;
+  height: 100%;
 `;
 
 const Title = styled.p`
@@ -122,6 +125,9 @@ const PageDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   width: 25%;
   height: 100%;
   background: ${(props) => (props.currentPage === props.name ? props.theme.background : props.theme.headerbg)}
