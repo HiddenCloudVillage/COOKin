@@ -121,6 +121,7 @@ const Page = styled.div`
 
 const Top = styled.div`
   width: 72%;
+  min-width: 600px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -129,6 +130,7 @@ const Top = styled.div`
 `;
 const Main = styled(Top)`
   width: 70%;
+  min-width: 600px;
   margin-top: 1%;
   flex-direction: column;
   align-items: center;

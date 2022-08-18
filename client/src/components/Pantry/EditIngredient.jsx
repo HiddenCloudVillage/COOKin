@@ -51,6 +51,7 @@ const Edit = styled.div`
 const Button = styled.button`
   height: auto;
   width: 45%;
+  min-width: 50px;
   border-radius: 10px;
   border: 1px solid;
   padding: 3px;
