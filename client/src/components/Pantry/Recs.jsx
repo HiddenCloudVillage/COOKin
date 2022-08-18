@@ -2,7 +2,6 @@
 // import styled from 'styled-components';
 import React from 'react';
 import RecRecipeTile from './RecRecipeTile';
-import SuggestedModal from './SuggestedModal';
 
 export default function Recs({
   recipes, userInfo, setCurrentPage, setUserInfo,

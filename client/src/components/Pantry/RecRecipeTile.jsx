@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import SuggestedModal from './SuggestedModal';
+import RecipeModal from '../Suggestions/RecipeModal';
 
 export default function RecRecipeTile({
   recipe, itemsArr, userInfo, setUserInfo, setCurrentPage,
@@ -29,7 +29,7 @@ export default function RecRecipeTile({
 
   if (openModal) {
     return (
-      <SuggestedModal
+      <RecipeModal
         recipe={recipe}
         setOpenModal={setOpenModal}
         handleAddToList={handleAddToList}

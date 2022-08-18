@@ -197,7 +197,7 @@ const Outer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   z-index: 200;
   left: 0;
   top: 0;

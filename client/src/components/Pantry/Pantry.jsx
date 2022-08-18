@@ -18,7 +18,6 @@ function Pantry({ setCurrentPage, recipes }) {
       ) : (
         <div>Pantry Empty please enter items</div>
       )}
-      {/* <AddIngredient userInfo={userInfo} setUserInfo={setUserInfo} /> */}
       <Recs
         userInfo={userInfo}
         recipes={recipes}
