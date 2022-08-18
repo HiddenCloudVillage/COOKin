@@ -141,6 +141,7 @@ const Page = styled.div`
 
 const Left = styled.div`
   width: 60%;
+  min-width: 500px;
 `;
 
 const Right = styled.div`
@@ -149,6 +150,7 @@ const Right = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  min-width: 300px;
 `;
 
 const Title = styled.p`

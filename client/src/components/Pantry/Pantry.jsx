@@ -67,6 +67,7 @@ const Main = styled.div`
 
 const Left = styled.div`
   width: 50%;
+  min-width: 500px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -77,6 +78,7 @@ const Left = styled.div`
 const Right = styled.div`
   margin-left: 2%;
   width: 40%;
+  min-width: 400px;
   height: 100%;
   display: flex;
   flex-direction: column;

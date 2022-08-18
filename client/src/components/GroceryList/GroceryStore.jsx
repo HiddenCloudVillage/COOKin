@@ -25,6 +25,7 @@ function GroceryStore() {
           const storeArray = res.data.results.map(
             (store) => store.geometry.location,
           );
+          console.log('who do dis>', storeArray);
           setStores(storeArray);
         })
         .catch((err) => console.log('🚨', err));
@@ -39,10 +40,16 @@ function GroceryStore() {
     width: '100%',
   };
   if (!stores) {
-    return null;
+    return (
+      <>
+        <Title>Finding your nearest grocery stores...</Title>
+        <Spinner id="spinner" src="icons/spinner.gif" />
+      </>
+    )
   }
   return (
     <LoadScript googleMapsApiKey={mapKey}>
+      <Title>Here are your nearest grocery stores.</Title>
       <GoogleMap
         mapContainerStyle={mapStyles}
         zoom={16}
@@ -54,14 +61,28 @@ function GroceryStore() {
         ))}
       </GoogleMap>
     </LoadScript>
+
   );
 }
 
 export default GroceryStore;
+
+const Spinner = styled.img`
+  size: auto;
+  max-height: 70px;
+  background-color: transparent;
+`;
 
 const StoreContainer = styled.div`
   display: grid;
   place-items: center;
   width: 100%;
   height: 100%;
+`;
+
+const Title = styled.p`
+  font-size: 20px;
+  margin: 0;
+  margin-right: 1%;
+  margin-bottom: 3%;
 `;
