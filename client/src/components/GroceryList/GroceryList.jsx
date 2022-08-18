@@ -113,6 +113,7 @@ function GroceryList({ userInfo, setUserInfo }) {
       <Left>
         <Top>
           <Title>Here is your grocery list.</Title>
+          <InstructionsButton text="Ingredients on the list will be automatically crossed off your list if they already exist in your pantry. 1. To cross an item out on the list and add to your pantry, simply click the ingredient name. 2. To un-cross the ingredient and remove from the pantry, simply click the ingredient name. 3. To remove an item completely from your list, click the 'X' at the right of the list item." />
           <Buttons>
             <Button onClick={clearFullList} type="submit">
               Clear List
@@ -133,7 +134,6 @@ function GroceryList({ userInfo, setUserInfo }) {
               ))}
         </GroceryListCont>
 
-        <InstructionsButton text="example instructions on how to use things" />
       </Left>
       <Right>
         {show && (
