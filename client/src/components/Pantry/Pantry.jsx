@@ -6,12 +6,17 @@ import Recs from './Recs';
 
 function Pantry({ setCurrentPage, recipes }) {
   const [userInfo, setUserInfo] = useContext(UserIdContext);
-  useEffect(() => {}, [userInfo]);
+  useEffect(() => { }, [userInfo]);
+  if (userInfo.pantry === undefined) {
+    userInfo.pantry = {};
+  }
   return (
     <Page>
       <Left>
         <Top>
-          <Title>Here is your grocery list.</Title>
+          {Object.keys(userInfo.pantry).length > 0
+            ? <Title>Here is your grocery list.</Title>
+            : <Title>Here is your grocery list. Please add new items.</Title>}
         </Top>
         <Main>
           {userInfo.pantry && Object.keys(userInfo.pantry).length > 0 ? (
@@ -21,7 +26,13 @@ function Pantry({ setCurrentPage, recipes }) {
               setCurrentPage={setCurrentPage}
             />
           ) : (
-            <div>Pantry Empty please enter items</div>
+            <div>
+              <IngredientList
+                pantry={userInfo.pantry}
+                userInfo={userInfo}
+                setCurrentPage={setCurrentPage}
+              />
+            </div>
           )}
         </Main>
       </Left>
@@ -38,7 +49,7 @@ function Pantry({ setCurrentPage, recipes }) {
           />
         </Main>
       </Right>
-    </Page>
+    </Page >
   );
 }
 

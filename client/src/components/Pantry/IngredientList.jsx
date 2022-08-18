@@ -6,19 +6,17 @@ function IngredientList({ pantry, userInfo, setCurrentPage }) {
   const ingredientNames = Object.keys(pantry);
   return (
     <IngListContainer>
-      <IngList>
-        <IngredientTile ingredient="ingredient" isHeader />
-        {pantry
-          && ingredientNames.map((ingredient) => (
-            <IngredientTile
-              ingredient={ingredient}
-              key={ingredient}
-              userInfo={userInfo}
-              setCurrentPage={setCurrentPage}
-              ingredientInfo={pantry[ingredient]}
-            />
-          ))}
-      </IngList>
+      <IngredientTile ingredient="ingredient" isHeader />
+      {pantry
+        && ingredientNames.map((ingredient) => (
+          <IngredientTile
+            ingredient={ingredient}
+            key={ingredient}
+            userInfo={userInfo}
+            setCurrentPage={setCurrentPage}
+            ingredientInfo={pantry[ingredient]}
+          />
+        ))}
     </IngListContainer>
   );
 }
