@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import GroceryForm from './GroceryForm';
 import GroceryListItem from './GroceryListItem';
 import GroceryStore from './GroceryStore';
@@ -113,7 +113,11 @@ function GroceryList({ userInfo, setUserInfo }) {
       <Left>
         <Top>
           <Title>Here is your grocery list.</Title>
-          <InstructionsButton text="Ingredients on the list will be automatically crossed off your list if they already exist in your pantry. 1. To cross an item out on the list and add to your pantry, simply click the ingredient name. 2. To un-cross the ingredient and remove from the pantry, simply click the ingredient name. 3. To remove an item completely from your list, click the 'X' at the right of the list item." />
+          <InstructionsButton text="1. Ingredients on the list will be automatically crossed off your list if they already exist in your pantry.?
+          2. To cross an item out on the list and add to your pantry, simply click the ingredient name.?
+          3. To un-cross the ingredient and remove from the pantry, simply click the ingredient name.?
+          4. To remove an item completely from your list, click the 'X' at the right of the list item."
+          />
           <Buttons>
             <Button onClick={clearFullList} type="submit">
               Clear List
@@ -186,12 +190,18 @@ const MapDiv = styled.div`
 
 `;
 
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
 const Page = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-evenly;
+  animation-name: ${fadeIn};
+  animation-duration: 0.5s;
 `;
 
 const Top = styled.div`

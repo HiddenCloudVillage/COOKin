@@ -1,9 +1,10 @@
 /* eslint-disable dot-notation */
 /* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import star from './star.png';
 import RecipeList from '../Suggestions/RecipeList';
+import InstructionsButton from '../InstructionsButton';
 
 export default function Favorites({
   userInfo, recipes, setUserInfo, setCurrentPage,
@@ -72,10 +73,18 @@ export default function Favorites({
     <Page>
       <Top>
         <Title>Here are your favorite recipes.</Title>
-        <Sort onChange={(e) => handleChange(e)}>
-          <option value="alpha">alphabetical</option>
-          <option value="percent">percent ingredients</option>
-        </Sort>
+        <InstructionsButton text="1. Your Favorites will be listed below.?
+        2. To remove from your favorites list just click on the star next to the recipe name, or click the button in the expanded view.?
+        3. You may add to your grocery list with the add to the grocery list button!?
+        4. If you want to view the full recipe details, just click the expan button, or click on the recipe title"
+        />
+        <TopRight>
+          <Sp>Sort By: </Sp>
+          <Sort onChange={(e) => handleChange(e)}>
+            <option value="alpha">alphabetical</option>
+            <option value="percent">percent ingredients</option>
+          </Sort>
+        </TopRight>
       </Top>
       <Main>
         <RecipeList
@@ -93,31 +102,56 @@ export default function Favorites({
   );
 }
 
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
+
 const Page = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  animation-name: ${fadeIn};
+  animation-duration: 0.5s;
 `;
 
 const Top = styled.div`
-  width: 70%;
+  width: 72%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  font-size: 20px;
 `;
 const Main = styled(Top)`
+  width: 70%;
+  margin-top: 1%;
   flex-direction: column;
   align-items: center;
-`
+`;
 
 const Sort = styled.select`
   background: transparent;
-`
+  font-size: 20px;
+  color: ${(props) => props.theme.text};
+`;
 
 const Title = styled.p`
   font-size: 20px;
   margin: 0;
+`;
+
+const TopRight = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const Sp = styled.span`
+  margin-right: 2%;
+  width: 40%;
+  font-size: 18px;
 `
