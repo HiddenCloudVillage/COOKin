@@ -8,12 +8,14 @@ export default function VariableWidth({ text }) {
   const longText = `${text}`;
   const [display, setDisplay] = useContext(HelpContext);
 
+  const newText = text.split('?').map((str) => <p>{str}</p>);
+
   return (
     <div>
       {display ? (
         <Tooltip
           arrow
-          title={<span style={{ fontSize: '14px' }}>{longText}</span>}
+          title={<span style={{ fontSize: '14px' }}>{newText}</span>}
         >
           <Button sx={{
             p: 0, m: 0, fontSize: '12px', minWidth: '0px',
