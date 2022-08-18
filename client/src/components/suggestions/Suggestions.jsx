@@ -13,6 +13,7 @@ export default function Suggestions({
   setUserInfo,
   setCurrentPage,
 }) {
+  const [video, setVideo] = useState(false);
   const [excludeIngredients, setExcludeIngredients] = useContext(ExcludeContext);
   const [includeIngredients, setIncludeIngredients] = useContext(IncludeContext);
   const [page, setPage] = useState(0);
@@ -73,44 +74,53 @@ export default function Suggestions({
     return recipesWithPercent;
   };
   return (
-    <Page>
-      <Left>
-        <Top>
-          <Title>Here are your suggestions.</Title>
-          <InstructionsButton text="1. Navigate the recipes below to see your recipes weighted by highest percentage items you can currently cook based off whats in your pantry.?
+    <>
+      <Page>
+        <Left>
+          <Top>
+            <Title>Here are your suggestions.</Title>
+            <InstructionsButton text="1. Navigate the recipes below to see your recipes weighted by highest percentage items you can currently cook based off whats in your pantry.?
           2. You may see the full recipe details by clicked the expan button, or add the ingredients to your grocery list by clicking the add to grocery list button.?
           3. The include boxes to the right allow for filtering by certain ingredients, or excluding certain ingredients from the recipes displayed.?
           4. If you want to Favorite a recipe, just click on the star next to the recipe name, this will save it to your favorites list!"
+            />
+          </Top>
+          <RecipeList
+            userInfo={userInfo}
+            setUserInfo={setUserInfo}
+            recipes={filterRecipes()}
+            setCurrentPage={setCurrentPage}
+            page={page}
+            setPage={setPage}
+            openTile={openTile}
+            setOpenTile={setOpenTile}
           />
-        </Top>
-        <RecipeList
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
-          recipes={filterRecipes()}
-          setCurrentPage={setCurrentPage}
-          page={page}
-          setPage={setPage}
-          openTile={openTile}
-          setOpenTile={setOpenTile}
-        />
-      </Left>
-      <Right>
-        <IncludeIngredient
-          inclusion={includeIngredients}
-          setInclusion={setIncludeIngredients}
-          setPage={setPage}
-          openTile={openTile}
-          setOpenTile={setOpenTile}
-        />
-        <ExcludeIngredient
-          exclusion={excludeIngredients}
-          setExclusion={setExcludeIngredients}
-          setPage={setPage}
-          openTile={openTile}
-          setOpenTile={setOpenTile}
-        />
-      </Right>
-    </Page>
+        </Left>
+        <Right>
+          <IncludeIngredient
+            inclusion={includeIngredients}
+            setInclusion={setIncludeIngredients}
+            setPage={setPage}
+            openTile={openTile}
+            setOpenTile={setOpenTile}
+          />
+          <ExcludeIngredient
+            exclusion={excludeIngredients}
+            setExclusion={setExcludeIngredients}
+            setPage={setPage}
+            openTile={openTile}
+            setOpenTile={setOpenTile}
+          />
+        </Right>
+      </Page>
+      <button type="button" onClick={() => setVideo(!video)}>
+        {video ? 'Hide Video' : 'Show Video'}
+      </button>
+      {video && (
+      <CallFrame src="https://cookin.whereby.com/0e2801cb-a67a-4c5e-a86f-5de5dea72877" allow="camera; microphone; fullscreen; speaker; display-capture" />
+      )}
+
+    </>
   );
 }
 
@@ -154,4 +164,11 @@ const Top = styled.div`
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 2%;
+`;
+const CallFrame= styled.iframe`
+  width: 50%;
+  height: 50%;
+  border: none;
+  margin: 0;
+  padding: 0;
 `;
