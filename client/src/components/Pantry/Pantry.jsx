@@ -18,10 +18,7 @@ function Pantry({ setCurrentPage, recipes }) {
           {Object.keys(userInfo.pantry).length > 0
             ? <Title>Here is your grocery list.</Title>
             : <Title>Here is your grocery list. Please add new items.</Title>}
-<<<<<<< HEAD
           <InstructionsButton text="Here is a list of items in your pantry.\? To manually add an item, click the 'Add Ingredient' button and either type or select from the ingredient options.? The amount, category, and expiration dates are optional inputs that you can also select.? Ingredients that are within 3 days of the expiration date will be highlighted in red." />
-=======
->>>>>>> d3a4513 (fixed some pantry formatting isues when no items were inside of pantry)
         </Top>
         <Main>
           {userInfo.pantry && Object.keys(userInfo.pantry).length > 0 ? (
