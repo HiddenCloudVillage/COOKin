@@ -3,6 +3,10 @@ const express = require('express');
 
 const app = express();
 const port = process.env.PORT || 3000;
+const apiBaseUrl = process.env.API_BASE_URL;
+const oauth2BaseUrl = process.env.OAUTH2_BASE_URL;
+const clientId = process.env.CLIENT_ID;
+const redirectUrl = process.env.REDIRECT_URL;
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
@@ -18,12 +22,15 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 // serve index file
 
+
 // route for user login ### find one and update may not return anything on first login
 app.post('/login', (req, res) => {
   controllers.getUser(req).then((user) => {
     res.send(user);
   });
 });
+
+// Kroger Search
 
 // edit pantry
 app.put('/pantry', (req, res) => {
