@@ -12,7 +12,10 @@ export const lightTheme = {
   bgmodal2: 'rgba(0, 0, 0, 0.2)',
   button1: '#e9edc9',
   button2: '#d4a373',
+  loginbutton: '#d4a373',
   buttontext: '#fefae0',
+  logintitle: 'icons/cookin1.png',
+  headertitle: 'icons/cookin4.png',
 
 };
 
@@ -34,5 +37,8 @@ export const darkTheme = {
   bgmodal2: 'rgba(1, 1, 1, 0.2)',
   button1: '#262833',
   button2: '#262833',
+  loginbutton: '#d4a373',
   buttontext: '#fefae0',
+  logintitle: 'icons/cookin1.png',
+  headertitle: 'icons/cookin1.png',
 };
