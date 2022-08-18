@@ -30,7 +30,6 @@ const Tile = styled.div`
   }
 `;
 const Name = styled.div`
-  /* top: -40%; */
   font-size: 20px;
   font-weight: bold;
   background: ${(props) => props.theme.tilebg1};
@@ -39,4 +38,4 @@ const Name = styled.div`
 
 const Perc = styled(Name)`
 
-`
+`;

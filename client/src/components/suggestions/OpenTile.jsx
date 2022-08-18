@@ -46,28 +46,54 @@ export default function OpenTile({
 
   return (
     <Tile>
-      <NameDiv>
+      <Title>
+        <NameDiv>
+          {isFavorite ? (
+            <StarIcon
+              onClick={handleFavorite}
+              sx={[{ fontSize: 32 },
+                {
+                  '&:hover': {
+                    opacity: 0.7,
+                    cursor: 'pointer',
+                  },
+                }]}
+            />
+          ) : (
+            <StarBorderOutlinedIcon
+              onClick={handleFavorite}
+              sx={[{ fontSize: 32 },
+                {
+                  '&:hover': {
+                    opacity: 0.7,
+                    cursor: 'pointer',
+                  },
+                }]}
+            />
+          )}
+          <Name onClick={() => setOpenModal(true)}>
+            {recipe.name}
+          </Name>
+        </NameDiv>
+        <NameDiv>
 
-        <Name onClick={() => setOpenModal(true)}>{recipe.name}</Name>
-        {isFavorite ? (
-          <StarIcon onClick={handleFavorite} />
-
-        ) : (
-          <StarBorderOutlinedIcon onClick={handleFavorite} />
-
-        )}
-      </NameDiv>
+          <Name>
+            {recipe.percent}
+            %
+          </Name>
+        </NameDiv>
+      </Title>
       <TileBot>
         <Thumbnail src={recipe.thumbnail} alt={recipe.name} />
         <BotRight>
-          <Perc>
+          <Sp>
+            This recipe matches
+            {' '}
             {recipe.percent}
-            %
-            <Sp>match of the ingredients in your pantry</Sp>
-          </Perc>
+            % of the ingredients in your pantry including,
+          </Sp>
 
           <Ingredients>
-            <Sp>including</Sp>
             <ul>
               {recipe.ingredients.slice(0, 4).map((ingredient) => (
                 <li key={ingredient.ingredientName}>
@@ -125,11 +151,6 @@ const BotRight = styled.div`
   height: 100%;
 `;
 
-const Perc = styled.p`
-  margin: 0;
-  font-size: 30px;
-  font-weight: bold;
-`;
 const Sp = styled.span`
   margin-left: 3%;
   font-size: 15px;
@@ -169,18 +190,12 @@ const Button = styled.button`
 const Name = styled.h3`
   font-weight: bold;
   font-size: 25px;
-  display:block;
   background: ${(props) => props.theme.maintilebg};
   margin: 0;
-  margin-bottom: 2%;
   width: auto;
-  overflow: auto;
   cursor: default;
-  &:hover{
-    opacity: 70%;
-  }
 `;
-const NameDiv = styled.div`
+const Title = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -190,5 +205,14 @@ const NameDiv = styled.div`
   padding: 0;
   margin-bottom: 2%;
   background: ${(props) => props.theme.maintilebg};
-  border-bottom: 1px solid;
+  border-bottom: .5px solid;
   `;
+
+const NameDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: auto;
+  justify-content: flex-start;
+  margin-bottom: 1%;
+`;
