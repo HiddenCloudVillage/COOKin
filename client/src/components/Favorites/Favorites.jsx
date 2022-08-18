@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import star from './star.png';
 import RecipeList from '../Suggestions/RecipeList';
+import InstructionsButton from '../InstructionsButton';
 
 export default function Favorites({
   userInfo, recipes, setUserInfo, setCurrentPage,
@@ -72,6 +73,11 @@ export default function Favorites({
     <Page>
       <Top>
         <Title>Here are your favorite recipes.</Title>
+        <InstructionsButton text="1. Your Favorites will be listed below.?
+        2. To remove from your favorites list just click on the star next to the recipe name, or click the button in the expanded view.?
+        3. You may add to your grocery list with the add to the grocery list button!?
+        4. If you want to view the full recipe details, just click the expan button, or click on the recipe title"
+        />
         <TopRight>
           <Sp>Sort By: </Sp>
           <Sort onChange={(e) => handleChange(e)}>
