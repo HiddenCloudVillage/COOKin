@@ -31,7 +31,7 @@ function Pantry({ setCurrentPage, recipes }) {
         <Top>
           <Title>
             Recommendations
-            <InstructionsButton text="Here is a list of recipes that you almost have all of the ingredients for.? By clicking the recipe, you can see what ingredients you are still missing. ?Click view to view the entire recipe." />
+            <InstructionsButton text="Here is a list of recipes that you almost have all of the ingredients for.? By clicking the recipe, you can see what ingredients you are still missing. ?Click 'view' to view the entire recipe." />
           </Title>
         </Top>
         <Main>
