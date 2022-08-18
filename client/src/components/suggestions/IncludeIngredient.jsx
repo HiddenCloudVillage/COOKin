@@ -43,6 +43,7 @@ export default function IncludeIngredient({ inclusion, setInclusion, setPage, se
 }
 
 const Container = styled.div`
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,7 +70,6 @@ const P = styled.p`
 `;
 
 const InnerContainer = styled.div`
-  margin-top: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
