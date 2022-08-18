@@ -15,8 +15,11 @@ function Pantry({ setCurrentPage, recipes }) {
     <Page>
       <Left>
         <Top>
+<<<<<<< HEAD
           <Title>Here is your grocery list.</Title>
           <InstructionsButton text="Here is a list of items in your pantry.\? To manually add an item, click the 'Add Ingredient' button and either type or select from the ingredient options.? The amount, category, and expiration dates are optional inputs that you can also select.? Ingredients that are within 3 days of the expiration date will be highlighted in red." />
+=======
+>>>>>>> 26f3d1ebf5433d9704d8b3800a7f304009f70c00
           {Object.keys(userInfo.pantry).length > 0
             ? <Title>Here is your grocery list.</Title>
             : <Title>Here is your grocery list. Please add new items.</Title>}
@@ -55,7 +58,7 @@ function Pantry({ setCurrentPage, recipes }) {
           />
         </Main>
       </Right>
-    </Page>
+    </Page >
   );
 }
 
