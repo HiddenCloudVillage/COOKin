@@ -31,8 +31,8 @@ function Pantry({ setCurrentPage, recipes }) {
         <Top>
           <Title>
             Recommendations
-            <InstructionsButton text="Here is a list of recipes that you almost have all of the ingredients for.? By clicking the recipe, you can see what ingredients you are still missing. ?Click 'view' to view the entire recipe." />
           </Title>
+          <InstructionsButton text="Here is a list of recipes that you almost have all of the ingredients for.? By clicking the recipe, you can see what ingredients you are still missing. ?Click 'view' to view the entire recipe." />
         </Top>
         <Main>
           <Recs
@@ -78,12 +78,13 @@ const Top = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;
 
 const Title = styled.p`
   font-size: 20px;
   margin: 0;
+  margin-right: 1%;
 `;
 
 const fadeIn = keyframes`

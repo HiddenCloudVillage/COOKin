@@ -217,6 +217,7 @@ const Top = styled.div`
 const Title = styled.p`
   font-size: 20px;
   margin: 0;
+  margin-right: 1%;
 `;
 
 const Buttons = styled.div`

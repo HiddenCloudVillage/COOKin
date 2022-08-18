@@ -143,6 +143,7 @@ const Sort = styled.select`
 const Title = styled.p`
   font-size: 20px;
   margin: 0;
+  margin-right: 1%;
 `;
 
 const TopRight = styled.div`
