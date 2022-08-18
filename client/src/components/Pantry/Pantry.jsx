@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import IngredientList from './IngredientList';
 import UserIdContext from '../UserIdContext';
 import Recs from './Recs';
+import InstructionsButton from '../InstructionsButton';
 
 function Pantry({ setCurrentPage, recipes }) {
   const [userInfo, setUserInfo] = useContext(UserIdContext);
@@ -12,6 +13,7 @@ function Pantry({ setCurrentPage, recipes }) {
       <Left>
         <Top>
           <Title>Here is your grocery list.</Title>
+          <InstructionsButton text="Here is a list of items in your pantry. To manually add an item, click the 'Add Ingredient' button and either type or select from the ingredient options. The amount, category, and expiration dates are optional inputs that you can also select. Ingredients that are within 3 days of the expiration date will be highlighted in red." />
         </Top>
         <Main>
           {userInfo.pantry && Object.keys(userInfo.pantry).length > 0 ? (
@@ -27,7 +29,10 @@ function Pantry({ setCurrentPage, recipes }) {
       </Left>
       <Right>
         <Top>
-          <Title>Recommendations</Title>
+          <Title>
+            Recommendations
+            <InstructionsButton text="Here is a list of recipes that you almost have all of the ingredients for. By clicking the recipe, you can see what ingredients you are still missing. Click view to view the entire recipe." />
+          </Title>
         </Top>
         <Main>
           <Recs
