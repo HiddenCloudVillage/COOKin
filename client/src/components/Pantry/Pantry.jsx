@@ -36,6 +36,9 @@ const Page = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
+<<<<<<< HEAD
   animation-name: ${fadeIn};
   animation-duration: 0.5s;
+=======
+>>>>>>> dev
 `;
