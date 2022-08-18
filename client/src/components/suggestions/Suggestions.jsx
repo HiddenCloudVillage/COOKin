@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import RecipeList from './RecipeList';
 import IncludeIngredient from './IncludeIngredient';
 import ExcludeIngredient from './ExcludeIngredient';
@@ -11,10 +11,6 @@ export default function Suggestions({
   userInfo,
   setUserInfo,
   setCurrentPage,
-  // page,
-  // setPage,
-  // openTile,
-  // setOpenTile,
 }) {
   const [excludeIngredients, setExcludeIngredients] = useContext(ExcludeContext);
   const [includeIngredients, setIncludeIngredients] = useContext(IncludeContext);
@@ -87,8 +83,6 @@ export default function Suggestions({
           setPage={setPage}
           openTile={openTile}
           setOpenTile={setOpenTile}
-          // includeIngredients={includeIngredients}
-          // excludeIngredients={excludeIngredients}
         />
       </Left>
       <Right>
@@ -111,12 +105,19 @@ export default function Suggestions({
   );
 }
 
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
+
 const Page = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-evenly;
+  animation-name: ${fadeIn};
+  animation-duration: 0.5s;
 `;
 
 const Left = styled.div`
