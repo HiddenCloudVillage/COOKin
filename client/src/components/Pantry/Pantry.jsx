@@ -7,7 +7,7 @@ import InstructionsButton from '../InstructionsButton';
 
 function Pantry({ setCurrentPage, recipes }) {
   const [userInfo, setUserInfo] = useContext(UserIdContext);
-  useEffect(() => { }, [userInfo]);
+  useEffect(() => {}, [userInfo]);
   if (userInfo.pantry === undefined) {
     userInfo.pantry = {};
   }
@@ -40,9 +40,7 @@ function Pantry({ setCurrentPage, recipes }) {
       </Left>
       <Right>
         <Top>
-          <Title>
-            Recommendations
-          </Title>
+          <Title>Recommendations</Title>
           <InstructionsButton text="Here is a list of recipes that you almost have all of the ingredients for.? By clicking the recipe, you can see what ingredients you are still missing. ?Click 'view' to view the entire recipe." />
         </Top>
         <Main>

@@ -5,7 +5,10 @@ import styled from 'styled-components';
 import RecRecipeTile from './RecRecipeTile';
 
 export default function Recs({
-  recipes, userInfo, setCurrentPage, setUserInfo,
+  recipes,
+  userInfo,
+  setCurrentPage,
+  setUserInfo,
 }) {
   const itemsInPantryAndGroceryList = new Set();
   const pantry = userInfo.pantry ? Object.keys(userInfo.pantry) : [];
@@ -22,30 +25,36 @@ export default function Recs({
 
   const itemsArr = Array.from(itemsInPantryAndGroceryList);
 
-  const recipesWithPercent = recipes.map((recipe) => {
-    const recipeIngredients = recipe.ingredients.map(
-      (ingredient) => ingredient.ingredientName,
-    );
-    const recipePercent = recipeIngredients.reduce((acc, ingredient) => {
-      if (itemsArr.includes(ingredient)) {
-        return acc + 1;
-      }
-      return acc;
-    }, 0);
-    const percent = Math.floor(
-      (recipePercent / recipeIngredients.length) * 100,
-    );
-    return { ...recipe, percent };
-  }).sort((a, b) => b.percent - a.percent).filter((recipe) => recipe.percent < 100).slice(0, 2);
-  const recipesWithFewestIngredientsMissing = recipesWithPercent.filter((recipe) => {
-    let missingIngredients = 0;
-    recipe.ingredients.forEach((ingredient) => {
-      if (!itemsArr.includes(ingredient.ingredientName)) {
-        missingIngredients += 1;
-      }
-    });
-    return missingIngredients < 6;
-  });
+  const recipesWithPercent = recipes
+    .map((recipe) => {
+      const recipeIngredients = recipe.ingredients.map(
+        (ingredient) => ingredient.ingredientName,
+      );
+      const recipePercent = recipeIngredients.reduce((acc, ingredient) => {
+        if (itemsArr.includes(ingredient)) {
+          return acc + 1;
+        }
+        return acc;
+      }, 0);
+      const percent = Math.floor(
+        (recipePercent / recipeIngredients.length) * 100,
+      );
+      return { ...recipe, percent };
+    })
+    .sort((a, b) => b.percent - a.percent)
+    .filter((recipe) => recipe.percent < 100)
+    .slice(0, 2);
+  const recipesWithFewestIngredientsMissing = recipesWithPercent.filter(
+    (recipe) => {
+      let missingIngredients = 0;
+      recipe.ingredients.forEach((ingredient) => {
+        if (!itemsArr.includes(ingredient.ingredientName)) {
+          missingIngredients += 1;
+        }
+      });
+      return missingIngredients < 6;
+    },
+  );
 
   return (
     <>
