@@ -94,6 +94,7 @@ function Home({ user, currentPage, setCurrentPage }) {
                 userInfo={userInfo}
                 setUserInfo={setUserInfo}
                 setCurrentPage={setCurrentPage}
+                recipes={recipes}
               />
             )}
           </div>

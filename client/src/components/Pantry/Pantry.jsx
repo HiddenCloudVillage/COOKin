@@ -7,7 +7,7 @@ import InstructionsButton from '../InstructionsButton';
 
 function Pantry({ setCurrentPage, recipes }) {
   const [userInfo, setUserInfo] = useContext(UserIdContext);
-  useEffect(() => { }, [userInfo]);
+  useEffect(() => {}, [userInfo]);
   if (userInfo.pantry === undefined) {
     userInfo.pantry = {};
   }
@@ -15,9 +15,11 @@ function Pantry({ setCurrentPage, recipes }) {
     <Page>
       <Left>
         <Top>
-          {Object.keys(userInfo.pantry).length > 0
-            ? <Title>Here is your grocery list.</Title>
-            : <Title>Here is your grocery list. Please add new items.</Title>}
+          {Object.keys(userInfo.pantry).length > 0 ? (
+            <Title>Here is your grocery list.</Title>
+          ) : (
+            <Title>Here is your grocery list. Please add new items.</Title>
+          )}
           <InstructionsButton text="Here is a list of items in your pantry.\? To manually add an item, click the 'Add Ingredient' button and either type or select from the ingredient options.? The amount, category, and expiration dates are optional inputs that you can also select.? Ingredients that are within 3 days of the expiration date will be highlighted in red." />
         </Top>
         <Main>
@@ -40,9 +42,7 @@ function Pantry({ setCurrentPage, recipes }) {
       </Left>
       <Right>
         <Top>
-          <Title>
-            Recommendations
-          </Title>
+          <Title>Recommendations</Title>
           <InstructionsButton text="Here is a list of recipes that you almost have all of the ingredients for.? By clicking the recipe, you can see what ingredients you are still missing. ?Click 'view' to view the entire recipe." />
         </Top>
         <Main>
@@ -54,7 +54,7 @@ function Pantry({ setCurrentPage, recipes }) {
           />
         </Main>
       </Right>
-    </Page >
+    </Page>
   );
 }
 
