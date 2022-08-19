@@ -7,6 +7,7 @@ import {
 } from '@react-google-maps/api';
 import styled from 'styled-components';
 import mapKey from '../../lib/mapKey';
+import image from '../../../dist/icons/COOkit4.svg';
 
 const axios = require('axios');
 
@@ -70,6 +71,7 @@ function GroceryStore() {
               setName(eachStore.name);
             }}
             position={eachStore.geometry.location}
+            icon={image}
             key={Math.floor(Math.random() * 20)}
           />
         ))}
