@@ -54,7 +54,7 @@ function Pantry({ setCurrentPage, recipes }) {
           />
         </Main>
       </Right>
-    </Page >
+    </Page>
   );
 }
 
@@ -110,7 +110,7 @@ const Page = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: center;
   animation-name: ${fadeIn};
   animation-duration: 0.5s;
   padding: 2%;
