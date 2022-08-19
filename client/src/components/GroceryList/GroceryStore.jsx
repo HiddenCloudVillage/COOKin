@@ -78,10 +78,10 @@ function GroceryStore() {
             position={selected}
             onCloseClick={() => setSelected(null)}
           >
-            <div>
+            <StoreInfo>
               <h2>{name}</h2>
               <p>{vicinity}</p>
-            </div>
+            </StoreInfo>
           </InfoWindow>
         ) : null}
       </GoogleMap>
@@ -90,6 +90,10 @@ function GroceryStore() {
 }
 
 export default GroceryStore;
+
+const StoreInfo = styled.div`
+  color: #606c38
+`;
 
 const Spinner = styled.img`
   size: auto;
