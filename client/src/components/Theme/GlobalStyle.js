@@ -17,6 +17,9 @@ const GlobalStyle = createGlobalStyle`
   #headertitle {
     content: url(${({ theme }) => theme.headertitle});
   }
+  /* .css-1565ph5-MuiButtonBase-root-MuiButton-root {
+    color: ${({ theme }) => theme.text} !important;
+  } */
 `;
 
 export default GlobalStyle;

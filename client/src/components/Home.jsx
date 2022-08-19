@@ -63,8 +63,8 @@ function Home({ user, currentPage, setCurrentPage }) {
         <ExcludeContext.Provider
           value={[excludeIngredients, setExcludeIngredients]}
         >
-          <div>
-            <h3>{`what's cookin, ${user.displayName}?`}</h3>
+          <Container>
+            {/* <h3>{`what's cookin, ${user.displayName}?`}</h3> */}
             {currentPage === 'Suggestions' && (
               <Suggestions
                 userInfo={userInfo}
@@ -97,7 +97,8 @@ function Home({ user, currentPage, setCurrentPage }) {
                 recipes={recipes}
               />
             )}
-          </div>
+            {/* <Guy id="ayo" src="icons/COOkit3.svg" /> */}
+          </Container>
         </ExcludeContext.Provider>
       </IncludeContext.Provider>
     </UserIdContext.Provider>
@@ -105,3 +106,21 @@ function Home({ user, currentPage, setCurrentPage }) {
 }
 
 export default Home;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+`;
+
+const Guy = styled.img`
+  position: fixed;
+  height: 20%;
+  width: 20%;
+  opacity: 40%;
+  z-index:-1;
+  transform: rotate(-10);
+`;

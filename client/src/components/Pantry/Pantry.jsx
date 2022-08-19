@@ -15,11 +15,9 @@ function Pantry({ setCurrentPage, recipes }) {
     <Page>
       <Left>
         <Top>
-          {Object.keys(userInfo.pantry).length > 0 ? (
-            <Title>Here is your grocery list.</Title>
-          ) : (
-            <Title>Here is your grocery list. Please add new items.</Title>
-          )}
+          {Object.keys(userInfo.pantry).length > 0
+            ? <Title>Here is your pantry</Title>
+            : <Title>Here is your pantry. Please add new items.</Title>}
           <InstructionsButton text="Here is a list of items in your pantry.\? To manually add an item, click the 'Add Ingredient' button and either type or select from the ingredient options.? The amount, category, and expiration dates are optional inputs that you can also select.? Ingredients that are within 3 days of the expiration date will be highlighted in red." />
         </Top>
         <Main>
@@ -66,7 +64,7 @@ const Main = styled.div`
 `;
 
 const Left = styled.div`
-  width: 50%;
+  width: 60%;
   min-width: 500px;
   height: 100%;
   display: flex;
@@ -76,8 +74,8 @@ const Left = styled.div`
 `;
 
 const Right = styled.div`
-  margin-left: 2%;
-  width: 40%;
+  /* margin-left: 3%; */
+  width: 30%;
   min-width: 400px;
   height: 100%;
   display: flex;
@@ -107,11 +105,14 @@ const fadeIn = keyframes`
 
 const Page = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: space-between;
   animation-name: ${fadeIn};
   animation-duration: 0.5s;
   padding: 2%;
+  margin-left: 5%;
+  overflow-x: hidden;
 `;
