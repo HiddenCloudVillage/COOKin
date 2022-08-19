@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { auth } from '../lib/firebase';
 
 const pageTitles = ['Suggestions', 'Favorites', 'Grocery List', 'Pantry'];
@@ -17,12 +17,16 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme, setDis
         });
     }
   };
+
+  const refresh = () => {
+    window.location.reload();
+  };
   const handlePageChange = (e) => {
     setCurrentPage(e.target.id);
   };
   return (
     <HeaderContainer>
-      <HeaderLeft>
+      <HeaderLeft onClick={refresh}>
         <Logo src="icons/COOkit3.svg" />
         <TitleImg id="headertitle" />
       </HeaderLeft>
@@ -56,10 +60,17 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme, setDis
 
 export default Header;
 
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
 const Logo = styled.img`
   height: 40px;
   resize: auto;
   margin-right: 5px;
+  animation: ${spin};
+  animation-duration: 2s;
 `;
 const TitleImg = styled.img`
   height: 40px;
@@ -84,6 +95,10 @@ const HeaderLeft = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  &:hover {
+    cursor: pointer;
+    opacity: 70%;
+  }
 `;
 
 const HeaderRight = styled.div`

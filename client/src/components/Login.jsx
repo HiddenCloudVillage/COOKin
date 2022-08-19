@@ -51,7 +51,8 @@ const LoginContainer = styled.div`
   display: grid;
   place-items: center;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
+  overflow-y: hidden;
 `;
 
 const LoginInnerContainer = styled.div`
