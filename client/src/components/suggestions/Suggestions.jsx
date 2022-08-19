@@ -113,11 +113,11 @@ export default function Suggestions({
             openTile={openTile}
             setOpenTile={setOpenTile}
           />
+          <Button type="button" onClick={() => setVideo(!video)}>
+            {video ? 'Hide Video' : 'Show Video'}
+          </Button>
         </Right>
       </Page>
-      <button type="button" onClick={() => setVideo(!video)}>
-        {video ? 'Hide Video' : 'Show Video'}
-      </button>
       {video && (
         <VideoModal setVideo={setVideo} />
       )}
@@ -168,4 +168,22 @@ const Top = styled.div`
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 2%;
+`;
+
+
+const Button = styled.button`
+  height: auto;
+  width: 250px;
+  border-radius: 10px;
+  border: 1px solid;
+  padding: 10px;
+  background: none;
+  color: ${(props) => props.theme.buttontext};
+  background-color: ${(props) => props.theme.button2};
+  &:hover{
+    cursor: pointer;
+    opacity: 70%;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
 `;

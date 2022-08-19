@@ -52,6 +52,7 @@ const Container = styled.div`
   padding: 20px 0px 20px 0px;
   border-radius: 10px;
   background: ${(props) => props.theme.tilebg2};
+  margin-bottom: 3%;
 `;
 
 const Row = styled.div`
