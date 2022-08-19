@@ -73,7 +73,7 @@ function EditForm({ ingredient, ingredientInfo, setShow }) {
           </Label>
           <Label>
             Expiration :
-            <input
+            <DateInput
               type="date"
               name="expiration"
               value={expiration}
@@ -88,6 +88,11 @@ function EditForm({ ingredient, ingredientInfo, setShow }) {
 }
 
 export default EditForm;
+
+const DateInput = styled.input`
+  font-size: inherit;
+  font: inherit;
+`;
 
 const fadeIn = keyframes`
   0% { opacity: 0; }
