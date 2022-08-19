@@ -15,7 +15,7 @@ function App() {
   const [user, loading] = useAuthState(auth);
   // const [theme, setTheme] = useState('light');
   const [theme, setTheme] = useDarkMode();
-  const [display, setDisplay] = useState(false);
+  const [display, setDisplay] = useState(true);
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
@@ -59,13 +59,13 @@ const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 `;
 
 const MainDiv = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

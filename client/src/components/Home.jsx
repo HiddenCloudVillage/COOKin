@@ -28,8 +28,6 @@ function Home({ user, currentPage, setCurrentPage }) {
       .catch((err) => console.log('err', err));
   };
   const getRecipes = () => {
-    // some sort of request
-    // only happens once
     axios
       .get('/recipes')
       .then((response) => {
@@ -38,17 +36,10 @@ function Home({ user, currentPage, setCurrentPage }) {
       .catch((err) => console.log('err', err));
   };
 
-  const filterRecipes = () => {
-    // happens on ingredients/userinfo
-  };
   useEffect(() => {
     checkInUser(user);
     getRecipes();
   }, []);
-
-  useEffect(() => {
-    filterRecipes();
-  }, [userInfo]);
 
   if (!userInfo.userId || !recipes.length) {
     // PAGE SHOULD NOT LOAD UNTIL USERINFO RETURNED FROM DB
@@ -94,6 +85,7 @@ function Home({ user, currentPage, setCurrentPage }) {
                 userInfo={userInfo}
                 setUserInfo={setUserInfo}
                 setCurrentPage={setCurrentPage}
+                recipes={recipes}
               />
             )}
           </div>

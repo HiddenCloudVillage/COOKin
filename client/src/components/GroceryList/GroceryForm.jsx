@@ -2,6 +2,7 @@ import { TextField } from '@mui/material';
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
+import InstructionsButton from '../InstructionsButton';
 
 function GroceryForm({
   setUserInfo,
@@ -41,6 +42,7 @@ function GroceryForm({
     <FormOuter id="grocformouter" onClick={handleOuterClick}>
       <FormInner>
         <h3>Add To List</h3>
+        <InstructionsButton text="To add a new ingredient, simply type in the ingredient and click 'Add Item'." />
         <TextField
           value={newItem}
           placeholder="enter item"
@@ -66,7 +68,7 @@ const FormOuter = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   z-index: 200;
   left: 0;
   top: 0;

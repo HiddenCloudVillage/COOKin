@@ -23,12 +23,11 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme, setDis
   return (
     <HeaderContainer>
       <HeaderLeft>
-        <Title>
+        {/* <Title>
           COOKin.
-        </Title>
+        </Title> */}
+        <TitleImg id="headertitle" />
       </HeaderLeft>
-      {/* <PageTitlesContainer> */}
-        {/* set style of currentPage to Special CSS... not code for anything just make it feel special */}
       <Nav>
         {pageTitles.map((title) => (
           <PageDiv key={title} currentPage={currentPage} name={title}>
@@ -44,12 +43,13 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme, setDis
           </PageDiv>
         ))}
       </Nav>
-      {/* </PageTitlesContainer> */}
       <HeaderRight>
         <DarkMode onClick={themeToggler}>
           {theme}
         </DarkMode>
-        <button onClick={() => setDisplay((prev) => !prev)} type="button">Show Help</button>
+        <DarkMode onClick={() => setDisplay((prev) => !prev)}>
+          Show Help
+        </DarkMode>
         {user && <Img onClick={signOut} id="Header-icon" src={user?.photoURL} alt={user?.displayName} referrerPolicy="no-referrer" />}
       </HeaderRight>
     </HeaderContainer>
@@ -57,7 +57,10 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme, setDis
 }
 
 export default Header;
-
+const TitleImg = styled.img`
+  height: 40px;
+  resize: auto;
+`;
 const Img = styled.img`
   width: 40px;
   height: 40px;
@@ -74,16 +77,16 @@ const HeaderRight = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  margin-right: 2%;
-  width: 15%;
+  margin-right: 1%;
+  width: 25%;
 `;
 const HeaderContainer = styled.div`
   width: 100%;
+  height: 50px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  /* border-bottom: .5px solid; */
   background: ${(props) => props.theme.headerbg};
   cursor: default;
 `;
@@ -91,6 +94,7 @@ const HeaderContainer = styled.div`
 const HeaderLeft = styled.div`
   font-size: 35px;
   letter-spacing: -1.5px;
+  padding: 5px;
   width: 10%;
   height: 100%;
   display: flex;
@@ -100,8 +104,10 @@ const HeaderLeft = styled.div`
 `;
 
 const Nav = styled(HeaderLeft)`
-  font-size: 25px;
-  width: 65%;
+  font-size: 20px;
+  letter-spacing: 0px;
+  width: 50%;
+  height: 100%;
 `;
 
 const Title = styled.p`
@@ -119,6 +125,9 @@ const PageDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   width: 25%;
   height: 100%;
   background: ${(props) => (props.currentPage === props.name ? props.theme.background : props.theme.headerbg)}
@@ -126,10 +135,8 @@ const PageDiv = styled.div`
 
 const PageTitle = styled(Title)`
   width: 100%;
-  /* color: ${(props) => props.theme.text}; */
 `;
 const DarkMode = styled(Title)`
   margin-right: 5%;
-  font-size: 20px;
-  /* color: ${(props) => props.theme.text}; */
+  font-size: 18px;
 `;

@@ -14,7 +14,7 @@ function Login() {
     <LoginContainer>
       <LoginInnerContainer>
         <div>
-          <h1>COOKin</h1>
+          <Title id="logintitle" />
         </div>
         <small>what's cookin?</small>
         <Button onClick={signIn}>
@@ -27,16 +27,21 @@ function Login() {
 
 export default Login;
 
+const Title = styled.img`
+  height: 100px;
+  resize: auto;
+`;
+
 const Button = styled.button`
     margin-top: 50px;
     padding: 5%;
     font-size: 16px;
     font-weight: 100;
     border-radius: 5px;
-    background: #00a941;
+    background: ${(props) => props.theme.loginbutton};
     border: 1px solid transparent;
     width: 50%;
-    color: #ffffff;
+    color: ${(props) => props.theme.buttontext};
     &:hover{
     opacity: 70%;
     cursor: pointer;

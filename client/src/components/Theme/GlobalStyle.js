@@ -11,6 +11,12 @@ const GlobalStyle = createGlobalStyle`
     background: ${({ theme }) => theme.body} !important;
     color: ${({ theme }) => theme.text} !important;
   }
+  #logintitle {
+    content: url(${({ theme }) => (theme.logintitle)});
+  }
+  #headertitle {
+    content: url(${({ theme }) => theme.headertitle});
+  }
 `;
 
 export default GlobalStyle;
