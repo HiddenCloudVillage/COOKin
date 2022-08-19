@@ -21,6 +21,7 @@ export default function ExcludeIngredient({ exclusion, setExclusion, setPage, se
       <InnerContainer>
         <Autocomplete
           options={ingredients}
+          size="small"
           sx={{ width: 170 }}
           includeInputInList
           // eslint-disable-next-line react/jsx-props-no-spreading
@@ -32,7 +33,7 @@ export default function ExcludeIngredient({ exclusion, setExclusion, setPage, se
           {[...new Set(exclusion)].map((ingredient) => (
             <Row key={ingredient}>
               <P>{ingredient}</P>
-              <button type="submit" onClick={(e) => handleClick(e, ingredient)}> X </button>
+              <Button type="submit" onClick={(e) => handleClick(e, ingredient)}> X </Button>
             </Row>
           ))}
         </List>
@@ -47,8 +48,9 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-evenly;
   width: 250px;
-  height: 350px;
-  border-radius: 5px;
+  height: auto;
+  padding: 20px 0px 20px 0px;
+  border-radius: 10px;
   background: ${(props) => props.theme.tilebg2};
 `;
 
@@ -67,12 +69,13 @@ const P = styled.p`
 `;
 
 const InnerContainer = styled.div`
-  margin-top: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: ${(props) => props.theme.background};
-  height: 70%;
+  height: auto;
+  border-radius: 10px;
+  margin: 2%;
 `;
 
 const List = styled.div`
@@ -90,4 +93,21 @@ const Title = styled.h1`
 font-size: 20px;
   margin: 0px;
   color: ${(props) => props.theme.text2};
+`;
+
+const Button = styled.button`
+  height: auto;
+  width: auto;
+  border-radius: 25%;
+  border: 1px solid;
+  padding: 3px 6px 3px 6px;
+  background: none;
+  color: ${(props) => props.theme.text};
+  background-color: ${(props) => props.theme.button1};
+  &:hover{
+    cursor: pointer;
+    opacity: 70%;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
 `;

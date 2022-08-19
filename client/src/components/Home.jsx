@@ -88,7 +88,7 @@ function Home({ user, currentPage, setCurrentPage }) {
                 recipes={recipes}
               />
             )}
-            <Guy id="ayo" src="icons/COOkit3.svg" />
+            {/* <Guy id="ayo" src="icons/COOkit3.svg" /> */}
           </Container>
         </ExcludeContext.Provider>
       </IncludeContext.Provider>
@@ -101,8 +101,8 @@ export default Home;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: flex-start;
   height: 100%;
   width: 100%;
 `;

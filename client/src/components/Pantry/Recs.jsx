@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 // import styled from 'styled-components';
 import React from 'react';
+import styled from 'styled-components';
 import RecRecipeTile from './RecRecipeTile';
 
 export default function Recs({
@@ -50,7 +51,7 @@ export default function Recs({
     <>
       {
         recipesWithFewestIngredientsMissing.length > 0 ? (
-            <div className="recipe-list">
+            <List className="recipe-list">
               {recipesWithFewestIngredientsMissing.map((recipe) => (
                 <RecRecipeTile
                   recipe={recipe}
@@ -62,7 +63,7 @@ export default function Recs({
 
                 />
               ))}
-            </div>
+            </List>
         ) : (
           <div>
             <h1>No recipes with fewest ingredients missing</h1>
@@ -73,3 +74,7 @@ export default function Recs({
     </>
   );
 }
+
+const List = styled.div`
+  margin-top: 2%;
+`
