@@ -26,6 +26,8 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme, setDis
         {/* <Title>
           COOKin.
         </Title> */}
+        <TitleLogo />
+        <img src="./icons/COOkit3.svg" alt="global logo" width="40px" height="40px" style={{'padding': '5px 5px 5px 0'}} />
         <TitleImg id="headertitle" />
       </HeaderLeft>
       <Nav>
@@ -113,7 +115,7 @@ const Nav = styled(HeaderLeft)`
 const Title = styled.p`
   margin: 0;
   color: ${(props) => props.theme.title};
-  &: hover{
+  &: hover{bhn
     opacity: 70%;
     cursor: pointer;
   }
