@@ -7,12 +7,17 @@ import InstructionsButton from '../InstructionsButton';
 
 function Pantry({ setCurrentPage, recipes }) {
   const [userInfo, setUserInfo] = useContext(UserIdContext);
-  useEffect(() => {}, [userInfo]);
+  useEffect(() => { }, [userInfo]);
+  if (userInfo.pantry === undefined) {
+    userInfo.pantry = {};
+  }
   return (
     <Page>
       <Left>
         <Top>
-          <Title>Here is your grocery list.</Title>
+          {Object.keys(userInfo.pantry).length > 0
+            ? <Title>Here is your grocery list.</Title>
+            : <Title>Here is your grocery list. Please add new items.</Title>}
           <InstructionsButton text="Here is a list of items in your pantry.\? To manually add an item, click the 'Add Ingredient' button and either type or select from the ingredient options.? The amount, category, and expiration dates are optional inputs that you can also select.? Ingredients that are within 3 days of the expiration date will be highlighted in red." />
         </Top>
         <Main>
@@ -23,7 +28,13 @@ function Pantry({ setCurrentPage, recipes }) {
               setCurrentPage={setCurrentPage}
             />
           ) : (
-            <div>Pantry Empty please enter items</div>
+            <div>
+              <IngredientList
+                pantry={userInfo.pantry}
+                userInfo={userInfo}
+                setCurrentPage={setCurrentPage}
+              />
+            </div>
           )}
         </Main>
       </Left>
@@ -43,7 +54,7 @@ function Pantry({ setCurrentPage, recipes }) {
           />
         </Main>
       </Right>
-    </Page>
+    </Page >
   );
 }
 
@@ -56,6 +67,7 @@ const Main = styled.div`
 
 const Left = styled.div`
   width: 50%;
+  min-width: 500px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -66,6 +78,7 @@ const Left = styled.div`
 const Right = styled.div`
   margin-left: 2%;
   width: 40%;
+  min-width: 400px;
   height: 100%;
   display: flex;
   flex-direction: column;

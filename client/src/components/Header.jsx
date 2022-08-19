@@ -84,7 +84,7 @@ const HeaderRight = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  margin-right: 2%;
+  margin-right: 1%;
   width: 25%;
 `;
 const HeaderContainer = styled.div`
