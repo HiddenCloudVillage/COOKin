@@ -120,7 +120,7 @@ const Nav = styled(HeaderLeft)`
 const Title = styled.p`
   margin: 0;
   color: ${(props) => props.theme.title};
-  &: hover{bhn
+  &: hover{
     opacity: 70%;
     cursor: pointer;
   }
