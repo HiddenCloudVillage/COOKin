@@ -1,5 +1,6 @@
 // express server
 const express = require('express');
+const compression = require('compression');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -15,6 +16,7 @@ const controllers = require('../controllers');
 
 require('dotenv').config();
 
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
