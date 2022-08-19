@@ -159,7 +159,7 @@ const Sp = styled.span`
 `;
 
 const Thumbnail = styled.img`
-  max-width: 30%;
+  width: 30%;
   max-height: 100%;
   resize: auto;
   margin-right: 3%;
