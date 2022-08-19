@@ -26,8 +26,7 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme, setDis
         {/* <Title>
           COOKin.
         </Title> */}
-        <TitleLogo />
-        <img src="./icons/COOkit3.svg" alt="global logo" width="40px" height="40px" style={{'padding': '5px 5px 5px 0'}} />
+        <TitleLogo src="./icons/COOkit3.svg" alt="global logo" />
         <TitleImg id="headertitle" />
       </HeaderLeft>
       <Nav>
@@ -59,6 +58,12 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme, setDis
 }
 
 export default Header;
+
+const TitleLogo = styled.img`
+height 40px;
+width 40px;
+padding: 5px 5px 5px 0;
+`;
 const TitleImg = styled.img`
   height: 40px;
   resize: auto;
