@@ -80,13 +80,13 @@ function IngredientForm({ setShow }) {
           </Label>
           <Label>
             Expiration :
-            <input
+            <DateInput
               type="date"
               name="expiration"
               onChange={(e) => setExpiration(e.target.value)}
             />
           </Label>
-          <input type="submit" />
+          <Button type="submit">submit</Button>
         </Form>
       </FormInner>
     </FormOuter>
@@ -98,6 +98,11 @@ export default IngredientForm;
 const fadeIn = keyframes`
   0% { opacity: 0; }
   100% { opacity: 1; }
+`;
+
+const DateInput = styled.input`
+  font-size: inherit;
+  font: inherit;
 `;
 
 const FormOuter = styled.div`
@@ -152,4 +157,23 @@ const Label = styled.label`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-`
+`;
+
+const Button = styled.button`
+  height: auto;
+  width: 40%;
+  border-radius: 10px;
+  border: 1px solid;
+  padding: 10px;
+  background: none;
+  color: ${(props) => props.theme.text};
+  background-color: ${(props) => props.theme.button1};
+  animation: ${fadeIn};
+  animation-duration: 0.5s;
+  &:hover{
+    cursor: pointer;
+    opacity: 70%;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
+`;

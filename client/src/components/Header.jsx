@@ -23,10 +23,7 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme, setDis
   return (
     <HeaderContainer>
       <HeaderLeft>
-        {/* <Title>
-          COOKin.
-        </Title> */}
-        <TitleLogo src="./icons/COOkit3.svg" alt="global logo" />
+        <Logo src="icons/COOkit3.svg" />
         <TitleImg id="headertitle" />
       </HeaderLeft>
       <Nav>
@@ -49,7 +46,7 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme, setDis
           {theme}
         </DarkMode>
         <DarkMode onClick={() => setDisplay((prev) => !prev)}>
-          Show Help
+          help
         </DarkMode>
         {user && <Img onClick={signOut} id="Header-icon" src={user?.photoURL} alt={user?.displayName} referrerPolicy="no-referrer" />}
       </HeaderRight>
@@ -59,10 +56,10 @@ function Header({ user, setCurrentPage, currentPage, themeToggler, theme, setDis
 
 export default Header;
 
-const TitleLogo = styled.img`
-height 40px;
-width 40px;
-padding: 5px 5px 5px 0;
+const Logo = styled.img`
+  height: 40px;
+  resize: auto;
+  margin-right: 5px;
 `;
 const TitleImg = styled.img`
   height: 40px;
@@ -77,6 +74,17 @@ const Img = styled.img`
     opacity: 70%;
   }
 `;
+const HeaderLeft = styled.div`
+  font-size: 35px;
+  letter-spacing: -1.5px;
+  padding: 7px;
+  width: 10%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+`;
 
 const HeaderRight = styled.div`
   display: flex;
@@ -85,7 +93,7 @@ const HeaderRight = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin-right: 1%;
-  width: 25%;
+  width: 20%;
 `;
 const HeaderContainer = styled.div`
   width: 100%;
@@ -96,22 +104,12 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   background: ${(props) => props.theme.headerbg};
   cursor: default;
+  margin-bottom: 3%;
 `;
 
-const HeaderLeft = styled.div`
-  font-size: 35px;
-  letter-spacing: -1.5px;
-  padding: 5px;
-  width: 10%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-`;
 
 const Nav = styled(HeaderLeft)`
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 0px;
   width: 50%;
   height: 100%;

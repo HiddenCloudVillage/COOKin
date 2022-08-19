@@ -6,6 +6,7 @@ import ExcludeIngredient from './ExcludeIngredient';
 import IncludeContext from '../IncludeContext';
 import ExcludeContext from '../ExcludeContext';
 import InstructionsButton from '../InstructionsButton';
+import VideoModal from './VideoModal';
 
 export default function Suggestions({
   recipes,
@@ -18,6 +19,7 @@ export default function Suggestions({
   const [includeIngredients, setIncludeIngredients] = useContext(IncludeContext);
   const [page, setPage] = useState(0);
   const [openTile, setOpenTile] = useState(0);
+  const [showVideo, setShowVideo] = useState(false);
   // filter recipes by include ingredients and exclude ingredients
   const filterRecipes = () => {
     const filteredRecipes = recipes.filter((recipe) => {
@@ -111,15 +113,14 @@ export default function Suggestions({
             openTile={openTile}
             setOpenTile={setOpenTile}
           />
+          <Button type="button" onClick={() => setVideo(!video)}>
+            {video ? 'Hide Video' : 'Show Video'}
+          </Button>
         </Right>
       </Page>
-      <button type="button" onClick={() => setVideo(!video)}>
-        {video ? 'Hide Video' : 'Show Video'}
-      </button>
       {video && (
-      <CallFrame src="https://cookin.whereby.com/0e2801cb-a67a-4c5e-a86f-5de5dea72877" allow="camera; microphone; fullscreen; speaker; display-capture" />
+        <VideoModal setVideo={setVideo} />
       )}
-
     </>
   );
 }
@@ -145,6 +146,7 @@ const Left = styled.div`
 `;
 
 const Right = styled.div`
+  margin-top: -0.5%;
   width: 25%;
   display: flex;
   flex-direction: column;
@@ -167,10 +169,21 @@ const Top = styled.div`
   justify-content: flex-start;
   margin-bottom: 2%;
 `;
-const CallFrame= styled.iframe`
-  width: 50%;
-  height: 50%;
-  border: none;
-  margin: 0;
-  padding: 0;
+
+
+const Button = styled.button`
+  height: auto;
+  width: 250px;
+  border-radius: 10px;
+  border: 1px solid;
+  padding: 10px;
+  background: none;
+  color: ${(props) => props.theme.buttontext};
+  background-color: ${(props) => props.theme.button2};
+  &:hover{
+    cursor: pointer;
+    opacity: 70%;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
 `;

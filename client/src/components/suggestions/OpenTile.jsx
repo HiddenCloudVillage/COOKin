@@ -141,6 +141,7 @@ const TileBot = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  height: 80%;
 `;
 
 const BotRight = styled.div`
@@ -148,7 +149,7 @@ const BotRight = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 70%;
-  height: 100%;
+  min-height: 100%;
 `;
 
 const Sp = styled.span`
@@ -159,11 +160,12 @@ const Sp = styled.span`
 
 const Thumbnail = styled.img`
   width: 30%;
+  max-height: 100%;
   resize: auto;
   margin-right: 3%;
 `;
 const Ingredients = styled.div`
-  height: 100%;
+  height: 70%;
   width: 40%;
   border-radius: 10px;
 `;
@@ -171,6 +173,7 @@ const Buttons = styled(TileBot)`
   justify-content: space-evenly;
   align-items: center;
   margin: 0;
+  height: 15%;
 `;
 const Button = styled.button`
   height: auto;
@@ -200,7 +203,7 @@ const Title = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: auto;
+  height: 20%;
   margin: 0;
   padding: 0;
   margin-bottom: 2%;

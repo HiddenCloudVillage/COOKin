@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 // import styled from 'styled-components';
 import React from 'react';
+import styled from 'styled-components';
 import RecRecipeTile from './RecRecipeTile';
 
 export default function Recs({
@@ -57,24 +58,32 @@ export default function Recs({
 
   return (
     <>
-      {recipesWithFewestIngredientsMissing.length > 0 ? (
-        <div className="recipe-list">
-          {recipesWithFewestIngredientsMissing.map((recipe) => (
-            <RecRecipeTile
-              recipe={recipe}
-              key={recipe.mealId}
-              itemsArr={itemsArr}
-              userInfo={userInfo}
-              setUserInfo={setUserInfo}
-              setCurrentPage={setCurrentPage}
-            />
-          ))}
-        </div>
-      ) : (
-        <div>
-          <h1>No recipes with fewest ingredients missing</h1>
-        </div>
-      )}
+      {
+        recipesWithFewestIngredientsMissing.length > 0 ? (
+            <List className="recipe-list">
+              {recipesWithFewestIngredientsMissing.map((recipe) => (
+                <RecRecipeTile
+                  recipe={recipe}
+                  key={recipe.mealId}
+                  itemsArr={itemsArr}
+                  userInfo={userInfo}
+                  setUserInfo={setUserInfo}
+                  setCurrentPage={setCurrentPage}
+
+                />
+              ))}
+            </List>
+        ) : (
+          <div>
+            <h1>No recipes with fewest ingredients missing</h1>
+          </div>
+        )
+
+      }
     </>
   );
 }
+
+const List = styled.div`
+  margin-top: 2%;
+`
