@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import {
+  GoogleMap,
+  LoadScript,
+  Marker,
+  InfoWindow,
+} from '@react-google-maps/api';
 import styled from 'styled-components';
 import mapKey from '../../lib/mapKey';
 
@@ -8,6 +13,9 @@ const axios = require('axios');
 function GroceryStore() {
   const [center, setCenter] = useState('');
   const [stores, setStores] = useState();
+  const [selected, setSelected] = useState(null);
+  const [name, setName] = useState();
+  const [vicinity, setVicinity] = useState();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -15,16 +23,14 @@ function GroceryStore() {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       });
-      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${position.coords.latitude}%2C${position.coords.longitude}&radius=1500&type=store&keyword=grocery&key=${mapKey}`;
+      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${position.coords.latitude}%2C${position.coords.longitude}&radius=5000&type=grocery_or_supermarket&key=${mapKey}`;
       axios({
         method: 'put',
         url: '/getStores',
         data: { url },
       })
         .then((res) => {
-          const storeArray = res.data.results.map(
-            (store) => store.geometry.location,
-          );
+          const storeArray = res.data.results.map((store) => store);
           console.log('who do dis>', storeArray);
           setStores(storeArray);
         })
@@ -45,7 +51,7 @@ function GroceryStore() {
         <Title>Finding your nearest grocery stores...</Title>
         <Spinner id="spinner" src="icons/spinner.gif" />
       </>
-    )
+    );
   }
   return (
     <LoadScript googleMapsApiKey={mapKey}>
@@ -57,11 +63,29 @@ function GroceryStore() {
         options={options}
       >
         {stores.map((eachStore) => (
-          <Marker position={eachStore} key={Math.floor(Math.random() * 20)} />
+          <Marker
+            onClick={() => {
+              setSelected(eachStore.geometry.location);
+              setVicinity(eachStore.vicinity);
+              setName(eachStore.name);
+            }}
+            position={eachStore.geometry.location}
+            key={Math.floor(Math.random() * 20)}
+          />
         ))}
+        {selected ? (
+          <InfoWindow
+            position={selected}
+            onCloseClick={() => setSelected(null)}
+          >
+            <div>
+              <h2>{name}</h2>
+              <p>{vicinity}</p>
+            </div>
+          </InfoWindow>
+        ) : null}
       </GoogleMap>
     </LoadScript>
-
   );
 }
 
