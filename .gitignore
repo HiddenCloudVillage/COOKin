@@ -5,3 +5,4 @@ key.js
 client/dist/bundle.js
 .prettierrc.json
 mapKey.js
+.DS_Store
