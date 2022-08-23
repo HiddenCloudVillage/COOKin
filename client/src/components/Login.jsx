@@ -1,13 +1,20 @@
 /* eslint-disable no-alert */
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { keyframes } from 'styled-components';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../lib/firebase';
 
 function Login() {
+  const [rot, setRotation] = useState(0);
   const signIn = (e) => {
     e.preventDefault();
     signInWithPopup(auth, provider).catch((err) => alert(err.message));
+  };
+
+  const handleClick = (e) => {
+    console.log(rot);
+
+    setRotation(rot + 90);
   };
 
   return (
@@ -17,6 +24,7 @@ function Login() {
           <Title id="logintitle" />
         </div>
         <small>what's cookin?</small>
+        <Guy src="icons/COOkit3.svg" rot={rot} onClick={handleClick} />
         <Button onClick={signIn}>
           Sign in with Google.
         </Button>
@@ -26,6 +34,20 @@ function Login() {
 }
 
 export default Login;
+
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+const Guy = styled.img`
+  height: 70px;
+  resize: auto;
+  animation: ${spin};
+  animation-duration: 2s;
+  transform: rotate(${(props => props.rot)}deg);
+  transition: 0.7s;
+`;
 
 const Title = styled.img`
   height: 100px;

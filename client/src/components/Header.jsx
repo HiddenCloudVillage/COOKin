@@ -97,7 +97,6 @@ const HeaderLeft = styled.div`
   align-items: center;
   &:hover {
     cursor: pointer;
-    opacity: 70%;
   }
 `;
 
